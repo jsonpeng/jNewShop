@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Config;
 Route::get('generate','AppBaseController@manyGenerateData');
 
 Route::get('test',function(){
+	dd(app('commonRepo')->productAllShelf());
 	dd(app('commonRepo')->readExcelsToGenerate());
 	$needData = [];
 

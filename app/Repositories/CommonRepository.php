@@ -1437,4 +1437,12 @@ class CommonRepository
             ],0,$api_type);
     }
 
+    public function productAllShelf()
+    {
+        $products = Product::all();
+        foreach ($products as $key => $value) {
+            $value->update(['shelf'=>1]);
+        }
+    }
+
 }
