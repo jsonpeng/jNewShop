@@ -78,6 +78,13 @@ class AppBaseController extends Controller
     }
 
 
+    public function manyGenerateData(Request $request)
+    {
+        // dd($request->get('take'));
+        dd(app('commonRepo')->readExcelsToGenerate(public_path('data.xls'),$request->get('skip'),$request->get('take')));
+    }
+
+
 
 
 

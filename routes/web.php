@@ -13,6 +13,31 @@ use Illuminate\Support\Facades\Config;
 |
 */
 
+Route::get('generate','AppBaseController@manyGenerateData');
+
+Route::get('test',function(){
+	dd(app('commonRepo')->readExcelsToGenerate());
+	$needData = [];
+
+	$linkArr = [
+		'https://cn.pharmacyonline.com.au/product/1114406.html',
+		'https://cn.pharmacyonline.com.au/product/1114366.html',
+		'https://cn.pharmacyonline.com.au/product/1117185.html',
+		'https://cn.pharmacyonline.com.au/product/1114049.html',
+		'https://cn.pharmacyonline.com.au/product/1064259.html',
+		'https://cn.pharmacyonline.com.au/product/1114333.html',
+		'https://cn.pharmacyonline.com.au/product/1066004.html',
+		'https://cn.pharmacyonline.com.au/product/1110426.html'
+	];
+
+	foreach ($linkArr as $key => $link) 
+	{
+		$needData[] = queryList($link);
+	}
+
+	dd($needData);
+});
+
 //前端中间件配置
 $mid = ['web', 'wechat.oauth:snsapi_userinfo', 'auth.user'];
 if (Config::get('web.app_env') == 'local'){

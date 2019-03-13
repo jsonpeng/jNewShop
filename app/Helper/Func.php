@@ -4,6 +4,31 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
+use QL\QueryList;
+
+function queryList($link,$rules = null){
+    if(empty($rules)){
+        $rules = array (
+          'price' => 
+          array (
+            0 => '#end-price',
+            1 => 'text',
+          ),
+          'image' => 
+          array (
+            0 => '.showcase',
+            1 => 'src',
+          ),
+          'intro' => 
+          array (
+            0 => '.pds-product-description',
+            1 => 'html',
+          ),
+        );
+    }
+    $data = QueryList::get($link)->rules($rules)->range('')->queryData();
+    return $data;
+}
 
 
 /**

@@ -40,6 +40,7 @@ use App\Models\MoneyLog;
 use App\Models\RefundLog;
 use App\Models\OrderAction;
 use App\Models\DistributionLog;
+use App\Models\Product;
 use App\User;
 use Log;
 
@@ -53,6 +54,7 @@ use AlipayTradeService;
 use AlipayTradeWapPayContentBuilder;
 use AopClient;
 use AlipayFundTransToaccountTransferRequest;
+use Excel;
 
 class CommonRepository
 {
@@ -1307,6 +1309,61 @@ class CommonRepository
       }
 
       return $img;
+    }
+
+    //读取excel文件
+    public function loadExcels($files){
+       if (!file_exists($files)){
+          //return zcjy_callback_data('没有找到该文件',1);
+          return false;
+       }
+       $res = [];
+       Excel::load($files, function($reader) use( &$res ) {
+            $reader = $reader->getSheet(0);
+            $res = $reader->toArray();
+       }); 
+       return $res;
+    }
+
+    public function readExcelsToGenerate($files = null,$start = 1,$rows = 100)
+    {
+        if(empty($files))
+        {
+            $files = public_path('data.xls');
+        }
+        ##先读取excel文件
+        $res= $this->loadExcels($files);
+        if(count($res) > 1)
+        {
+             $data_arr = [];
+             $input = [];
+             for ($i = $start; $i < $rows; $i++) 
+             { 
+                ##有数据就处理
+                if(isset($res[$i][0]))
+                {
+                    $input['name']        = $res[$i][0];
+                    $input['link']        = isset($res[$i][1]) ? $res[$i][1] : 0;
+                    $input['category_id'] = catIdByName($res[$i][2]);
+                    if($input['link'])
+                    {
+                        $queryData = queryList($input['link'])[0];
+
+                        if(isset($queryData['image']))
+                        {
+                            $input['image']        = $queryData['image'];
+                            $input['price']        = $queryData['price'];
+                            $input['intro']        = $queryData['intro'];
+                            $input['market_price'] = rand(200,220);
+                        }
+                        
+                    }
+                    Product::create($input);
+                    $data_arr[] = $input;
+                }
+             }
+        }
+        return $data_arr;
     }
 
     /**

@@ -15,6 +15,7 @@
         "infyomlabs/adminlte-templates": "5.5.x-dev",
         "infyomlabs/laravel-generator": "5.5.x-dev",
         "intervention/image": "^2.4",
+        "jaeger/querylist": "dev-master",
         "laracasts/flash": "~3.0.2",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",

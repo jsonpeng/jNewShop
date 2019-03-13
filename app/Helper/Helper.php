@@ -8,12 +8,20 @@ use Illuminate\Support\Facades\Config;
 use App\Models\Cities;
 use App\Models\Setting;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\Store;
 use App\User;
 
 use App\Repositories\BannerRepository;
 use Carbon\Carbon;
 include_once 'Code.php';
+
+
+function catIdByName($name)
+{
+    $cat = Category::where('name',$name)->first();
+    return  $cat ? $cat->id : 0; 
+}
 
 /**
  * 获取商品信息
