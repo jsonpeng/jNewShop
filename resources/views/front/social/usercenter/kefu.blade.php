@@ -4,7 +4,7 @@
     <style>
         .weui-grid{width: 25%;}
         body{background-color:{{ themeSecondColor()}};}
-        .nav_tip{background:#000;}
+        /*.nav_tip{background:#000;}*/
         .nav_tip .titile{color: #fff;font-size: 17px;}
         .shareCode{margin-bottom: 0;margin-top:15px;height: auto;}
         .weui-cell__hd img{width:35.5px;margin-left: 60px;margin-right: 10px;}
