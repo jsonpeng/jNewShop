@@ -71,14 +71,14 @@
             <img src="{{ $item->product->image }}" class="productImage">
             <div class="product-name">{{ $item->product->name }}</div>
             <div class="remark"></div>
-            <div class="price"> <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item->realPrice }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $item->jifen }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item->qty }}</span></div>
+            <div class="price"> <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item->realPrice }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item->qty }}</span></div>
           </div>
         @else
           <div class="zcjy-product-check">
             <img src="{{ $item->spec->image }}" class="productImage">
             <div class="product-name">{{ $item->product->name }}</div>
             <div class="remark">规格：{{ $item->spec->key_name }}</div>
-            <div class="price"> <span style="" class="ft-l">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item->realPrice }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $item->jifen }}</span> <span style="float: right; margin-right: 0.75rem;" class="ft-r">x{{ $item->qty }}</span></div>
+            <div class="price"> <span style="" class="ft-l">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item->realPrice }}</span> <span style="float: right; margin-right: 0.75rem;" class="ft-r">x{{ $item->qty }}</span></div>
           </div>
         @endif
 
