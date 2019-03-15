@@ -305,7 +305,7 @@
   @else
     <div class="checkwrapper product-checker">
       {{-- 积分主题中去掉 margin-left: 0.75rem --}}
-      <span style=" font-size: 14px;">实付款：  </span> <span class="price_final" id="total"> {{ getSettingValueByKeyCache('price_fuhao') }} <span>{{ $needPay }} + {{ getSettingValueByKeyCache('credits_alias') }}{{ $jifen }}</span></span>
+      <span style=" font-size: 14px;">实付款：  </span> <span class="price_final" id="total"> {{ getSettingValueByKeyCache('price_fuhao') }} <span>{{ $needPay }}</span></span>
       {{-- <a class="right-botton02" href="javascript:;" onclick="">继续购物</a> --}}
       <a class="right-botton01" href="javascript:;" onclick="submit()">立即支付</a>
     </div>
