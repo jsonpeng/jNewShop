@@ -117,7 +117,14 @@
                                                 </div>
                                             </div>
 
+
                                             <div class="form-group">
+                                                <label for="price_fuhao" class="col-sm-3 control-label">商城前端价格符号</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" name="price_fuhao" maxlength="60" placeholder="如:AU$" value="{{ getSettingValueByKey('price_fuhao') }}"></div>
+                                            </div>
+
+                                       {{--      <div class="form-group">
                                                 <label for="near_shop_distance" class="col-sm-3 control-label">展示附近商家距离</label>
                                                 <div class="col-sm-9">
                                                     <div class="input-group">
@@ -125,10 +132,10 @@
                                                         <span class="input-group-addon">千米(KM)</span>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
 
-                                            <div class="form-group">
+                           {{--                  <div class="form-group">
                                                 <label for="logo" class="col-sm-3 control-label">企业店铺LOGO</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" class="form-control" id="image111" name="company_logo" placeholder="企业店铺LOGO" value="{{ getSettingValueByKey('company_logo') }}">
@@ -137,10 +144,10 @@
                                                         <img src="@if(getSettingValueByKey('company_logo')) {{ getSettingValueByKey('company_logo') }} @endif" style="max-width: 100%; max-height: 150px; display: block;">
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                             @if(funcOpen('FUNC_MEMBER_LEVEL'))
-                                            <div class="form-group">
+                                       {{--      <div class="form-group">
                                                 <label for="user_level_switch" class="col-sm-3 control-label">开启用户等级</label>
                                                 <div class="col-sm-9">
                                                     <div class="radio">
@@ -152,7 +159,7 @@
                                                             <input type="radio" name="user_level_switch" value="不开启" @if( '不开启' == getSettingValueByKey('user_level_switch') || '' == getSettingValueByKey('user_level_switch') )checked="" @endif>不开启</label>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             @endif
                                             
                                             @if(funcOpen('FUNC_BIND_MOBILE'))

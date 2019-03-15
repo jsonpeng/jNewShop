@@ -5,7 +5,7 @@
         .weui-grid{width: 25%;}
         .user-zone .weui-cell{border-bottom:1px solid #e0e0e0;}
         .weui-cell .weui-cell__bd{color: #000;font-weight: bold;}
-        .userInfo{background-image: url('images/social/bg.jpg');background-repeat: no-repeat;background-position: center;background-size: cover;box-sizing: border-box;padding-bottom: 15px;}
+        .userInfo{background-image: url('images/social/usercenter.jpg');background-repeat: no-repeat;background-position: center;background-size: cover;box-sizing: border-box;padding-bottom: 15px;}
         .userInfo .weui-media-box_appmsg{margin-top:15px;}
         .app-wrapper .userInfo .weui-media-box .weui-media-box__desc span{color: #fff;}
         .userInfo .line{margin: 0 15px;}
@@ -107,6 +107,13 @@
             </div>
             <div class="weui-cell__ft"></div>
         </a>
+        <a class="weui-cell weui-cell_access" href="/integral/cert">
+            <div class="weui-cell__bd">
+                <p>实名认证</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+        
     </div>
     
     @if(funcOpen('FUNC_DISTRIBUTION') && $user->is_distribute)

@@ -99,7 +99,7 @@
                     @if($product->is_hot)<p class="hot">HOT</p>@endif
                 </div> 
                 <div class="title">{{ $product->name }}</div>
-                <div class="price">¥{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
             </a>
         @endforeach
     </div>
@@ -166,7 +166,7 @@
                               <img src='" + all_product[i].image + "'>\
                           </div>\
                           <div class='title'>" + all_product[i].name + "</div>\
-                          <div class='price'>¥" + all_product[i].price + " <span class='buynum'> " + all_product[i].sales_count + "人购买</span></div>\
+                          <div class='price'>{{ getSettingValueByKeyCache('price_fuhao') }}" + all_product[i].price + " <span class='buynum'> " + all_product[i].sales_count + "人购买</span></div>\
                       </a>"
                     );
                   }

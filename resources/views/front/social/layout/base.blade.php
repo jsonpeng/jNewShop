@@ -39,10 +39,18 @@
         .weui-tabbar .weui-bar__item_on p{color: #fff;}
         .weui-tabbar .weui-bar__item_on .icon{  color:#fff;}
         .discount .weui-tab .weui-navbar .weui-bar__item_on{  color: {{ $theme_main_color }};  border-bottom: 1px solid {{ $theme_main_color }};}
-        .weui-tabbar.reverse  .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{color: #fff;}
+        .weui-tabbar.reverse  .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{color: #ff4e44;}
         .weui-navbar__item.weui-bar__item_on{  border-bottom: 1px solid {{ $theme_main_color }};}
+        .weui-search-bar,.weui-search-bar__label{background-color: #fff;}
+        .nav_tip {background-color: #ff4e44;}
+        .store-text {
+            text-align: center;
+            color: #333;
+            margin-bottom: 22px;
+        }
     </style>
-    {{-- <style>
+    <style>
+    /*
         .weui-dialog__btn_primary {color: {{ themeMainColor() }};}
         .product-wrapper .price {color: #ff4e44;}
         .product-wrapper .product-item2 .hot{background-color: {{themeMainColor() }};}
@@ -130,8 +138,8 @@
         .userInfo{background-color:{{ themeMainColor()}};}
         .layui-m-layerbtn span[yes]{ color: {{ themeMainColor()}};}
         .weui-tabbar.reverse{background-color: {{ themeMainColor()}};}
-        .discount .weui-tab__panel .link a{color:{{ themeMainColor()}} }
-    </style> --}}
+        .discount .weui-tab__panel .link a{color:{{ themeMainColor()}} }*/
+    </style>
 
     <!-- jquery -->
     <script src="{{asset('vendor/jquery-1.12.4.min.js')}}"></script>

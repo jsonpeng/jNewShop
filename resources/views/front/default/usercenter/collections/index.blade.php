@@ -23,7 +23,7 @@
             <div class="weui-meida-box_bd">
               <h4 class="weui-media-box_title">{{ $item->name }}</h4>
               <p class="weui-media-box__desc">
-                <span class="price">¥{{ $item->price }}</span>
+                <span class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item->price }}</span>
                 <span class="num">已有{{ $item->sales_count }}人购买</span>
               </p>
             </div>
@@ -58,7 +58,7 @@
             <div class="weui-meida-box_bd">
               <h4 class="weui-media-box_title">@{{=value.name}}</h4>
               <p class="weui-media-box__desc">
-                <span class="price">¥@{{=value.price}}</span>
+                <span class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}}</span>
                 <span class="num">已有@{{=value.sales_count}}人购买</span>
               </p>
             </div>

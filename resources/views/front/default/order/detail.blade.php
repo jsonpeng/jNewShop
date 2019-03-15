@@ -152,7 +152,7 @@
             <img src="{{ $item->pic }}" class="productImage" onerror="this.src= '/images/default.jpg' ">
             <div class="product-name">{{ $item->name }}</div>
             <div class="remark">{{ $item->unit}}</div>
-            <div class="price" style="overflow: hidden;"> <span style="float: left;color:#333;">¥{{$item->price}}+{{ getSettingValueByKeyCache('credits_alias') }}{{$item->jifen}}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item->count }}</span></div>
+            <div class="price" style="overflow: hidden;"> <span style="float: left;color:#333;">{{ getSettingValueByKeyCache('price_fuhao') }}{{$item->price}}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item->count }}</span></div>
           </div>
           @if(funcOpen('FUNC_AFTERSALE'))
             <!-- 未确认收货 -->
@@ -176,7 +176,7 @@
       </div>
     </div>
     <div class="practical-payment">
-      原价：¥{{ $order->origin_price }}&nbsp;&nbsp;实付 ：<span style="font-weight: bold;">¥ {{$order->price}}.00+{{ getSettingValueByKeyCache('credits_alias') }}{{$order->jifen}}</span>&nbsp;
+      原价：{{ getSettingValueByKeyCache('price_fuhao') }}{{ $order->origin_price }}&nbsp;&nbsp;实付 ：<span style="font-weight: bold;">{{ getSettingValueByKeyCache('price_fuhao') }} {{$order->price}}.00</span>&nbsp;
       <span>(免运费)</span>
     </div>
     <div class="order-contact">
@@ -312,7 +312,7 @@
             <a class="right-botton01" href="javascript:;" onclick="cancelOrder()">取消订单</a>
           @else
             <span style="margin-left: 0.75rem; font-size: 0.6rem;">实付款 : </span> 
-            <span class="price_final" id="total" style="padding-left: 0.5rem; font-weight: bold;"> ¥ {{$order->price}}.00+{{ getSettingValueByKeyCache('credits_alias') }}{{$order->jifen}}</span>
+            <span class="price_final" id="total" style="padding-left: 0.5rem; font-weight: bold;"> {{ getSettingValueByKeyCache('price_fuhao') }} {{$order->price}}.00</span>
             <a class="right-botton01" href="javascript:;" id="showIOSActionSheet">立即支付</a>
             <a class="right-botton02" href="javascript:;" onclick="cancelOrder()">取消订单</a>
           @endif

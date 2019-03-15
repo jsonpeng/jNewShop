@@ -64,7 +64,7 @@
               <div class="proudct-info-wrapper">
                 <div class="product-name">{{ $product->name }}</div>
                 <!--div class="remark oneline">规格: {{ $item->name }}</div-->
-                <div class="price oneline" >价格 ¥{{ $item->realPrice }}@if($item->jifen)+{!! getSettingValueByKeyCache('credits_alias') !!}<span style="color: #ff4e44;">{{ $item->jifen }}</span>@endif</div>
+                <div class="price oneline" >价格 {{ getSettingValueByKeyCache('price_fuhao') }}{{ $item->realPrice }}@if($item->jifen)+{!! getSettingValueByKeyCache('credits_alias') !!}<span style="color: #ff4e44;">{{ $item->jifen }}</span>@endif</div>
                 <div class="tr cart-item">
                   <div class="counter">
                     <i class="fa fa-minus" style="float:left;" onclick="cartdel({{ $product->id }}, 0, '{{$item->id}}')"></i>
@@ -72,9 +72,9 @@
                     <i class="fa fa-plus" style="float:left;" onclick="cartadd({{ $product->id }}, 0, '{{ $item->id }}')"></i>
                   </div>
                 </div>
-                <div class="PriceStatistics">
-                    小计：<p><span>¥</span>{{ $item->realPrice }}<span>{!! getSettingValueByKeyCache('credits_alias') !!}</span>{{ $item->jifen }}</p>
-                </div>
+              {{--   <div class="PriceStatistics">
+                    小计：<p><span>{{ getSettingValueByKeyCache('price_fuhao') }}</span>{{ $item->realPrice }}<span>{!! getSettingValueByKeyCache('credits_alias') !!}</span>{{ $item->jifen }}</p>
+                </div> --}}
               </div>
             </div>
           @else
@@ -105,7 +105,7 @@
         @endforeach
         
         <div class="checkwrapper product-checker">
-          <span style="width: 0.5rem; display: inline-block;"></span><span id="count">{{ $count }}</span> 件商品, 总计 <span class="price_final" id="total"> ¥ {{ $total }}元+{{ $jifen }}{{ getSettingValueByKeyCache('credits_alias') }}</span>
+          <span style="width: 0.5rem; display: inline-block;"></span><span id="count">{{ $count }}</span> 件商品, 总计 <span class="price_final" id="total"> {{ getSettingValueByKeyCache('price_fuhao') }} {{ $total }}元</span>
           <a class="right-botton01" href="/check">结算<span></span></a>
         </div>
       </div>
@@ -195,7 +195,7 @@
                 });
               }else{
                 $('#count').text(data.message.count);
-                $('#total').text('¥ ' + data.message.total + '元+{{ getSettingValueByKeyCache('credits_alias') }}' + data.message.jifen);
+                $('#total').text('{{ getSettingValueByKeyCache('price_fuhao') }} ' + data.message.total + '元');
                 $('#value_'+id).val(data.message.qty);
                 if (data.message.qty < count) {
                   layer.open({
@@ -234,7 +234,7 @@
               }else{
                 $('#value_'+productId+'_'+specPriceId).val(data.message.qty);
                 $('#count').text(data.message.count);
-                $('#total').text('¥ ' + data.message.total + '元');
+                $('#total').text('{{ getSettingValueByKeyCache('price_fuhao') }} ' + data.message.total + '元');
               }
             },
             error: function(data) {
@@ -264,7 +264,7 @@
                 });
               }else{
                 $('#count').text(data.message.count);
-                $('#total').text('¥ ' + data.message.total + '元');
+                $('#total').text('{{ getSettingValueByKeyCache('price_fuhao') }} ' + data.message.total + '元');
               }
             },
             error: function(data) {

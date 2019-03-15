@@ -25,7 +25,7 @@
                 <img class="lazy" data-original="{{ $element->image }}">
             </div>
             <div class="title">{{$element->name}}</div>
-            <div class="price">¥{{$element->price}}@if($element2->jifen)+贷呗<span style="color: #ff4e44;">{{ $element2->jifen }}</span>@endif <span class="buynum">已售 {{ $element->sales_count }}</span></div>
+            <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{$element->price}}@if($element2->jifen)+贷呗<span style="color: #ff4e44;">{{ $element2->jifen }}</span>@endif <span class="buynum">已售 {{ $element->sales_count }}</span></div>
         </a>
       @endforeach
     </div>

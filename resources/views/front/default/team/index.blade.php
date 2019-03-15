@@ -20,7 +20,7 @@
                     <img src="{{$teamSale->product->image}}">
                 </div>
                 <div class="title">{{$teamSale->product_name}}</div>
-                <div class="price">¥{{$teamSale->price}} <span style="float: right;">已拼{{$teamSale->sales_sum+$teamSale->sales_sum_base}}件</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{$teamSale->price}} <span style="float: right;">已拼{{$teamSale->sales_sum+$teamSale->sales_sum_base}}件</span></div>
             </a>
         @endforeach
     </div>

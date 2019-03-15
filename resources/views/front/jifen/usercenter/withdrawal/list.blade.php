@@ -23,7 +23,7 @@
 		</div>
 		<div class="weui-media-box withdraw-body">
 			<p class="ft-s">提现金额</p>
-			<p class="ft-l">¥{!! $item->price !!}</p>
+			<p class="ft-l">{{ getSettingValueByKeyCache('price_fuhao') }}{!! $item->price !!}</p>
 		</div>
 		<div class="weui-cell withdraw-text">
 			<div class="weui-cell__hd">提现银行：</div>

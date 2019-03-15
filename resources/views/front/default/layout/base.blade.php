@@ -19,9 +19,13 @@
     <!-- 默认样式 -->
     <link rel="stylesheet" href="{{ asset('css/default/app.css') }}">
 
+    @if(Request::is('integral/*'))
+       <!-- 主题样式 -->
+    <link rel="stylesheet" href="{{ asset('css/jifen/app.css') }}">
+    @else
     <!-- 主题样式 -->
     <link rel="stylesheet" href="{{ asset('css/'.theme()['name'].'/app.css') }}">
-
+    @endif
     <!-- LAYER UI -->
     <link rel="stylesheet" href="{{ asset('vendor/layui/css/layui.css') }}"  media="all">
     
@@ -60,6 +64,13 @@
           -webkit-border-radius: 5px;
           -moz-border-radius: 5px;
           border-radius: 5px;
+        }
+        .nav_tip {background-color: #ff4e44;}
+        .classreturn {background-color: #ff4e44;}
+        .store-text {
+        text-align: center;
+        color: #333;
+        margin-bottom: 22px;
         }
     </style>
     @yield('css')

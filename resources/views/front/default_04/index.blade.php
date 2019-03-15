@@ -68,7 +68,7 @@
                               <img src='" + all_product[i].image + "'>\
                           </div>\
                           <div class='title'>" + all_product[i].name + "</div>\
-                          <div class='price'>¥" + all_product[i].price + " <span class='buynum'> " + all_product[i].sales_count + "人购买</span></div>\
+                          <div class='price'>{{ getSettingValueByKeyCache('price_fuhao') }}" + all_product[i].price + " <span class='buynum'> " + all_product[i].sales_count + "人购买</span></div>\
                       </a>"
                     );
                   }

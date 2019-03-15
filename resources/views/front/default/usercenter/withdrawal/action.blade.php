@@ -36,7 +36,7 @@
 			<div class="intr">提现金额<span> ( 提现最低<span id="min_price">{!! $min_price !!}</span>元起，每日限额{!! $max_num !!}笔 ) </span>:</div>
 		</div>
 		<div class="weui-cell">
-			<div class="money-num weui-cell__bd"><span>¥</span><input type="text" name="bank_money_num"></div>
+			<div class="money-num weui-cell__bd"><span>{{ getSettingValueByKeyCache('price_fuhao') }}</span><input type="text" name="bank_money_num"></div>
 		</div>
 		<div class="weui-cell withdraw-apply-info">
 			<div class="weui-cell__hd">可用余额：<span id="can_use_money">{!! $user->user_money !!}</span>元</div>

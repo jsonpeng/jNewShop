@@ -19,7 +19,7 @@
               <img class="lazy" data-original="{{ $element->image }}">
           </div>
           <div class="title">{{$element->name}}</div>
-          <div class="price">¥{{$element->price}} <span class="buynum">{{ $element->sales_count }}人购买</span></div>
+          <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{$element->price}} <span class="buynum">{{ $element->sales_count }}人购买</span></div>
       </a>
     @endforeach
   </div>
@@ -38,7 +38,7 @@
               <img class="lazy" data-original="@{{=value.image}}">
           </div>
           <div class="title">@{{=value.name}}</div>
-          <div class="price">¥@{{=value.price}} <span class="buynum">@{{=value.sales_count}}人购买</span></div>
+          <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}} <span class="buynum">@{{=value.sales_count}}人购买</span></div>
       </a>
     @{{~}}
   </script>

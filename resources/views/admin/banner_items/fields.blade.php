@@ -27,10 +27,10 @@
     {!! Form::text('link', null, ['class' => 'form-control','readonly'=>'readonly']) !!}
 </div>
 
-<div class="form-group col-sm-12 mini_link" style="display: @if(!empty($bannerItem) && !empty($bannerItem->link_type)) block @else none @endif;">
+{{-- <div class="form-group col-sm-12 mini_link" style="display: @if(!empty($bannerItem) && !empty($bannerItem->link_type)) block @else none @endif;">
     {!! Form::label('mini_link', '小程序跳转链接:') !!}
     {!! Form::text('mini_link', null, ['class' => 'form-control','readonly'=>'readonly']) !!}
-</div>
+</div> --}}
 
 <!-- Sort Field -->
 <div class="form-group col-sm-12">

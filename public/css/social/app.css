@@ -24,7 +24,7 @@ img {
   display: inline-block;
 }
 /* ==========================================================================
-	浏览器设定初始化
+  浏览器设定初始化
    ========================================================================== */
 body,
 div,
@@ -394,7 +394,7 @@ a {
   height: 50px;
 }
 .all_products {
-  background-color: #000;
+  background-color: #fff;
 }
 .search-box {
   height: 45px;
@@ -850,11 +850,9 @@ input::-webkit-input-placeholder {
 }
 .slide-box.nav-scroll .slide-item {
   font-size: 14px;
-  color: #969696;
+  color: black;
 }
-.slide-box.nav-scroll .active {
-  color: #fff;
-}
+.slide-box.nav-scroll .active {color: #ff4e44;}
 .no-content {
   color: #414141;
   font-size: 14px;

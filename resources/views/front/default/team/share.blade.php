@@ -23,7 +23,7 @@
           </div>
           <div class="product-name">{{ $element->name }}</div>
           <div class="remark">{{ $element->spec_keyname }}</div>
-          <div class="price"> <span style="float: left;">¥{{ $element->price }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $element->count }}</span></div>
+          <div class="price"> <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $element->count }}</span></div>
         </div>
     @endforeach
     

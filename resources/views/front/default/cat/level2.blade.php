@@ -32,7 +32,7 @@
                 <img class="lazy" data-original="{{ $element->image }}" src="{{ $element->image }}">
             </div>
             <div class="title">{{$element->name}}</div>
-            <div class="price">¥{{$element->price}}@if($element->jifen)+{{ $element->jifen }}{!! getSettingValueByKeyCache('credits_alias') !!}@endif<br><span class="buynum">已售 {{ $element->sales_count }}</span></div>
+            <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{$element->price}}@if($element->jifen)+{{ $element->jifen }}{!! getSettingValueByKeyCache('credits_alias') !!}@endif<br><span class="buynum">已售 {{ $element->sales_count }}</span></div>
         </a>
       @endforeach
     </div>
@@ -90,7 +90,7 @@
                           <img src='" + all_product[i].image + "'>\
                       </div>\
                       <div class='title'>" + all_product[i].name + "</div>\
-                      <div class='price'>¥" + all_product[i].price + jifen_html + "<br><span class='buynum'>已售 " + all_product[i].sales_count + "</span></div>\
+                      <div class='price'>{{ getSettingValueByKeyCache('price_fuhao') }}" + all_product[i].price + jifen_html + "<br><span class='buynum'>已售 " + all_product[i].sales_count + "</span></div>\
                   </a>"
                 );
         

@@ -1,7 +1,7 @@
 <div class="weui-tabbar reverse" id="weui-tabbar">
     <a href="/" class="weui-tabbar__item @if($tabIndex == 1) weui-bar__item_on @endif">
-        <img src="{{ asset('images/social/t1.png') }}" alt="" class="weui-tabbar__icon">
-        <img src="{{ asset('images/social/t7.png') }}" alt="" class="weui-tabbar__icon ">
+        <img src="{{ asset('images/social/index_active.png') }}" alt="" class="weui-tabbar__icon">
+        <img src="{{ asset('images/social/index.png') }}" alt="" class="weui-tabbar__icon ">
         <p class="weui-tabbar__label">首页</p>
     </a>
 
@@ -13,21 +13,21 @@
 </a> -->
 
     <a href="/found" class="weui-tabbar__item @if($tabIndex == 5) weui-bar__item_on @endif">
-        <img src="{{ asset('images/social/t5.png') }}" alt="" class="weui-tabbar__icon">
-        <img src="{{ asset('images/social/t2.png') }}" alt="" class="weui-tabbar__icon">
+        <img src="{{ asset('images/social/t2_active.png') }}" alt="" class="weui-tabbar__icon">
+        <img src="{{ asset('images/social/t2_default.png') }}" alt="" class="weui-tabbar__icon">
         <p class="weui-tabbar__label">发现</p>
     </a>
     <a href="/cart" class="weui-tabbar__item @if($tabIndex == 3) weui-bar__item_on @endif">
         <span style="display: inline-block;position: relative;">
-            <img src="{{ asset('images/social/t3.png') }}" alt="" class="weui-tabbar__icon">
+            <img src="{{ asset('images/social/t3_active.png') }}" alt="" class="weui-tabbar__icon">
             <img src="{{ asset('images/social/t3.png') }}" alt="" class="weui-tabbar__icon">
             <span class="weui-badge" id="cart_num">0</span>
         </span>
         <p class="weui-tabbar__label">购物车</p>
     </a>
     <a href="/usercenter" class="weui-tabbar__item @if($tabIndex == 4) weui-bar__item_on @endif">
-        <img src="{{ asset('images/social/t6.png') }}" alt="" class="weui-tabbar__icon">
-        <img src="{{ asset('images/social/t4.png') }}" alt="" class="weui-tabbar__icon">
+        <img src="{{ asset('images/social/t4_active.png') }}" alt="" class="weui-tabbar__icon">
+        <img src="{{ asset('images/social/t4_default.png') }}" alt="" class="weui-tabbar__icon">
         <p class="weui-tabbar__label">个人中心</p>
     </a>
 </div>

@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
 
 .weui-dialog__btn_primary {color: {{ $theme_main_color }};}
 .product-wrapper .price {color: #ff4e44;}
@@ -125,4 +125,4 @@ a.flash-sale-item .go{  background-color: {{ $theme_main_color}};}
 .weui-switch:checked {  border-color: {{ $theme_main_color}};background-color: {{ $theme_main_color}};}
 .weui-btn_primary{  background-color: {{ $theme_main_color}};}
 .weui-navbar__item.weui-bar__item_on span{  border-bottom: 1px solid {{ $theme_main_color}};}
-</style>
+</style> --}}

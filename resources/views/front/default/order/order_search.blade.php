@@ -52,7 +52,7 @@
               <img src="{{ $item->pic }}" class="productImage" onerror="this.src= '/images/default.jpg' ">
               <div class="product-name">{{ $item->name }}</div>
               <div class="remark">{{ $item->unit}}</div>
-              <div class="price"> <span style="float: left;">¥{{$item->price}}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item->count }}</span></div>
+              <div class="price"> <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}{{$item->price}}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item->count }}</span></div>
             </div>
             <!-- 待收货 -->
             @if($order->status == '已完成')
@@ -62,7 +62,7 @@
             </div>
             @endif
           @endforeach
-          <div class="total">共<span>{{$order->count}}</span>件商品，合计<span>￥{{$order->price}}</span>（含运费¥0.00）</div>
+          <div class="total">共<span>{{$order->count}}</span>件商品，合计<span>￥{{$order->price}}</span>（含运费{{ getSettingValueByKeyCache('price_fuhao') }}0.00）</div>
         </a>
 
         <!-- 待付款 -->
@@ -114,11 +114,11 @@
               <img src="@{{=value2.pic}}" class="productImage" onerror="this.src= '/images/default.jpg' ">
               <div class="product-name">@{{=value2.name}}</div>
               <div class="remark">@{{=value2.unit}}</div>
-              <div class="price"> <span style="float: left;">¥@{{=value2.price}}</span> <span style="float: right; margin-right: 0.75rem;">x@{{=value2.count}}</span></div>
+              <div class="price"> <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value2.price}}</span> <span style="float: right; margin-right: 0.75rem;">x@{{=value2.count}}</span></div>
             </div>
           @{{~}}
 
-          <div class="total">共<span>@{{=value.count}}</span>件商品，合计<span>￥@{{=value.price}}</span>（含运费¥0.00）</div>
+          <div class="total">共<span>@{{=value.count}}</span>件商品，合计<span>￥@{{=value.price}}</span>（含运费{{ getSettingValueByKeyCache('price_fuhao') }}0.00）</div>
         </a>
 
         <!-- 待付款 -->

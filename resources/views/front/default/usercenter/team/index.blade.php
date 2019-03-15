@@ -42,7 +42,7 @@
                 <div class="product-name">{{ $item->name }}</div>
                 <div class="remark">{{ $item->unit }}</div>
                 <div class="price">
-                    <span style="float: left;">¥{{ $item->price }}</span>
+                    <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item->price }}</span>
                     <span style="float: right; margin-right: 0.75rem;">x{{ $item->count }}</span>
                 </div>
             </div>

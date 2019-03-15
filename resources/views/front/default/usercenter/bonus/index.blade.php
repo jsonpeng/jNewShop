@@ -19,7 +19,7 @@
     <div class="credit">
     	<div class="head">
     		<div class="intr">尊敬的会员您好，您的分佣总额为</div>
-    		<div class="num"><span class="small-symbol">¥  </span>{{ $user->distribut_money }}</div>
+    		<div class="num"><span class="small-symbol">{{ getSettingValueByKeyCache('price_fuhao') }}  </span>{{ $user->distribut_money }}</div>
     	</div>
     	<div class="credit-body">
     		<div class="g-title weui-flex">

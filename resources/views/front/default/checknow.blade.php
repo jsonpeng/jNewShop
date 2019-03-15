@@ -49,14 +49,14 @@
             <img src="{{ $item['product']->image }}" class="productImage">
             <div class="product-name">{{ $item['product']->name }}</div>
             <div class="remark"></div>
-            <div class="price"> <span style="float: left;">¥{{ $item['realPrice'] }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item['qty'] }}</span></div>
+            <div class="price"> <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item['realPrice'] }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item['qty'] }}</span></div>
           </div>
         @else
           <div class="zcjy-product-check">
             <img src="{{ $item['spec']->image }}" class="productImage">
             <div class="product-name">{{ $item['product']->name }}</div>
             <div class="remark">规格：{{ $item['spec']->key_name }}</div>
-            <div class="price"> <span style="float: left;">¥{{ $item['realPrice'] }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item['qty']  }}</span></div>
+            <div class="price"> <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item['realPrice'] }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item['qty']  }}</span></div>
           </div>
         @endif
       @endforeach
@@ -70,7 +70,7 @@
           <div class="weui-form-preview__hd">
               <div class="weui-form-preview__item">
                   <label class="weui-form-preview__label">付款金额</label>
-                  <em class="weui-form-preview__value">¥{{ $total }}</em>
+                  <em class="weui-form-preview__value">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $total }}</em>
               </div>
           </div>
       </div>
@@ -86,7 +86,7 @@
 </form>
 
 <div class="checkwrapper product-checker">
-  <span style="margin-left: 0.75rem; font-size: 0.6rem;">实付款</span> <span class="price_final" id="total"> ¥ {{ $total }}</span>
+  <span style="margin-left: 0.75rem; font-size: 0.6rem;">实付款</span> <span class="price_final" id="total"> {{ getSettingValueByKeyCache('price_fuhao') }} {{ $total }}</span>
   <a class="right-botton01" href="javascript:;" onclick="submit()">立即支付</a>
 </div>
 

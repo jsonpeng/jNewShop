@@ -39,21 +39,21 @@
                 <img class="lazy" data-original="{{asset('images/trade/p1.jpg') }}">
             </div> 
             <div class="title">商品名称</div>
-                <div class="price"><b>¥ </b>59.9<b>+贷呗 </b>20 <span>已售 678</span></div>
+                <div class="price"><b>{{ getSettingValueByKeyCache('price_fuhao') }} </b>59.9<b>+贷呗 </b>20 <span>已售 678</span></div>
         </a>
         <a class="product-item2 scroll-post" href="/product">
             <div class="img">
                 <img class="lazy" data-original="{{asset('images/trade/p1.jpg') }}">
             </div> 
             <div class="title">商品名称</div>
-                <div class="price"><b>¥ </b>59.9<b>+贷呗 </b>20 <span>已售 678</span></div>
+                <div class="price"><b>{{ getSettingValueByKeyCache('price_fuhao') }} </b>59.9<b>+贷呗 </b>20 <span>已售 678</span></div>
         </a>
         <a class="product-item2 scroll-post" href="/product">
             <div class="img">
                 <img class="lazy" data-original="{{asset('images/trade/p1.jpg') }}">
             </div> 
             <div class="title">商品名称</div>
-                <div class="price"><b>¥ </b>59.9<b>+贷呗 </b>20 <span>已售 678</span></div>
+                <div class="price"><b>{{ getSettingValueByKeyCache('price_fuhao') }} </b>59.9<b>+贷呗 </b>20 <span>已售 678</span></div>
         </a>
     </div>
 @endsection

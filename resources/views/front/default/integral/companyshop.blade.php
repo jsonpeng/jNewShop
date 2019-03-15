@@ -40,7 +40,7 @@
                         <img class="lazy" data-original="{{ $item->image }}">
                     </div> 
                     <div class="title">{!! $item->name !!}</div>
-                        <div class="price">¥{!! $item->price !!}<b>+ </b>HB{!! $item->jifen !!}{!! getSettingValueByKeyCache('credits_alias') !!}<span>已售 {!! $item->sales_count !!}</span></div>
+                        <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{!! $item->price !!}<b>+ </b>HB{!! $item->jifen !!}{!! getSettingValueByKeyCache('credits_alias') !!}<span>已售 {!! $item->sales_count !!}</span></div>
                 </a>
              @endforeach
         </div>

@@ -14,7 +14,7 @@
                     <img src="{{ $product->image }}">
                 </div>
                 <div class="title">{{ $product->name }}</div>
-                <div class="price">¥{{ $product->realPrice }} <span style="float: none; text-decoration: line-through;">¥{{ $product->price }}</span> <span style="float: right;">{{ $product->sales_count }}人购买</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->realPrice }} <span style="float: none; text-decoration: line-through;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }}</span> <span style="float: right;">{{ $product->sales_count }}人购买</span></div>
             </a>
         @endforeach
     </div>

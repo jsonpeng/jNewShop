@@ -20,17 +20,17 @@
 		<p class="title">选择充值金额</p>
 		<div class="weui-cell sum">
 			<div class="weui-cell__bd topup-select">
-				<p data-price="100">¥100</p>
-				<p data-price="500">¥500</p>
-				<p data-price="1000">¥1000</p>
-				<p data-price="2000">¥2000</p>
+				<p data-price="100">{{ getSettingValueByKeyCache('price_fuhao') }}100</p>
+				<p data-price="500">{{ getSettingValueByKeyCache('price_fuhao') }}500</p>
+				<p data-price="1000">{{ getSettingValueByKeyCache('price_fuhao') }}1000</p>
+				<p data-price="2000">{{ getSettingValueByKeyCache('price_fuhao') }}2000</p>
 			</div>
 		</div>
 		<div class="weui-cell otherNum">
 			<div class="weui-cell__bd">其他充值金额</div>
 		</div>
 		<div class="weui-cell putPrice" >
-			<div class="weui-cell__hd">¥</div>
+			<div class="weui-cell__hd">{{ getSettingValueByKeyCache('price_fuhao') }}</div>
 			<div class="weui-cell__bd">
 				<input type="text" name="price">
 			</div>

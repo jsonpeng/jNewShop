@@ -71,14 +71,14 @@
             <img src="{{ $item->product->image }}" class="productImage">
             <div class="product-name">{{ $item->product->name }}</div>
             <div class="remark"></div>
-            <div class="price"> <span style="float: left;">¥{{ $item->realPrice }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $item->jifen }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item->qty }}</span></div>
+            <div class="price"> <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item->realPrice }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $item->jifen }}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $item->qty }}</span></div>
           </div>
         @else
           <div class="zcjy-product-check">
             <img src="{{ $item->spec->image }}" class="productImage">
             <div class="product-name">{{ $item->product->name }}</div>
             <div class="remark">规格：{{ $item->spec->key_name }}</div>
-            <div class="price"> <span style="" class="ft-l">¥{{ $item->realPrice }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $item->jifen }}</span> <span style="float: right; margin-right: 0.75rem;" class="ft-r">x{{ $item->qty }}</span></div>
+            <div class="price"> <span style="" class="ft-l">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $item->realPrice }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $item->jifen }}</span> <span style="float: right; margin-right: 0.75rem;" class="ft-r">x{{ $item->qty }}</span></div>
           </div>
         @endif
 
@@ -109,7 +109,7 @@
           <div class="weui-form-preview__bd">
             <div class="weui-form-preview__item">
                 <label class="weui-form-preview__label">会员优惠金额</label>
-                <span class="weui-form-preview__value">-¥{{ $preference }}</span>
+                <span class="weui-form-preview__value">-{{ getSettingValueByKeyCache('price_fuhao') }}{{ $preference }}</span>
             </div>
           </div>
           @endif
@@ -237,7 +237,7 @@
           <div class="weui-form-preview__hd">
               <div class="weui-form-preview__item">
                   <label class="weui-form-preview__label" style="color: #333;">付款金额</label>
-                  <em class="weui-form-preview__value price_final">¥<span>{{ $needPay }}</span></em>
+                  <em class="weui-form-preview__value price_final">{{ getSettingValueByKeyCache('price_fuhao') }}<span>{{ $needPay }}</span></em>
               </div>
           </div>
 
@@ -305,7 +305,7 @@
   @else
     <div class="checkwrapper product-checker">
       {{-- 积分主题中去掉 margin-left: 0.75rem --}}
-      <span style=" font-size: 14px;">实付款：  </span> <span class="price_final" id="total"> ¥ <span>{{ $needPay }} + {{ getSettingValueByKeyCache('credits_alias') }}{{ $jifen }}</span></span>
+      <span style=" font-size: 14px;">实付款：  </span> <span class="price_final" id="total"> {{ getSettingValueByKeyCache('price_fuhao') }} <span>{{ $needPay }} + {{ getSettingValueByKeyCache('credits_alias') }}{{ $jifen }}</span></span>
       {{-- <a class="right-botton02" href="javascript:;" onclick="">继续购物</a> --}}
       <a class="right-botton01" href="javascript:;" onclick="submit()">立即支付</a>
     </div>

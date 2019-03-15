@@ -15,9 +15,9 @@
 		<p class="storeName">{{ getSettingValueByKeyCache('name') }}</p>
 	</div>
 	@if(funcOpen('FUNC_YUNLIKE'))
-	<div class="weui-planel__bd">
+{{-- 	<div class="weui-planel__bd">
 		<a href="tel:13971217270">芸来软件技术支持 tel:13971217270</a>
-	</div>
+	</div> --}}
 	@endif
 </div>
 @endif

@@ -15,7 +15,7 @@
                 @if($product->is_hot)<p class="hot">HOT</p>@endif
             </div> 
             <div class="title">{{ $product->name }}</div>
-            <div class="price">¥{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
+            <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
         </a>
     @endforeach
 </div>

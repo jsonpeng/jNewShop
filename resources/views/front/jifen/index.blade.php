@@ -197,7 +197,7 @@
                                     <img src="{{ $element2->image }}">
                                 </div> 
                                 <div class="title">{{ $element2->name }}</div>
-                                <div class="price">¥<span style="color: #ff4e44;">{{ $element2->price }}</span>@if($element2->jifen)+{{ getSettingValueByKeyCache('credits_alias') }}<span style="color: #ff4e44;">{{ $element2->jifen }}</span>@endif</div>
+                                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}<span style="color: #ff4e44;">{{ $element2->price }}</span>@if($element2->jifen)+{{ getSettingValueByKeyCache('credits_alias') }}<span style="color: #ff4e44;">{{ $element2->jifen }}</span>@endif</div>
                             </a>
                                     
                         @endforeach
@@ -229,9 +229,9 @@
             </div> 
             <div class="title">@{{=value.name}}</div>
             @{{? value.realPrice }}
-                <div class="price">¥@{{=value.realPrice}} <span class="cross">¥@{{=value.price}}</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.realPrice}} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}}</span></div>
             @{{??}}
-                <div class="price">¥@{{=value.price}} </div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}} </div>
             @{{?}}
         </a>
     @{{~}}
@@ -252,7 +252,7 @@
                             <img src="@{{=value2.image}}">
                         </div> 
                         <div class="title">@{{=value2.name}}</div>
-                        <div class="price">¥<span style="color: #ff4e44;">59.9</span>+{{ getSettingValueByKeyCache('credits_alias') }}<span style="color: #ff4e44;">20</span></div>
+                        <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}<span style="color: #ff4e44;">59.9</span>+{{ getSettingValueByKeyCache('credits_alias') }}<span style="color: #ff4e44;">20</span></div>
                     </a>
                 </div>
             </div>

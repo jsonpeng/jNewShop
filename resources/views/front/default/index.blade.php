@@ -120,7 +120,7 @@
                                 @endif
 
                                 @if($item->type == '满减')
-                                    <div class="flex-item price-num"><span class="price-symbol">¥</span><span class="num">{!! $item->given!!}</span></div>
+                                    <div class="flex-item price-num"><span class="price-symbol">{{ getSettingValueByKeyCache('price_fuhao') }}</span><span class="num">{!! $item->given!!}</span></div>
                                 @endif
                                 <div class="flex-item price-info">
                                     <p class="price-name">{!! $item->name !!}</p>
@@ -173,7 +173,7 @@
                     <img class="lazy" data-original="{{ $element->image }}">
                 </div> 
                 <div class="title">{{ $element->product_name }}</div>
-                <div class="price">¥{{ $element->price }} <span class="cross">¥{{ $element->origin_price }}</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->origin_price }}</span></div>
             </a>
         @endforeach
     </div>
@@ -198,7 +198,7 @@
                     <img class="lazy" data-original="{{ $element->share_img }}">
                 </div> 
                 <div class="title">{{ $element->product_name }}</div>
-                <div class="price">¥{{ $element->price }} <span>已拼{{ $element->sales_sum + $element->sales_sum_base }}件</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} <span>已拼{{ $element->sales_sum + $element->sales_sum_base }}件</span></div>
             </a>
         @endforeach
     </div>
@@ -214,17 +214,17 @@
 
     <div class="theme-item">
         <img src="{{ asset('images/default/index/sift1.jpg') }}">
-        <div class="title oneline">一键接听，4.0蓝牙高清语音通话 <span>¥16.58</span></div>
+        <div class="title oneline">一键接听，4.0蓝牙高清语音通话 <span>{{ getSettingValueByKeyCache('price_fuhao') }}16.58</span></div>
         <div class="subtitle oneline">专题描述</div>
     </div>
     <div class="theme-item">
         <img src="{{ asset('images/default/index/sift2.jpg') }}">
-        <div class="title oneline">一键接听，4.0蓝牙高清语音通话 <span>¥16.58</span></div>
+        <div class="title oneline">一键接听，4.0蓝牙高清语音通话 <span>{{ getSettingValueByKeyCache('price_fuhao') }}16.58</span></div>
         <div class="subtitle oneline">专题描述</div>
     </div>
     <div class="theme-item">
         <img src="{{ asset('images/default/index/sift3.jpg') }}">
-        <div class="title oneline">一键接听，4.0蓝牙高清语音通话 <span>¥16.58</span></div>
+        <div class="title oneline">一键接听，4.0蓝牙高清语音通话 <span>{{ getSettingValueByKeyCache('price_fuhao') }}16.58</span></div>
         <div class="subtitle oneline">专题描述</div>
     </div>
     -->
@@ -249,9 +249,9 @@
                     </div> 
                     <div class="title">{{ $product->name }}</div>
                     @if(empty($product->realPrice))
-                        <div class="price">¥{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
+                        <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
                     @else
-                        <div class="price">¥{{ $product->realPrice }} <span style="float: none; text-decoration: line-through;">¥{{ $product->price }}</span> <span>{{ $product->sales_count }}人购买</span></div>
+                        <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->realPrice }} <span style="float: none; text-decoration: line-through;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }}</span> <span>{{ $product->sales_count }}人购买</span></div>
                     @endif
                     
                 </a>
@@ -280,9 +280,9 @@
                 </div> 
                 <div class="title">{{ $product->name }}</div>
                 @if(empty($product->realPrice))
-                    <div class="price">¥{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
+                    <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
                 @else
-                    <div class="price">¥{{ $product->realPrice }} <span style="float: none; text-decoration: line-through;">¥{{ $product->price }}</span> <span>{{ $product->sales_count }}人购买</span></div>
+                    <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->realPrice }} <span style="float: none; text-decoration: line-through;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }}</span> <span>{{ $product->sales_count }}人购买</span></div>
                 @endif
 
             </a>
@@ -307,9 +307,9 @@
             </div> 
             <div class="title">{{ $product->name }}</div>
             @if(empty($product->realPrice))
-                <div class="price">¥{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }} <span>{{ $product->sales_count }}人购买</span></div>
             @else
-                <div class="price">¥{{ $product->realPrice }} <span style="float: none; text-decoration: line-through;">¥{{ $product->price }}</span> <span>{{ $product->sales_count }}人购买</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->realPrice }} <span style="float: none; text-decoration: line-through;">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }}</span> <span>{{ $product->sales_count }}人购买</span></div>
             @endif
         </a>
         @endforeach
@@ -385,7 +385,7 @@
                               <img src='" + all_product[i].image + "'>\
                           </div>\
                           <div class='title'>" + all_product[i].name + "</div>\
-                          <div class='price'>¥" + all_product[i].price + " <span class='buynum'> " + all_product[i].sales_count + "人购买</span></div>\
+                          <div class='price'>{{ getSettingValueByKeyCache('price_fuhao') }}" + all_product[i].price + " <span class='buynum'> " + all_product[i].sales_count + "人购买</span></div>\
                       </a>"
                     );
                   }

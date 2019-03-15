@@ -54,7 +54,7 @@
                 <img class="product-img" src="{{$sale->product->image}}">
                 <div class="product-name">{{$sale->product_name}}</div>
                 <div style="position: relative;">
-                    <div class="price">¥{{$sale->price}}  <span>¥{{$sale->product->price}}</span></div>
+                    <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{$sale->price}}  <span>{{ getSettingValueByKeyCache('price_fuhao') }}{{$sale->product->price}}</span></div>
                     <div class="product-sales">还剩: {{$sale->product_num - $sale->buy_num}}件</div>
                     <div class="go">去抢购</div>
                 </div>

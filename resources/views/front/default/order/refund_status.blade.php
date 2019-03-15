@@ -25,7 +25,7 @@
 		<img src="{{ $orderRefund->item->pic }}" class="productImage" onerror="this.src= '/images/default.jpg' ">
 		<div class="product-name">{{ $orderRefund->item->name }}</div>
 		<div class="remark">{{ $orderRefund->item->unit}}</div>
-		<div class="price"> <span style="float: left;">¥{{$orderRefund->item->price}}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $orderRefund->count }}</span></div>
+		<div class="price"> <span style="float: left;">{{ getSettingValueByKeyCache('price_fuhao') }}{{$orderRefund->item->price}}</span> <span style="float: right; margin-right: 0.75rem;">x{{ $orderRefund->count }}</span></div>
 	</div>
     
     @if('等待买家发货' == $orderRefund->refundStatus)

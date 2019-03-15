@@ -70,10 +70,17 @@
       /*#product-detail{
         display: none;
       }*/
-      .checkwrapper .right-botton01{position: relative;flex: 2;height:37px;line-height: 37px;background-color:#63ccff !important;border-top-left-radius:18px;border-bottom-left-radius: 18px;}
+      /*.checkwrapper .right-botton01{position: relative;flex: 2;height:37px;line-height: 37px;background-color:#63ccff !important;border-top-left-radius:18px;border-bottom-left-radius: 18px;}*/
+      .checkwrapper .right-botton01{border-radius: 15px;position: relative;/* flex: 2; */width: 120px;height:37px;line-height: 37px;/*background-color:#63ccff !important;*//* border-top-left-radius:18px; *//* border-bottom-left-radius: 18px; */}
       .weui-gallery{
         z-index: 10000;
         /*display: none;*/
+      }
+      .detail .content .search{
+        color: #fff;
+      }
+      a.swiper-slide img {
+       max-height: 300px;
       }
     </style>
 @endsection
@@ -146,16 +153,16 @@
           促销价:
           @endif
 
-          ¥{{$product->realPrice}}@if($product->jifen)+<span style="color: #ff4e44;">{{ $product->jifen }}</span>{!! getSettingValueByKeyCache('credits_alias') !!}@endif
+          {{ getSettingValueByKeyCache('price_fuhao') }}{{$product->realPrice}}@if($product->jifen)+<span style="color: #ff4e44;">{{ $product->jifen }}</span>{!! getSettingValueByKeyCache('credits_alias') !!}@endif
 
           @if($product->prom_type == 5 || ($product->prom_type == 1 && $promp->status == '进行中') || ($product->prom_type == 3 && $promp->status == '进行中'))
-            <span class="original-price">原价：¥{{$product->price}}</span>
+            <span class="original-price">原价：{{ getSettingValueByKeyCache('price_fuhao') }}{{$product->price}}</span>
           @endif
         </div>
         
         <div class="second-price">
           @if ($product->prom_type == 0 && $product->market_price)
-            <div>市场价: <span>¥{{$product->market_price}}</span></div>
+            <div>市场价: <span>{{ getSettingValueByKeyCache('price_fuhao') }}{{$product->market_price}}</span></div>
           @endif
 
           <div>已售: {{ $product->sales_count }}</div>
@@ -193,7 +200,7 @@
       <!-- 服务承诺 end  -->
 
       <!-- 拼团信息  -->
-      @if($teamFounders->count())
+  {{--     @if($teamFounders->count())
         <div class="product-section-wrapper">
           <div class="weui-cells" style="margin-top: 3px;">
               <a class="weui-cell">
@@ -214,7 +221,7 @@
             </div>
           @endforeach
         </div>
-      @endif
+      @endif --}}
       
       <div id="product-detail">
         <!-- 产品参数 -->
@@ -232,7 +239,7 @@
         @endif
         <!-- 产品参数 end -->
 
-        @include('front.'.theme()['name'].'.layout.shopinfo')
+        {{-- @include('front.'.theme()['name'].'.layout.shopinfo') --}}
 
       </div>
     </div>
@@ -328,7 +335,7 @@
       <!-- 商品基本信息展示 -->
       <div class="header" id="header">
         <div class="image"><img src="{{$product->image}}" alt="" id="product_image"></div>
-        <div id="product_price">¥{{$product->realPrice}} @if($product->jifen)+{{ $product->jifen }} {!! getSettingValueByKeyCache('credits_alias') !!}@endif</div>
+        <div id="product_price">{{ getSettingValueByKeyCache('price_fuhao') }}{{$product->realPrice}} @if($product->jifen)+{{ $product->jifen }} {!! getSettingValueByKeyCache('credits_alias') !!}@endif</div>
         <div style="overflow: hidden;">
           <div id="product_name">{{$product->name}}</div>
           @if($product->inventory != -1)<div id="product_inventor">库存: {{$product->inventory}}</div>@endif
@@ -405,15 +412,15 @@
     @if (empty($product->prom_type) || $product->prom_type == 3)
       <div class="right-botton01"  onclick="gouwuche()">加入购物车</div>
     @endif
-    <div class="right-botton2" onclick="buynow()">立即支付</div>
+    <div class="right-botton2" onclick="buynow()" style="    margin-left: 15px;">立即支付</div>
     <!-- 拼团 -->
     @if ($product->prom_type == 5)
       <div class="right-botton01" onclick="startTeam()">
-        <div class="floor">¥{{ $promp->price }}</div>
+        <div class="floor">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $promp->price }}</div>
         <div class="floor">发起拼单</div>
       </div>
       <div class="right-botton2" onclick="chooseItem(0, 0)">
-        <div class="floor">¥{{ $product->price }}</div>
+        <div class="floor">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }}</div>
         <div class="floor">单独购买</div>
       </div>
     @endif
@@ -681,9 +688,9 @@
           specPriceItemId = specPriceItem.id;
           $('#product_image').attr('src', specPriceItem.image);
           if (buyType) {
-            $('#product_price').text('¥' + specPriceItem.realPrice + '+{{ getSettingValueByKeyCache('credits_alias') }}:' + specPriceItem.jifen);
+            $('#product_price').text('{{ getSettingValueByKeyCache('price_fuhao') }}' + specPriceItem.realPrice + '+{{ getSettingValueByKeyCache('credits_alias') }}:' + specPriceItem.jifen);
           } else {
-            $('#product_price').text('¥' + specPriceItem.price + '+{{ getSettingValueByKeyCache('credits_alias') }}:' + specPriceItem.jifen);
+            $('#product_price').text('{{ getSettingValueByKeyCache('price_fuhao') }}' + specPriceItem.price + '+{{ getSettingValueByKeyCache('credits_alias') }}:' + specPriceItem.jifen);
           }
           $('#product_name').text(specPriceItem.key_name);
           $('#product_inventor').text('库存: ' + specPriceItem.inventory);
@@ -727,11 +734,11 @@
         //无规格的商品
         if (promp_type) {
           buyType = true;
-          $('#product_price').text('¥{{ $product->realPrice }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $product->jifen }}');
+          $('#product_price').text('{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->realPrice }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $product->jifen }}');
         }
         else {
           buyType = false;
-          $('#product_price').text('¥{{ $product->price }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $product->jifen }}');
+          $('#product_price').text('{{ getSettingValueByKeyCache('price_fuhao') }}{{ $product->price }}+{{ getSettingValueByKeyCache('credits_alias') }}{{ $product->jifen }}');
         }
       }else{
         if (promp_type) {

@@ -102,21 +102,21 @@
               <img class="lazy" src="{{asset('images/social/p2.jpg')}}">
           </div> 
           <div class="title">1</div>
-          <div class="price">¥2 <span class="cross">¥1</span></div>
+          <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}2 <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}1</span></div>
       </a>
       <a class="product-item3" href="javascript:;">
           <div class="img">
               <img class="lazy" src="{{asset('images/social/p3.jpg')}}">
           </div> 
           <div class="title">1</div>
-          <div class="price">¥2 <span class="cross">¥1</span></div>
+          <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}2 <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}1</span></div>
       </a>
       <a class="product-item3" href="javascript:;">
           <div class="img">
               <img class="lazy" src="{{asset('images/social/p4.jpg')}}">
           </div> 
           <div class="title">1</div>
-          <div class="price">¥2 <span class="cross">¥1</span></div>
+          <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}2 <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}1</span></div>
       </a>
     </div>-->
 
@@ -138,7 +138,7 @@
                                 <img class="lazy" data-original="{{ $element->image }}">
                             </div> 
                             <div class="title">{{ $element->product_name }}</div>
-                            <div class="price">¥{{ $element->price }} <span class="cross">¥{{ $element->origin_price }}</span></div>
+                            <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->origin_price }}</span></div>
                         </a>
                     </div>
                 @endforeach
@@ -167,7 +167,7 @@
                                 <img class="lazy" src="{{asset('images/social/p5.jpg')}}">
                             </div> 
                             <div class="title">1</div>
-                            <div class="price">¥2 <span class="cross">¥1</span></div>
+                            <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}2 <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}1</span></div>
                         </a>
                     </div>
                 @endforeach
@@ -177,7 +177,7 @@
     @endif
 
 
-    <!-- 精选分类 -->
+    <!-- 精选分类 
     <div class="index-recommend-cat weui-cell" style="">
         <a href="/product_of_type/1" class="left_content" style="">
                 <img src="{{ getSettingValueByKeyCache('image_new') }}" alt="">
@@ -200,7 +200,7 @@
                 <p class="weui-media-box__desc">GO ＞</p> --}}
             </a>
         </div>
-    </div>
+    </div>-->
 
     <!-- 限时秒杀 -->
 {{--     @if(funcOpen('FUNC_FLASHSALE') && $flashSaleProduct->count())
@@ -224,7 +224,7 @@
                     <img class="lazy" data-original="{{ $element->image }}">
                 </div> 
                 <div class="title">{{ $element->product_name }}</div>
-                <div class="price">¥{{ $element->price }} <span class="cross">¥{{ $element->origin_price }}</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->origin_price }}</span></div>
             </a>
         @endforeach
     </div>
@@ -263,9 +263,9 @@
           </div> 
           <div class="title">{{ $element->name }}</div>
           @if ($element->realPrice)
-              <div class="price">¥{{ $element->realPrice }} <span class="cross">¥{{ $element->price }}</span></div>
+              <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->realPrice }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }}</span></div>
           @else
-              <div class="price">¥{{ $element->price }} </div>
+              <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} </div>
           @endif
         </a>
       @endforeach
@@ -291,9 +291,9 @@
             </div> 
             <div class="title">@{{=value.name}}</div>
             @{{? value.realPrice }}
-                <div class="price">¥@{{=value.realPrice}} <span class="cross">¥@{{=value.price}}</span></div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.realPrice}} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}}</span></div>
             @{{??}}
-                <div class="price">¥@{{=value.price}} </div>
+                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}} </div>
             @{{?}}
         </a>
     @{{~}}
