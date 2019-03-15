@@ -379,7 +379,7 @@
                 }
               });
               $.ajax({
-                url:"/api/products?skip=" + $('.scroll-post').length + "&take=18",
+                url:"/api/products?skip=" + $('.scroll-post').length + "&take=30",
                 type:"GET",
                 success:function(data){
                     working = false;
