@@ -66,10 +66,10 @@ class AjaxController extends Controller
         }
         $user = auth('web')->user();
 
-        $allocat = ['access_key_id'=>'LTAIJ0IOf8uKIw09','access_key_secret'=>'KUN0haTW62gdc23lsXy9UjS5pZSdDG','sign_name'=>'暄妍科技','template'=>'SMS_142949506'];
+        $allocat = ['access_key_id'=>'LTAI0tsCvAtCgDXd','access_key_secret'=>'vPqyRPIShQXoJyQfAX4L2RqK2K4yYu','sign_name'=>'澳宝直邮','template'=>'SMS_160570739'];
 
         if($type == 'auth'){
-            $allocat['template'] = 'SMS_142685050';
+            $allocat['template'] = 'SMS_160570739';
         }
        
         $request->session()->put('zcjy_code_'.$user->id.'_'.$type,app('commonRepo')->sendVerifyCode($input['mobile'],$allocat));
