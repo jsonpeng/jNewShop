@@ -280,7 +280,7 @@
     
     <!-- 更多商品 -->
     <?php
-        $products = products(0, 18);
+        $products = products(0, 30);
     ?>
     <div class="top-title more-goods">
         <p>更多商品</p>
@@ -356,7 +356,7 @@
 
         $(document).endlessScroll({
 
-            bottomPixels: 250,
+            bottomPixels: 350,
 
             fireDelay: 10,
 
