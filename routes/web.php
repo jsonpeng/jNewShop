@@ -88,12 +88,28 @@ Route::group(['middleware' => ['api']], function () {
 if(Config::get('web.WEB'))
 {
 	Route::group(['middleware' => $mid, 'namespace' => 'Front'], function () {
+		
+		Route::group(['namespace' => 'Obzy'],function(){
+			//申请开店
+			Route::get('sign_shop','MainController@signShop');
+		});
 
 		//微信公众号支付
 		Route::get('/pay_weixin/{order_id}','PayController@payWechat');
 
 		//ajax接口请求
 		Route::group(['prefix'=>'ajax'],function(){
+
+			##澳宝直邮定制
+			Route::group(['prefix'=>'obzy','namespace' => 'Obzy'],function(){
+				##统一发送验证码
+				Route::get('send_code','AjaxController@sendCode');
+				##绑定手机号信息
+				Route::get('bind_mobile','AjaxController@bindMobile');
+				##输入代码生成店铺
+				Route::get('bind_code','AjaxController@bindCode');
+			});
+
 			#查询用户订单
 			Route::get('query_orders','AjaxController@queryOrders');
 			#发送不同类型的验证码

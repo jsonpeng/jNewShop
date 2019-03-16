@@ -18,12 +18,12 @@
             <th class="hidden-xs">{{ getSettingValueByKeyCache('credits_alias') }}</th>
             @endif
 
-            @if (funcOpen('FUNC_DISTRIBUTION'))
+       <!--      @if (funcOpen('FUNC_DISTRIBUTION'))
             <th class="hidden-sm hidden-xs">分销</th>
             <th class="hidden-sm hidden-xs">一级代理人数</th>
             <th class="hidden-sm hidden-xs">二级代理人数</th>
             <th class="hidden-sm hidden-xs">三级代理人数</th>
-            @endif
+            @endif -->
 
             <th>手机</th>
             <th>注册日期</th>
@@ -50,12 +50,12 @@
             <td class="hidden-xs">{!! $user->credits !!}</td>
             @endif
             
-            @if (funcOpen('FUNC_DISTRIBUTION'))
+    <!--         @if (funcOpen('FUNC_DISTRIBUTION'))
             <td><span class="btn label label-{!! $user->is_distribute ? 'success' : 'warning' !!}" onclick="distributeUser(this,{!! $user->id !!})">{!! $user->is_distribute?'分销用户':'无分销资格' !!}</span></td>
             <td class="hidden-sm hidden-xs">{!! $user->level1 !!}</td>
             <td class="hidden-sm hidden-xs">{!! $user->level2 !!}</td>
             <td class="hidden-sm hidden-xs">{!! $user->level3 !!}</td>
-            @endif
+            @endif -->
             
             <td>{!! $user->mobile !!}</td>
             <td>{!! $user->created_at !!}</td>
