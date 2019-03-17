@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Config;
 
 use App\User;
+use App\Models\Code;
 
 class AjaxController extends Controller
 {
@@ -61,12 +62,18 @@ class AjaxController extends Controller
 		{
 			return zcjy_callback_data('请先绑定手机号',1,'web');
 		}
-		if(User::where('code',$input['code'])->count())
+		$code = Code::where('code',$input['code'])->first();
+		if(empty($code))
+		{
+			return zcjy_callback_data('邀请码输入错误',1,'web');
+		}
+		if($code->use)
 		{
 			return zcjy_callback_data('该邀请码已被使用,请更换后绑定',1,'web');
 		}
 		$user = auth('web')->user();
 		$user->update(['code'=>$input['code']]);
+		$code->update(['use'=>1]);
 		return zcjy_callback_data('开通店铺成功',0,'web');
 	}
 

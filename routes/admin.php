@@ -60,6 +60,9 @@ Route::post('/zcjy/cities/getAjaxSelect/{id}','Admin\CitiesController@CitiesAjax
 
 Route::group([ 'middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy', 'namespace' => 'Admin'], function () {
 
+	//代码管理
+	Route::resource('codes', 'CodeController');
+
 	Route::get('/', 'OrderController@index');
 
 	/**

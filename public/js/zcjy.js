@@ -123,7 +123,7 @@ $.extend({
                     }
                     else{
                         callback(false);
-                        layer.msg(data.message, {icon: 5});
+                        alert(data.message);
                     }
                 }
             });

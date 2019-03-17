@@ -413,3 +413,4 @@ if(Config::get('web.WEB'))
 
 
 // Route::resource('adminShops', 'AdminShopController');
+

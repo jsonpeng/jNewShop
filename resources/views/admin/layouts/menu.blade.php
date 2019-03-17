@@ -17,6 +17,10 @@
     <a href="{!! route('settings.setting') !!}"><i class="fa fa-edit"></i><span>商城设置</span></a>
 </li>
 
+<li class="{{ Request::is('zcjy/code*') ? 'active' : '' }}">
+    <a href="{!! route('codes.index') !!}"><i class="fa fa-edit"></i><span>代码管理</span></a>
+</li>
+
 @if(funcOpen('FUNC_MANY_SHOP'))
 <li class="header">店铺管理</li>
 <li class="{{ Request::is('zcjy/cats*') ? 'active' : '' }}">
