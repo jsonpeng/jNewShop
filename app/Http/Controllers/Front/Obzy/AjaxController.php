@@ -50,6 +50,10 @@ class AjaxController extends Controller
 			$leader = User::find($input['leader']);
 			if(!empty($leader))
 			{
+				if($user->id == $input['leader'])
+				{
+					return zcjy_callback_data('推荐人不可以是自己',1,'web');
+				}
 				$user->update(['leader1'=>$input['leader']]);
 			}
 		}
