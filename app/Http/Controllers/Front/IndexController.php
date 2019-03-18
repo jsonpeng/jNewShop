@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Config;
 use Mail;
 use App\Models\Order;
 use App\Models\Notice;
+use App\Models\Code;
 
 class IndexController extends Controller
 {
@@ -49,7 +50,20 @@ class IndexController extends Controller
         $coupons=$this->couponRepository->getCouponOfRule(4);
         $user = auth('web')->user();
         $unread_messages_num = count(app('notice')->allNotices($user->id,true));
-        return view(frontView('index'), compact('categories', 'time', 'coupons','unread_messages_num'));
+      
+        $codeShare = false;
+        $index = 'index';
+        if($request->has('code'))
+        {
+              $code = $request->get('code');
+              if($user->code == $code)
+              {
+                $codeShare = true;
+                $index = 'index_share';
+              }
+        }
+
+        return view(frontView($index), compact('categories', 'time', 'coupons','unread_messages_num','codeShare'));
     }
 
     //用户领取优惠券

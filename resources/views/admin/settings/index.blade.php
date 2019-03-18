@@ -113,10 +113,9 @@
                                                <div class="input-append">
                                                         <a data-toggle="modal" href="javascript:;" data-target="#myModal" class="btn" type="button" onclick="changeImageId('image2')">选择图片</a>
                                                         <img src="@if(getSettingValueByKey('weixin')) {{ getSettingValueByKey('weixin') }} @endif" style="max-width: 100%; max-height: 150px; display: block;">
-                                                    </div>
+                                                </div>
                                                 </div>
                                             </div>
-
 
                                             <div class="form-group">
                                                 <label for="price_fuhao" class="col-sm-3 control-label">商城前端价格符号</label>
@@ -124,6 +123,17 @@
                                                     <input type="text" class="form-control" name="price_fuhao" maxlength="60" placeholder="如:AU$" value="{{ getSettingValueByKey('price_fuhao') }}"></div>
                                             </div>
 
+                                            <div class="form-group">
+                                                <label for="fenyong_rate" class="col-sm-3 control-label">平台统一分佣比率</label>
+                                          
+                                                <div class="col-sm-9">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="fenyong_rate" maxlength="3" placeholder="平台统一分佣比率" value="{{ getSettingValueByKey('fenyong_rate') }}">
+                                                            <span class="input-group-addon">%</span>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            
                                        {{--      <div class="form-group">
                                                 <label for="near_shop_distance" class="col-sm-3 control-label">展示附近商家距离</label>
                                                 <div class="col-sm-9">

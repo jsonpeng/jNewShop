@@ -116,7 +116,7 @@
         
     </div>
     
-    @if(funcOpen('FUNC_DISTRIBUTION') && $user->is_distribute)
+    @if(funcOpen('FUNC_DISTRIBUTION') && $user->code)
     <div class="weui-cells section-margin user-zone">
         <a class="weui-cell weui-cell_access" href="/usercenter/fellow">
             <div class="weui-cell__bd">
@@ -130,9 +130,9 @@
             </div>
             <div class="weui-cell__ft"></div>
         </a>
-        <a class="weui-cell weui-cell_access" href="/usercenter/qrcode">
+        <a class="weui-cell weui-cell_access" href="/?code={!! $user->code !!}">
             <div class="weui-cell__bd">
-                <p>分享二维码</p>
+                <p>分享店铺</p>
             </div>
             <div class="weui-cell__ft"></div>
         </a>

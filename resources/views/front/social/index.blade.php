@@ -1,10 +1,12 @@
 @extends('front.social.layout.base')
 
 @section('css')
-
+<style type="text/css">
+</style>
 @endsection
 
 @section('title')
+<title>{!! getSettingValueByKeyCache('name') !!}</title>
 @endsection
 
 @section('content')
@@ -302,6 +304,15 @@
         @endforeach
 
     </div>
+
+    @if($codeShare)
+     <div id="shareit">  
+        <img class="arrow" src="http://dev.vxtong.com/cases/nuannan/imgs/share-it.png">  
+        <a href="#" id="follow">  
+          <p id="share-text" style="color:white;font-size:16px;">点击右上角发送给朋友获取提成</p>
+        </a>  
+      </div> 
+    @endif
 
     @include('front.'.theme()['name'].'.layout.shopinfo')
 

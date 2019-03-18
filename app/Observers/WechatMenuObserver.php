@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Services\Menu as MenuService;
 
 use Illuminate\Support\Facades\Log;
+
 /**
  * User模型观察者.
  *

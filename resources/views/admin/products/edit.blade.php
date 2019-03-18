@@ -135,10 +135,10 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="form-group col-xs-4">
-                                                    <label for="name">所需{{ getSettingValueByKeyCache('credits_alias') }}</label>
-                                                    {!! Form::number('jifen', null, ['class' => 'form-control', 'onkeyup' => 'this.value=this.value.replace(/[^\d.]/g,&quot;&quot;)', 'onpaste' => 'this.value=this.value.replace(/[^\d.]/g,&quot;&quot;)']) !!}
-                                            </div>
+                                                 <div class="form-group col-xs-4">
+                                                        <label for="fenyong_rate">分佣利率(不填默认使用系统默认比率)</label>
+                                                        {!! Form::number('fenyong_rate', null, ['class' => 'form-control', 'onkeyup' => 'this.value=this.value.replace(/[^\d.]/g,&quot;&quot;)', 'onpaste' => 'this.value=this.value.replace(/[^\d.]/g,&quot;&quot;)']) !!}
+                                                </div>
                                         </div>
 
                                         <div class="form-group">

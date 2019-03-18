@@ -68,7 +68,8 @@ class Product extends Model
         'type_id',
         'category_id',
         'country_id',
-        'jifen'
+        'jifen',
+        'fenyong_rate'
 
     ];
 
