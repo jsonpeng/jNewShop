@@ -97,7 +97,7 @@ $leaderId = optional($leader)->id;
 <script type="text/javascript">
   var wait=60;
   function time() {
-            var o = $('.getCode:eq(1)');
+            var o = $('.getCode');
             if (wait == 0) {
                 o.removeClass('disable');
                 o.data("abled",1);   
