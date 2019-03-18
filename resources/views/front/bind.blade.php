@@ -116,7 +116,7 @@ $leaderId = optional($leader)->id;
     }
   //点击发送手机验证码
    $(document).on('click','.getCode',function(){
-        var mobile = $('input[name=mobile]:eq(1)').val(); 
+        var mobile = $('input[name=mobile]').val(); 
         if($.empty(mobile)){
           alert('请先输入手机号');
           return false;
@@ -131,12 +131,12 @@ $leaderId = optional($leader)->id;
    });
   //点击绑定手机号
   $(document).on('click','.bind_mobile_btn',function(){
-        var mobile = $('input[name=mobile]:eq(1)').val(); 
+        var mobile = $('input[name=mobile]').val(); 
         if($.empty(mobile)){
           alert('请先输入手机号');
           return false;
         }
-        var code = $('input[name=code]:eq(2)').val(); 
+        var code = $('input[name=code]').val(); 
         if($.empty(code)){
           alert('请先输入验证码');
           return false;
