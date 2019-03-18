@@ -65,7 +65,7 @@
             .f16{font-size: 16px;}
             .mt10{margin-top: 10px;}
             .obzy_btn{
-                font-size: 16px;
+                font-size: 24px;
                 color: #ff4e44 !important;
                 padding-bottom: 15px;
                 padding-top: 15px;
