@@ -2,38 +2,7 @@
 
 @section('css')
 <style type="text/css">
-    .hidden{display: none;}
-    .layui-m-layer1 .layui-m-layercont {
-        min-width: 320px;
-        padding-top: 30px !important;
-        text-align: center !important;
-    }
-    .f14{font-size: 14px;}
-    .f16{font-size: 16px;}
-    .mt10{margin-top: 10px;}
-    .obzy_btn{
-        font-size: 16px;
-        color: #ff4e44 !important;
-        padding-bottom: 15px;
-        padding-top: 15px;
-        display: inline-block;
-    }
-    input::-ms-input-placeholder{text-align: left;font-size: 14px;}
-    input::-webkit-input-placeholder{text-align: left;font-size: 14px;}
-    .weui-input-set {
-    margin-left: 25px;
-    margin-right: 65px;
-    border-bottom: 1.5px solid #ddd;
-    }
-    .weui-cell__bd {
-        -webkit-flex: none;
-    }
-    .getCode{
-        position: absolute;
-        right: -20px;
-        top: 0;
-        color: #ff4e44 !important;
-    }
+ 
     /*input::-webkit-input-placeholder{position：relative;left：20px;}*/
 </style>
 @endsection
@@ -46,12 +15,12 @@
         <div class="container" style="padding-bottom: 0;">
             <div class="f14">为保护您的账号安全,请先验证电话号码</div>
             <div class="weui-cell mt10">
-                <div class="weui-cell__bd">
+                <div class="weui-cell__bd" style="-webkit-flex: none;">
                     <input class="weui-input weui-input-set" type="text" name="mobile" maxlength="11" placeholder="请输入手机号">
                 </div>
             </div>
             <div class="weui-cell mt10">
-                <div class="weui-cell__bd" style="position: relative;">
+                <div class="weui-cell__bd" style="position: relative;-webkit-flex: none;">
                     <input class="weui-input weui-input-set" type="text" name="code" maxlength="11" placeholder="请输入验证码">
                     <a class="f14 getCode" data-abled="1">获取验证码</a>
                 </div>
@@ -64,7 +33,7 @@
         <div class="container" style="padding-bottom: 0;">
             <div class="f14">请输入5位代码开通店铺</div>
             <div class="weui-cell mt10">
-                <div class="weui-cell__bd">
+                <div class="weui-cell__bd" style="-webkit-flex: none;">
                     <input class="weui-input weui-input-set" type="text" name="code" maxlength="5" placeholder="请输入5位代码开通店铺">
                 </div>
             </div>
@@ -76,10 +45,14 @@
 
 @section('js')
 <script type="text/javascript">
+
     //先绑定手机号
   $(function(){
      $.zcjyFrameOpen($('.bind_mobile').html());
   });
+
+
+
   var wait=60;
   function time() {
             var o = $('.getCode:eq(1)');

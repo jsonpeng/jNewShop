@@ -152,7 +152,7 @@ $.extend({
      */
     zcjyFrameOpen:function(url,title,area=['60%', '680px'],callback=null){
         var type =2;
-        if(url.length > 150){
+        if(typeof url.length !== 'undefined' && url.length > 150){
             type = 1;
         }
         if($(window).width()<479){

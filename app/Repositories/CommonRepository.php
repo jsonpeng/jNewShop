@@ -1445,4 +1445,47 @@ class CommonRepository
         }
     }
 
+    /**
+     * 检查一下用户需不需要绑定推荐人
+     * @return [type] [description]
+     */
+    public function varifyUserBindTMan()
+    {
+        $user = auth('web')->user();
+        if($user->temporary_code && empty($user->leader1))
+        {
+            return true;
+        }
+    }
+
+    /**
+     * 查找用户的推荐人
+     * @return [type] [description]
+     */
+    public function userLeader()
+    {
+       $user = auth('web')->user();
+
+       ##如果之前有推荐人
+       if(!empty($user->leader1))
+       {
+        $leader = User::find($user->leader1);
+        if(!empty($leader))
+        {
+            return $leader; 
+        }
+       }
+
+       $temporary_code = $user->temporary_code;
+
+       $leader = User::where('temporary_code',$temporary_code)->first();
+
+       if(empty($temporary_code) || empty($leader))
+       {
+        $leader = User::whereNotNull('code')->orderBy('created_at','asc')->first();
+       }
+
+       return $leader;
+    }
+
 }

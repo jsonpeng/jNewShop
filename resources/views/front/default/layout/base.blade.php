@@ -72,6 +72,9 @@
         color: #333;
         margin-bottom: 22px;
         }
+        .layui-m-layerbtn span[yes] {
+            color: #ff4e44 !important;
+        }
     </style>
     @yield('css')
     

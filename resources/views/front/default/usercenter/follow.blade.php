@@ -10,7 +10,7 @@
     <div class="nav_tip">
       <div class="img">
         <a href="javascript:history.back(-1)"><i class="icon ion-ios-arrow-left"></i></a></div>
-      <p class="titile">合伙人</p>
+      <p class="titile">我的下级</p>
     </div>
     <div id="scroll-container">
         @foreach ($fellows as $fellow)

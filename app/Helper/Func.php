@@ -65,7 +65,7 @@ function objtoarr($obj){
  * @param  string  $api      [默认不传是api格式 传web是web格式]
  * @return [type]            [description]
  */
-function zcjy_callback_data($data=null,$code=0,$api='api'){
+function zcjy_callback_data($data=null,$code=0,$api='web'){
     return $api === 'api'
         ? api_result_data_tem($data,$code)
         : web_result_data_tem($data,$code);

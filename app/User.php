@@ -66,7 +66,8 @@ class User extends Authenticatable implements JWTSubject
         'status',
         'password-pay',
         'rec_mobile',
-        'temporary_code'
+        'temporary_code',
+        'edit_leader_time'
     ];
 
     /**

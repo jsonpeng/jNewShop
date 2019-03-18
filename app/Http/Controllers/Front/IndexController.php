@@ -40,7 +40,7 @@ class IndexController extends Controller
 
     //商城首页
     public function index(Request $request){
-
+        
         //获取推荐分类给前端
         $categories = Category::where('recommend', 1)->orderBy('sort', 'desc')->get();
         //秒杀倒计时给前端需要倒计时的时间
@@ -56,10 +56,14 @@ class IndexController extends Controller
         if($request->has('code'))
         {
               $code = $request->get('code');
+              ##是自己看 就分享操作
               if($user->code == $code)
               {
                 $codeShare = true;
                 $index = 'index_share';
+              }##是其他人看 就更新推荐人关系码
+              else{
+                $user->update(['temporary_code'=>$code]);
               }
         }
 

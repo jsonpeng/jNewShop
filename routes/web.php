@@ -108,6 +108,10 @@ if(Config::get('web.WEB'))
 				Route::get('bind_mobile','AjaxController@bindMobile');
 				##输入代码生成店铺
 				Route::get('bind_code','AjaxController@bindCode');
+				##设置推荐人
+				Route::get('set_leader/{leader_id}','AjaxController@setLeader');
+				##修改推荐人
+				Route::get('edit_leader/{leader_code}','AjaxController@editLeader');
 			});
 
 			#查询用户订单

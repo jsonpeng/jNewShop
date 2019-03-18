@@ -130,6 +130,14 @@
             </div>
             <div class="weui-cell__ft"></div>
         </a>
+        @if($user->leader1)
+        <a class="weui-cell weui-cell_access" href="javascript:;" onclick="openChange()">
+            <div class="weui-cell__bd">
+                <p>修改推荐人</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+        @endif
         <a class="weui-cell weui-cell_access" href="/?code={!! $user->code !!}">
             <div class="weui-cell__bd">
                 <p>分享店铺</p>

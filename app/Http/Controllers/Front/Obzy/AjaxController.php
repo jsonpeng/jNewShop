@@ -45,6 +45,14 @@ class AjaxController extends Controller
 			return zcjy_callback_data('验证码错误',1,'web');
 		}
 		$user->update(['mobile'=>$input['mobile']]);
+		if($request->has('leader'))
+		{
+			$leader = User::find($input['leader']);
+			if(!empty($leader))
+			{
+				$user->update(['leader1'=>$input['leader']]);
+			}
+		}
 		return zcjy_callback_data('绑定手机号成功',0,'web');
 	}
 
@@ -75,6 +83,56 @@ class AjaxController extends Controller
 		$user->update(['code'=>$input['code']]);
 		$code->update(['use'=>1]);
 		return zcjy_callback_data('开通店铺成功',0,'web');
+	}
+
+	//设置leader
+	public function setLeader(Request $request,$leader_id)
+	{
+		$leader = User::find($leader_id);
+
+		if(empty($leader))
+		{
+			return zcjy_callback_data('该推荐人不存在',1,'web');
+		}
+
+		$user = auth('web')->user();
+
+		if($user->id == $leader->id)
+		{
+			return zcjy_callback_data('推荐人不可以设置为自己',1,'web');
+		}
+		
+		$user->update(['leader1'=>$leader_id]);
+		return zcjy_callback_data('设置推荐人成功');
+	}
+
+	//修改leader
+	public function editLeader(Request $request,$leader_code)
+	{
+		$leader = User::where('code',$leader_code)->first();
+
+		if(empty($leader))
+		{
+			return zcjy_callback_data('邀请码输入错误',1,'web');
+		}
+
+		$user = auth('web')->user();
+
+		if($user->edit_leader_time == 0)
+		{
+			return zcjy_callback_data('修改推荐人次数已达到上限',1);
+		}
+
+		if($user->id == $leader->id)
+		{
+			return zcjy_callback_data('推荐人不可以设置为自己',1,'web');
+		}
+
+		$edit_leader_time = $user->edit_leader_time-1;
+		$user->update(['leader1'=>$leader->id,$edit_leader_time=>$edit_leader_time]);
+
+		return zcjy_callback_data('修改推荐人成功,剩余修改次数:'.$edit_leader_time.'次');
+
 	}
 
 }

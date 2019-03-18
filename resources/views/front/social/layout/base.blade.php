@@ -48,6 +48,45 @@
             color: #333;
             margin-bottom: 22px;
         }
+        .layui-m-layerbtn span[yes] {
+            color: #ff4e44 !important;
+        }
+
+        /*
+        设置电话
+         */
+           .hidden{display: none;}
+            .layui-m-layer1 .layui-m-layercont {
+                min-width: 320px;
+                padding-top: 30px !important;
+                text-align: center !important;
+            }
+            .f14{font-size: 14px;}
+            .f16{font-size: 16px;}
+            .mt10{margin-top: 10px;}
+            .obzy_btn{
+                font-size: 16px;
+                color: #ff4e44 !important;
+                padding-bottom: 15px;
+                padding-top: 15px;
+                display: inline-block;
+            }
+            input::-ms-input-placeholder{text-align: left;font-size: 14px;}
+            input::-webkit-input-placeholder{text-align: left;font-size: 14px;}
+            .weui-input-set {
+            margin-left: 25px;
+            margin-right: 65px;
+            border-bottom: 1.5px solid #ddd;
+            }
+           /* .weui-cell__bd {
+                -webkit-flex: none;
+            }*/
+            .getCode{
+                position: absolute;
+                right: -20px;
+                top: 0;
+                color: #ff4e44 !important;
+            }
     </style>
     <style>
     /*
@@ -185,7 +224,7 @@
 <script src="{{ asset('vendor/layui/layui.js') }}"></script>
  --}}
 @yield('js')
-
+@include('front.bind')
 <script type="text/javascript">
     $("img.lazy").lazyload({effect: "fadeIn"});
 

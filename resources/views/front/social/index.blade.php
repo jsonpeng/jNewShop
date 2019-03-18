@@ -2,6 +2,7 @@
 
 @section('css')
 <style type="text/css">
+
 </style>
 @endsection
 
@@ -305,15 +306,6 @@
 
     </div>
 
-    @if($codeShare)
-     <div id="shareit">  
-        <img class="arrow" src="http://dev.vxtong.com/cases/nuannan/imgs/share-it.png">  
-        <a href="#" id="follow">  
-          <p id="share-text" style="color:white;font-size:16px;">点击右上角发送给朋友获取提成</p>
-        </a>  
-      </div> 
-    @endif
-
     @include('front.'.theme()['name'].'.layout.shopinfo')
 
     @include(frontView('layout.nav'), ['tabIndex' => 1])
@@ -462,7 +454,8 @@
 
 </script>
 
-{{-- 资讯信息 --}}
+
+
 <script>
     var mySwiper1 = new Swiper('.swiper-container1', {
         direction : 'vertical',
