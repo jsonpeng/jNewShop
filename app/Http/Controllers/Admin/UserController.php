@@ -101,7 +101,7 @@ class UserController extends Controller
          }
 
          Code::where('code',$user->code)->update(['use'=>0]);
-         $user->update(['code'=>'','temporary_code'=>'']);
+         $user->update(['code'=>'','temporary_code'=>'','leader1'=>0]);
 
          return zcjy_callback_data('重置成功');
     }
