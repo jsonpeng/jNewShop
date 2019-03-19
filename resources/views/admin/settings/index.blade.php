@@ -133,6 +133,18 @@
                                                         </div>
                                                 </div>
                                             </div>
+
+
+                                            <div class="form-group">
+                                                <label for="shoper_rate" class="col-sm-3 control-label">店主购物折扣</label>
+                                          
+                                                <div class="col-sm-9">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" name="shoper_rate" maxlength="2" placeholder="店主购物折扣" value="{{ getSettingValueByKey('shoper_rate') }}">
+                                                            <span class="input-group-addon">折</span>
+                                                        </div>
+                                                </div>
+                                            </div>
                                             
                                        {{--      <div class="form-group">
                                                 <label for="near_shop_distance" class="col-sm-3 control-label">展示附近商家距离</label>
