@@ -66,7 +66,7 @@
 
     <?php $leaderName = $user->LeaderNameFront; ?>
     @if($leaderName != '无')
-    <div><img src="{{ asset('images/social/index.png') }}" alt="" class="" style="max-width: 20px;height: auto;">{{ $leaderName }}的店铺</div>
+    <div style="margin-left: 15px;"><img src="{{ asset('images/social/index.png') }}" alt="" class="" style="max-width: 20px;height: auto;">{{ $leaderName }}的店铺</div>
     @endif
 
     <div class="check-products">
