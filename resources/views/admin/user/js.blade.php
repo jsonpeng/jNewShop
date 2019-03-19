@@ -3,6 +3,29 @@
 
       var jifen_alias = '{{ getSettingValueByKeyCache('credits_alias') }}';
 
+      function resetUser(userid)
+      {
+        if(confirm('确定重置吗?重置后将无法恢复,代码使用状态也会重置!')){
+            $.ajaxSetup({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+          $.ajax({
+              url:"/zcjy/ajax/resetuser/"+userid,
+              type:"POST",
+              success:function(data){
+                if(data.code==0){
+                       layer.msg(data.message, {icon: 1});
+                       location.reload();
+                }else{
+                       layer.msg(data.message, {icon: 5});
+                }   
+              }
+          });
+        }
+      }
+
         function freezeUser(obj,userid){
           var that=obj;
           $.ajaxSetup({

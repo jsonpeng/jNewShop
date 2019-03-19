@@ -85,6 +85,8 @@ Route::group([ 'middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy', 'namesp
 	    Route::post('/perm/{id}/del','PermissionsController@delPermToAdmin');
 	    //冻结用户
 	    Route::post('/freezeuser/{userid}','UserController@freezeUserById');
+	    //重置店铺信息
+	    Route::post('/resetuser/{user_id}','UserController@resetUser');
 	    //操作分销资格
 	    Route::post('/distributeUser/{userid}','UserController@distributeUser');
 	    //图片上传

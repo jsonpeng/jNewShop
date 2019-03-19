@@ -12,6 +12,7 @@ use App\Repositories\CreditLogRepository;
 use Config;
 use Log;
 use App\Models\Order;
+use App\Models\Code;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -93,7 +94,16 @@ class UserController extends Controller
     //重置用户店铺信息
     public function resetUser($user_id)
     {
+         $user=$this->userRepository->findWithoutFail($user_id);
+         if(empty($user))
+         {
+            return zcjy_callback_data('没有找到该用户',1);
+         }
+         
+         Code::where('code',$user->code)->update(['use'=>0]);
+         $user->update(['code'=>'']);
 
+         return zcjy_callback_data('重置成功');
     }
 
     /**

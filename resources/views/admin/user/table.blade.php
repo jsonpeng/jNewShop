@@ -63,6 +63,7 @@
             <td>
 
                 <a href="{!! route('users.show', [$user->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i>查看</a>
+                  <a href="javascript:;" class='btn btn-danger btn-xs' onclick="resetUser({!! $user->id !!})"><i class="glyphicon glyphicon-trash"></i>重置店铺</a>
                 <div class='btn-group'>
                  <a href="javascript:;" class='btn btn-default btn-xs authMessage' data-name="{{ $user->nickname }}" data-id="{{ $user->id }}" data-type="single"><i class="
 glyphicon glyphicon-envelope"></i>消息</a>
