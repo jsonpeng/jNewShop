@@ -122,6 +122,7 @@
 {{-- <script type="text/javascript" src="{{ asset('js/xback.js') }}"></script> --}}
 
 @yield('js')
+@include('front.bind')
 {{-- <script type="text/javascript" src="{{ asset('vendor/scroll/scrollbot.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendor/scroll/scrollreveal.min.js') }}"></script>
 <script type="text/javascript">
