@@ -68,7 +68,7 @@ button[disabled] {
                                     <label for="nickname">会员昵称</label>
                                     <input type="text" class="form-control" name="nickname" placeholder="会员昵称" @if (array_key_exists('nickname', $input))value="{{$input['nickname']}}"@endif></div>
 
-                                <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-6">
+                        <!--         <div class="form-group col-lg-2 col-md-3 col-sm-6 col-xs-6">
                                     <label for="price_sort">会员等级</label>
                                     <select class="form-control" name="user_level">
                                         <option value="" @if (!array_key_exists('user_level', $input)) selected="selected" @endif>全部</option>
@@ -78,7 +78,7 @@ button[disabled] {
                                         </option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group col-lg-2 col-md-3 col-sm-12 col-xs-6">
                                     <label for="order_delivery">消费金额</label>

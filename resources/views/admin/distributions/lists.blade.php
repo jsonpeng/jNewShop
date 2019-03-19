@@ -20,8 +20,8 @@
                         <th>可用资金</th>
                         <th>总赏金</th>
                         <th class="hidden-xs">一级会员数</th>
-                        <th class="hidden-xs">二级会员数</th>
-                        <th class="hidden-xs">三级会员数</th>
+                    <!--     <th class="hidden-xs">二级会员数</th>
+                        <th class="hidden-xs">三级会员数</th> -->
                         <th colspan="3">操作</th>
                     </thead>
                     <tbody>
@@ -33,8 +33,8 @@
                             <td>{{$user->user_money}}</td>
                             <td>{{$user->distribut_money}}</td>
                             <td class="hidden-xs">{{$user->level1}}</td>
-                            <td class="hidden-xs">{{$user->level2}}</td>
-                            <td class="hidden-xs">{{$user->level3}}</td>
+                    <!--         <td class="hidden-xs">{{$user->level2}}</td>
+                            <td class="hidden-xs">{{$user->level3}}</td> -->
                             <td><a href="/zcjy/users/{{$user->id}}">查看详情</a></td>
                         </tr>
                     @endforeach
