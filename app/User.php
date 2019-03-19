@@ -142,6 +142,24 @@ class User extends Authenticatable implements JWTSubject
         }
     }
 
+    public function getLeaderNameFrontAttribute()
+    {
+        if($this->leader1)
+        {
+            $user = $this::find($this->leader1);
+            if(!empty($user))
+            {
+                return $user->nickname;
+            }
+            else{
+                return '无';
+            }
+        }
+        else{
+            return '无';
+        }
+    }
+
     
 
     //积分兑换记录
