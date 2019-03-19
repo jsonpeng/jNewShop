@@ -124,6 +124,24 @@ class User extends Authenticatable implements JWTSubject
         return $this->code ? a_link('店主'.'(代码'.$this->code.')'): '普通用户';
     }
 
+    public function getLeaderNameAttribute()
+    {
+        if($this->leader1)
+        {
+            $user = $this::find($this->leader1);
+            if(!empty($user))
+            {
+                return a_link($user->nickname,route('users.show',$user->id));
+            }
+            else{
+                return '无';
+            }
+        }
+        else{
+            return '无';
+        }
+    }
+
     
 
     //积分兑换记录

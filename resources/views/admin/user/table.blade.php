@@ -7,8 +7,8 @@
        <!--      @if (funcOpen('FUNC_MEMBER_LEVEL'))
             <th>会员等级</th>
             @endif -->
-
-            <th>累计消费</th>
+            <th>他的上级</th>
+            <!-- <th>累计消费</th> -->
 
             @if (funcOpen('FUNC_FUNDS'))
             <th class="hidden-xs">余额</th>
@@ -36,11 +36,12 @@
             <!-- <td class="hidden-xs">{!! $user->id !!}</td> -->
             <td>{!! $user->nickname !!}</td>
             <td>{!! $user->IsShoper !!}</td>
+            <td>{!! $user->LeaderName !!}</td>
          <!--    @if (funcOpen('FUNC_MEMBER_LEVEL'))
             <td>{!! $user->level->name !!}</td>
             @endif -->
 
-            <td>{!! $user->consume_total !!}</td>
+            <!-- <td>{!! $user->consume_total !!}</td> -->
 
             @if (funcOpen('FUNC_FUNDS'))
             <td class="hidden-xs">{!! $user->user_money !!}</td>
