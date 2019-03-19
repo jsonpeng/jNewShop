@@ -90,6 +90,12 @@ class UserController extends Controller
         return view('admin.user.show', compact('user','userLevel', 'share_img', 'orders', 'funds', 'credits','messages'));
     }
 
+    //重置用户店铺信息
+    public function resetUser($user_id)
+    {
+
+    }
+
     /**
      * 冻结用户
      * @Author   yangyujiazi

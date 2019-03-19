@@ -241,6 +241,12 @@ class CartController extends Controller
     public function postCheck(Request $request)
     {
         try {
+
+            if(app('commonRepo')->varifyUserBindTMan())
+            {
+                return zcjy_callback_data('请先绑定推荐人完成购物',1);
+            }
+
             //当前用户
             $user = auth('web')->user();
 

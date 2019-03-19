@@ -1452,13 +1452,13 @@ class CommonRepository
     public function varifyUserBindTMan()
     {
         $user = auth('web')->user();
-
+        ##如果已经是店主 不用继续绑定推荐人
         if($user->code)
         {
             return false;
         }
-
-        if($user->temporary_code && empty($user->leader1))
+        ##从推荐人链接 或者没有上级都要
+        if($user->temporary_code && empty($user->leader1) || empty($user->leader1))
         {
             return true;
         }
