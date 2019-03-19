@@ -1452,10 +1452,17 @@ class CommonRepository
     public function varifyUserBindTMan()
     {
         $user = auth('web')->user();
+
+        if($user->code)
+        {
+            return false;
+        }
+
         if($user->temporary_code && empty($user->leader1))
         {
             return true;
         }
+
     }
 
     /**
@@ -1482,7 +1489,10 @@ class CommonRepository
 
        if(empty($temporary_code) || empty($leader))
        {
-        $leader = User::whereNotNull('code')->orderBy('created_at','asc')->first();
+        $leader = User::whereNotNull('code')
+        ->where('id','<>',$user->id)
+        ->orderBy('created_at','asc')
+        ->first();
        }
 
        return $leader;

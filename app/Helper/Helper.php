@@ -16,6 +16,17 @@ use App\Repositories\BannerRepository;
 use Carbon\Carbon;
 include_once 'Code.php';
 
+/**
+ * [把文字变成链接 并且带上颜色]
+ * @param  [type]  $string [文字]
+ * @param  [type]  $link   [链接]
+ * @param  string  $color  [颜色 默认橙色]
+ * @param  boolean $nbsp   [是否加左右间隔]
+ * @return [type]          [description]
+ */
+function a_link($string,$link = 'javascript:;',$color='orange',$nbsp=true){
+     return $nbsp ? '&nbsp;&nbsp;<a target=_blank href='.$link.' style=color:'.$color.'>'.$string.'</a>&nbsp;&nbsp;' : '<a target=_blank href='.$link.' style=color:'.$color.'>'.$string.'</a>';
+}
 
 function catIdByName($name)
 {

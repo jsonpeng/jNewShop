@@ -37,12 +37,12 @@ button[disabled] {
                             <i class="fa fa-user"></i> 会员列表
                         </a>
                     </li>
-                    <li class="{{ Request::is('zcjy/userLevels*') ? 'active' : '' }}">
+                  <!--   <li class="{{ Request::is('zcjy/userLevels*') ? 'active' : '' }}">
                         <a href="{!! route('userLevels.index') !!}">
                             <span class="badge pull-right"></span>
                             <i class="fa fa-users"></i> 会员等级
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 

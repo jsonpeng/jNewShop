@@ -119,6 +119,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\MoneyLog');
     }
 
+    public function getIsShoperAttribute()
+    {
+        return $this->code ? a_link('店主'.'(代码'.$this->code.')'): '普通用户';
+    }
+
     
 
     //积分兑换记录

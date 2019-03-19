@@ -1,12 +1,12 @@
 <table class="table table-responsive" id="users-table">
     <thead>
         <tr>
-            <th class="hidden-xs">会员ID</th>
+            <!-- <th class="hidden-xs">会员ID</th> -->
             <th>昵称</th>
-
-            @if (funcOpen('FUNC_MEMBER_LEVEL'))
+            <th>用户身份</th>
+       <!--      @if (funcOpen('FUNC_MEMBER_LEVEL'))
             <th>会员等级</th>
-            @endif
+            @endif -->
 
             <th>累计消费</th>
 
@@ -33,12 +33,12 @@
     <tbody>
     @foreach($users as $user)
         <tr>
-            <td class="hidden-xs">{!! $user->id !!}</td>
+            <!-- <td class="hidden-xs">{!! $user->id !!}</td> -->
             <td>{!! $user->nickname !!}</td>
-
-            @if (funcOpen('FUNC_MEMBER_LEVEL'))
+            <td>{!! $user->IsShoper !!}</td>
+         <!--    @if (funcOpen('FUNC_MEMBER_LEVEL'))
             <td>{!! $user->level->name !!}</td>
-            @endif
+            @endif -->
 
             <td>{!! $user->consume_total !!}</td>
 
