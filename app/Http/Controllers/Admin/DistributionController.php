@@ -15,7 +15,7 @@ class DistributionController extends AppBaseController
 
     public function lists(Request $request)
     {
-    	$users = User::where('is_distribute', 1)->paginate($this->defaultPage());
+    	$users = User::whereNotNull('code')->paginate($this->defaultPage());
     	return view('admin.distributions.lists', compact('users'));
     }
 
