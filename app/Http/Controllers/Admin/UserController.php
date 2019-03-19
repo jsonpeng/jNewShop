@@ -99,9 +99,9 @@ class UserController extends Controller
          {
             return zcjy_callback_data('没有找到该用户',1);
          }
-         
+
          Code::where('code',$user->code)->update(['use'=>0]);
-         $user->update(['code'=>'']);
+         $user->update(['code'=>'','temporary_code'=>'']);
 
          return zcjy_callback_data('重置成功');
     }
