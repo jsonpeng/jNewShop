@@ -54,9 +54,9 @@ class IndexController extends Controller
       
         $codeShare = false;
         $index = 'index';
-        if($request->has('_code'))
+        if($request->has('rec_code'))
         {
-              $code = $request->get('_code');
+              $code = $request->get('rec_code');
               $code = zcjy_base64_de($code);
               ##是自己看 就分享操作
               if($user->code == $code)
