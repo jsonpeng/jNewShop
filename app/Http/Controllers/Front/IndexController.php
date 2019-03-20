@@ -66,7 +66,7 @@ class IndexController extends Controller
               }##是其他人看 就更新推荐人关系码
               else{
                 #这个码有效 并且不是自己就更新
-                if(User::where('code'=> $code)->where('id','<>',$user->id)->count())
+                if(User::where('code',$code)->where('id','<>',$user->id)->count())
                 {
                     $user->update(['temporary_code'=>$code]);
                 }
