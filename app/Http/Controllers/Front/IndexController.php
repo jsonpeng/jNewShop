@@ -19,6 +19,7 @@ use Mail;
 use App\Models\Order;
 use App\Models\Notice;
 use App\Models\Code;
+use App\User;
 
 class IndexController extends Controller
 {
@@ -53,9 +54,10 @@ class IndexController extends Controller
       
         $codeShare = false;
         $index = 'index';
-        if($request->has('code'))
+        if($request->has('_code'))
         {
-              $code = $request->get('code');
+              $code = $request->get('_code');
+              $code = zcjy_base64_de($code);
               ##是自己看 就分享操作
               if($user->code == $code)
               {
@@ -63,7 +65,11 @@ class IndexController extends Controller
                 $index = 'index_share';
               }##是其他人看 就更新推荐人关系码
               else{
-                $user->update(['temporary_code'=>$code]);
+                #这个码有效 并且不是自己就更新
+                if(User::where('code'=> $code)->where('id','<>',$user->id)->count())
+                {
+                    $user->update(['temporary_code'=>$code]);
+                }
               }
         }
 

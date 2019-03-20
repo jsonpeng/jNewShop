@@ -23,6 +23,7 @@ use App\Repositories\TeamSaleRepository;
 
 use Config;
 use EasyWeChat\Factory;
+use App\User;
 
 class ProductController extends Controller
 {
@@ -97,6 +98,15 @@ class ProductController extends Controller
         }
         #商品评价
         $evals = app('commonRepo')->productEvalRepo()->productEval($id);
+        $user = auth('web')->user();
+
+        if($request->has('_pid') && is_numeric($request->get('_pid')))
+        {
+            if(!$user->leader1)
+            {
+                $user->update(['leader1'=>$request->get('_pid')]);
+            }
+        }
 
         return view(frontView('product.index'))
                 ->with('app', $app)
@@ -111,7 +121,8 @@ class ProductController extends Controller
                 ->with('spec_goods_price', $spec_goods_price)
                 ->with('productImages', $productImages)
                 ->with('teamFounders', $teamFounders)
-                ->with('evals',$evals);
+                ->with('evals',$evals)
+                ->with('user',$user);
     }
 
 

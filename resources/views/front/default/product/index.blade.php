@@ -536,10 +536,14 @@
   <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8">
       wx.config({!! $app->jssdk->buildConfig(array('onMenuShareTimeline', 'onMenuShareAppMessage'), false) !!});
+      var link = window.location.href;
+      @if($user->code)
+        link += '?_pid='+'{!! $user->id !!}';
+      @endif
       wx.ready(function(){
         wx.onMenuShareTimeline({
           title: '{{ $product->name }}', // 分享标题
-          link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
           imgUrl: '{{ $product->image }}', // 分享图标
           success: function () {
           // 用户确认分享后执行的回调函数

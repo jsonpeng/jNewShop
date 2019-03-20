@@ -6,6 +6,22 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
 use QL\QueryList;
 
+//加密
+function zcjy_base64_en($str){
+    $str = str_replace('/','@',str_replace('+','-',base64_encode($str)));
+    return $str;
+}
+
+//解密
+function zcjy_base64_de($str){
+    $encode_arr = array('UTF-8','ASCII','GBK','GB2312','BIG5','JIS','eucjp-win','sjis-win','EUC-JP');
+    $str = base64_decode(str_replace('@','/',str_replace('-','+',$str)));
+    $encoded = mb_detect_encoding($str, $encode_arr);
+    $str = iconv($encoded,"utf-8",$str);
+    return $str;
+}
+
+
 function queryList($link,$rules = null){
     if(empty($rules)){
         $rules = array (

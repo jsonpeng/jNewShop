@@ -107,12 +107,12 @@
             </div>
             <div class="weui-cell__ft"></div>
         </a>
-        <a class="weui-cell weui-cell_access" href="/integral/cert">
+<!--         <a class="weui-cell weui-cell_access" href="/integral/cert">
             <div class="weui-cell__bd">
                 <p>实名认证</p>
             </div>
             <div class="weui-cell__ft"></div>
-        </a>
+        </a> -->
         
     </div>
     
@@ -138,7 +138,7 @@
             <div class="weui-cell__ft"></div>
         </a>
         @endif
-        <a class="weui-cell weui-cell_access" href="/?code={!! $user->code !!}">
+        <a class="weui-cell weui-cell_access" href="/?_code={!! zcjy_base64_en($user->code) !!}">
             <div class="weui-cell__bd">
                 <p>分享店铺</p>
             </div>
