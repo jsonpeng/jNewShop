@@ -993,10 +993,10 @@ class CommonRepository
         $order->update(['order_pay' => '已支付', 'pay_time' => Carbon::now(), 'pay_platform' => $pay_platform, 'pay_no' => $pay_no]);
 
         #充值订单
-        if(substr($order->out_trade_no, -2) == '_8'){
-            $message = explode('_',$order->out_trade_no);
-            $this->addUserMoney($message[1],$order->price);
-        }
+        // if(substr($order->out_trade_no, -2) == '_8'){
+        //     $message = explode('_',$order->out_trade_no);
+        //     $this->addUserMoney($message[1],$order->price);
+        // }
 
         //加销量
         $this->orderRepository->dealOrderProductSales($order);
@@ -1005,18 +1005,68 @@ class CommonRepository
         if (getSettingValueByKey('inventory_consume') == '支付成功') {
             $this->orderRepository->deduceInventory($order->id);
         }
+
+        //处理分销及分佣
+        $this->successPayDealDis($order);
         
         //发送提醒
-        event(new OrderPay($order));
+        // event(new OrderPay($order));
 
         //处理充值订单
-        $this->orderRepository->dealTopupOrder($order->out_trade_no);
+        // $this->orderRepository->dealTopupOrder($order->out_trade_no);
 
         //填写支付记录
         
         //购物券
-        CouponUser::where('order_id', $order->id)->update(['status' => '已使用']);
+        // CouponUser::where('order_id', $order->id)->update(['status' => '已使用']);
     }
+
+
+    /**
+     * 支付成功处理分销
+     * @param  [type] $order [description]
+     * @return [type]        [description]
+     */
+    public function successPayDealDis($order)
+    {
+          $user = $order->customer;
+          if($user)
+          {
+            //是店主就不分拥 只有普通用户分佣
+            if($user->code)
+            {
+                return;
+            }
+            //一级分销
+            if ($user->leader1) 
+            {
+                $leader1 = User::where('id', $user->leader1)->first();
+                //上级推荐人有分销资格 才分佣
+                if (!empty($leader1) && $leader1->code) 
+                {
+                    $level1_given_money = $order->dis_price;
+                    if ($level1_given_money) 
+                    {
+                        $leader1->user_money += $level1_given_money;
+                        $leader1->distribut_money += $level1_given_money;
+                        $leader1->save();
+
+                        //添加金额变动记录
+                        app('commonRepo')->addMoneyLog($leader1->user_money, $level1_given_money, '推荐用户'.$user->nickname.'消费提成，订单编号为:'.$order->snumber, 2, $leader1->id);
+                        app('commonRepo')->addDistributionLog($order, $leader1->id, 1, $level1_given_money);
+                    }
+                }
+            }
+          }
+    }
+
+
+    public function countOrderDisPrice()
+    {
+
+    }
+
+
 
 
     /**
@@ -1239,6 +1289,28 @@ class CommonRepository
             }
         }
         return $items;
+    }
+
+    /**
+     * 通过items计算分佣金额
+     * @param  [type] $items [description]
+     * @return [type]        [description]
+     */
+    public function countProductDisPrice($items)
+    {
+        $countPrice = 0;
+        foreach ($items as $key => $item) 
+        {
+            $rate = getSettingValueByKey('fenyong_rate') ?: 10;
+
+            if(isset($item['product']))
+            {
+                $rate = $item['product']->fenyong_rate ?: $rate;
+            }
+            $itemDisPrice =  $item['realPrice'] * $rate / 100;
+            $countPrice += $itemDisPrice;
+        }
+        return $countPrice;
     }
 
     /**

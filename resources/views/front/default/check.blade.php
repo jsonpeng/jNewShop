@@ -252,7 +252,7 @@
                   <span class="weui-form-preview__value">{{ $total }}</span>
               </div>
 
-              <div class="weui-form-preview__item">
+     {{--          <div class="weui-form-preview__item">
                   <label class="weui-form-preview__label">{{ getSettingValueByKeyCache('credits_alias') }}</label>
                   <span class="weui-form-preview__value">{{ $jifen }}</span>
               </div>
@@ -270,9 +270,9 @@
               <div class="weui-form-preview__item">
                   <label class="weui-form-preview__label">优惠券减免</label>
                   <span class="weui-form-preview__value" id="coupon_preference">0</span>
-              </div>
+              </div> --}}
 
-              <div class="weui-form-preview__item">
+   {{--            <div class="weui-form-preview__item">
                   <label class="weui-form-preview__label">{{ getSettingValueByKeyCache('credits_alias') }}抵扣</label>
                   <span class="weui-form-preview__value credit_money" id="credit_preference">0</span>
               </div>
@@ -280,12 +280,24 @@
               <div class="weui-form-preview__item">
                 <label class="weui-form-preview__label">会员折扣</label>
                 <span class="weui-form-preview__value" id="member_preference">-{{ $preference }}</span>
-              </div>
+              </div> --}}
             
               <div class="weui-form-preview__item">
                   <label class="weui-form-preview__label">运费</label>
                   <span class="weui-form-preview__value" id="freight">{{ $freight }}</span>
               </div>
+
+              <input type="hidden" name="dis_price" value="{!! $disMoney !!}" />
+
+              {{-- 店主特权优惠 --}}
+              @if($user->code)
+                <div class="weui-form-preview__item">
+                  <label class="weui-form-preview__label">店主优惠</label>
+                  <span class="weui-form-preview__value" id="shoper_preference">-{{ $disMoney }}</span>
+                </div>
+              @endif
+
+
           </div>
 
       </div>

@@ -62,7 +62,8 @@ class Order extends Model
         'confirm_time',
         'paytime',
         'backup01',
-        'jifen'
+        'jifen',
+        'dis_price'
     ];
 
     /**

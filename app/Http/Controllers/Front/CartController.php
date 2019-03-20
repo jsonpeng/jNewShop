@@ -113,6 +113,7 @@ class CartController extends Controller
         //用户会员等级优惠
         $user_level = null;
         $preference = 0;
+
         if (funcOpen('FUNC_MEMBER_LEVEL')) {
             $user_level = UserLevel::where('id',$user->user_level)->first();
             $preference = app('commonRepo')->UserLevelPreference($user, $total);
@@ -123,7 +124,8 @@ class CartController extends Controller
         $orderPreference_money = 0;
         $orderPreference_name = 0;
         //订单优惠
-        if (funcOpen('FUNC_ORDER_PROMP')) {
+        if (funcOpen('FUNC_ORDER_PROMP')) 
+        {
             $orderPreference = app('commonRepo')->orderPreference($total);
             if ($orderPreference['money']) {
                 $prom_type = 4;
@@ -133,12 +135,22 @@ class CartController extends Controller
             }
         }
 
+        $disMoney = app('commonRepo')->countProductDisPrice($items);
+
+        $needPay = $total + $freight - $preference - $orderPreference_money;
+
+        ##如果用户是店主
+        if($user->code)
+        {
+            $needPay = $needPay - $disMoney;
+        }
+
         return view(frontView('check'))
             ->with('user', $user)
             ->with('user_level', $user_level)
             ->with('address', $address)
             ->with('items', $items)
-            ->with('needPay', $total + $freight - $preference - $orderPreference_money)
+            ->with('needPay', $needPay)
             ->with('total', $total)
             ->with('jifen', $jifen)
             ->with('freight', $freight)
@@ -146,7 +158,8 @@ class CartController extends Controller
             ->with('prom_id', $prom_id)
             ->with('order_promp', $orderPreference_name)
             ->with('order_promp_money', $orderPreference_money)
-            ->with('preference', $preference);
+            ->with('preference', $preference)
+            ->with('disMoney',$disMoney);
     }
 
     public function checkNow(Request $request)
