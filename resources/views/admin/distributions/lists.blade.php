@@ -32,7 +32,7 @@
                             <td>{{$user->mobile}}</td>
                             <td>{{$user->user_money}}</td>
                             <td>{{$user->distribut_money}}</td>
-                            <td class="hidden-xs">{{$user->level1}}</td>
+                            <td class="hidden-xs">{{$user->Leader1Num}}</td>
                     <!--         <td class="hidden-xs">{{$user->level2}}</td>
                             <td class="hidden-xs">{{$user->level3}}</td> -->
                             <td><a href="/zcjy/users/{{$user->id}}">查看详情</a></td>

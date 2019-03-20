@@ -160,6 +160,11 @@ class User extends Authenticatable implements JWTSubject
         }
     }
 
+    public function getLeader1NumAttribute()
+    {
+        return User::where('leader1',$this->id)->count();
+    }
+
     
 
     //积分兑换记录
