@@ -317,6 +317,31 @@ class AjaxController extends Controller
         return zcjy_callback_data('删除消息成功',0,'web');
     }
 
+
+    public function certsPublishV2(Request $request){
+
+        $input = $request->all();
+        #验证字段
+        $varify = app('commonRepo')->varifyInputParam($input,'name,id_card');
+        if($varify){
+            return zcjy_callback_data($varify,1,'web');
+        }
+        #当前用户
+        $user = auth('web')->user();
+
+        $cert = $user->cert()->first();
+        
+        if($cert){
+            if($cert->status == '审核中' || $cert->status =='未通过'){
+                $cert->delete();
+            }
+        }
+
+        $input['user_id'] = $user->id;
+        app('commonRepo')->certsRepo()->create($input);
+        return zcjy_callback_data('提交成功,请等待系统审核',0,'web');
+    }
+
     /**
      * 发起实名认证
      * @param  Request $request [description]

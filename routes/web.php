@@ -126,7 +126,7 @@ if(Config::get('web.WEB'))
 			#删除通知消息
 			Route::get('message/delete','AjaxController@deleteMessage');
 			#发起实名认证
-			Route::get('certs/publish','AjaxController@certsPublish');
+			Route::get('certs/publish','AjaxController@certsPublishV2');
 			#上传图片
 			Route::post('uploads','AjaxController@uploads');
 			#发起商品评价

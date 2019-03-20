@@ -9,6 +9,16 @@
       .weui-cell__hd{display: flex;}
       .checkwrapper .right-botton02{width:70px;right:70px;background-color:#84d4da;}
       .checkwrapper .right-botton3{position:absolute;right:70px;background-color:#e4393c;color:#fff;padding:0 5px;}
+      input::-ms-input-placeholder{text-align: left;padding-left:10px;font-size: 14px;}
+      input::-webkit-input-placeholder{text-align: left;padding-left:10px;font-size: 14px;}
+      .form-control{
+            width: 95%;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+      }
     </style>
 @endsection
 
@@ -249,7 +259,7 @@
           <div class="weui-form-preview__bd">
               <div class="weui-form-preview__item">
                   <label class="weui-form-preview__label">商品总金额</label>
-                  <span class="weui-form-preview__value">{{ $total }}</span>
+                  <span class="weui-form-preview__value">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $total }}</span>
               </div>
 
      {{--          <div class="weui-form-preview__item">
@@ -284,7 +294,7 @@
             
               <div class="weui-form-preview__item">
                   <label class="weui-form-preview__label">运费</label>
-                  <span class="weui-form-preview__value" id="freight">{{ $freight }}</span>
+                  <span class="weui-form-preview__value" id="freight">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $freight }}</span>
               </div>
 
               <input type="hidden" name="dis_price" value="{!! $disMoney !!}" />
@@ -293,7 +303,7 @@
               @if($user->code)
                 <div class="weui-form-preview__item">
                   <label class="weui-form-preview__label">店主优惠</label>
-                  <span class="weui-form-preview__value" id="shoper_preference">-{{ $disMoney }}</span>
+                  <span class="weui-form-preview__value" id="shoper_preference">-{{ getSettingValueByKeyCache('price_fuhao') }}{{ $disMoney }}</span>
                 </div>
               @endif
 
@@ -308,9 +318,21 @@
           <div class="weui-textarea-counter"><span class="surplus">0</span>/200</div>
         </div>
       </div>
+      @if(!$certStatus)
+
+       <div class="product-checker">
+        <span style="margin-left: 0.25rem; font-size: 14px;color: red;" onclick="openCert()">去填写实名认证信息></span>
+       </div>
+
+
+      @endif
     </div>
   </div>
   </form>
+
+      
+
+    
   
   @if ($user->credits < $jifen)
     <div class="checkwrapper product-checker">
@@ -350,18 +372,55 @@
               <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
           </div>
       </div>
+      <div class="weui-actionsheet" id="certBox" style="    background: #fff;    padding-left: 15px;
+    padding-top: 15px;padding-bottom: 3px;">
+           <div >
+              <div style="font-size: 16px;padding-bottom: 15px;text-align: left">
+                  实名认证
+              </div>
+              <p style="    color: #aaa;
+    font-size: 14px;
+    padding-bottom: 10px;">您购买的跨境商品/特殊商品,需要提供身份信息,<span style="color: red;">且身份信息与微信的实名信息一致,可以与收货人信息不同 仅用于海关检验</span></p>
+              <input type="text" name="name" class="form-control" placeholder="真实姓名" />
+              <input type="text" name="idcard" class="form-control" placeholder="身份证号码" />
+               <a class="obzy_btn bind_mobile_btn" style="    background: red;
+    color: white;
+    padding: 10px 150px;
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;" href="javascript:;" onclick="certSubmit()">提交</a>
+          </div>
+      </div>
   </div>
   @endif
 @endsection
 
 @section('js')
   <script>
-
-
     var $iosActionsheet = $('#iosActionsheet');
     var $iosMask = $('#iosMask');
 
+    function openCert()
+    {
+      $('#certBox').addClass('weui-actionsheet_toggle');
+      $iosMask.fadeIn(200);
+    }
+
+    function certSubmit()
+    {
+      $.zcjyRequest('/ajax/certs/publish',function(res){
+        if(res)
+        {
+          alert(res);
+          hideActionSheet();
+        }
+      },{name:$('input[name=name]').val(),id_card:$('input[name=idcard]').val()});
+    }
+
+  
     function hideActionSheet() {
+      $('#certBox').removeClass('weui-actionsheet_toggle');
         $iosActionsheet.removeClass('weui-actionsheet_toggle');
         $iosMask.fadeOut(200);
     }

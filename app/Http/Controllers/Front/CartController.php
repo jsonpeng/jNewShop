@@ -145,6 +145,14 @@ class CartController extends Controller
             $needPay = $needPay - $disMoney;
         }
 
+        $certStatus = 1;
+        $cert = app('commonRepo')->varifyCert($user);
+            
+        if($cert)
+        {
+            $certStatus = 0;
+        }
+        // dd($certStatus);
         return view(frontView('check'))
             ->with('user', $user)
             ->with('user_level', $user_level)
@@ -159,7 +167,8 @@ class CartController extends Controller
             ->with('order_promp', $orderPreference_name)
             ->with('order_promp_money', $orderPreference_money)
             ->with('preference', $preference)
-            ->with('disMoney',$disMoney);
+            ->with('disMoney',$disMoney)
+            ->with('certStatus',$certStatus);
     }
 
     public function checkNow(Request $request)

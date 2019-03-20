@@ -18,6 +18,9 @@
       .app-wrapper{
         min-height:100%;
       }
+      .checkwrapper.product-checker {
+        bottom: 49px;
+    }
     </style>
 @endsection
 
@@ -134,7 +137,7 @@
         </div>
     </div>
   </div>
-  {{-- @include(frontView('layout.nav'), ['tabIndex' => 3]) --}}
+  @include(frontView('layout.nav'), ['tabIndex' => 3])
 @endsection
 
 

@@ -18,9 +18,9 @@ class CreateCertsTable extends Migration
             $table->string('name')->comment('真实姓名');
             $table->string('id_card')->comment('身份证号');
 
-            $table->string('face_image')->comment('身份证人脸图片');
-            $table->string('back_image')->comment('身份证背面国徽图片');
-            $table->string('hand_image')->comment('手持身份证图片');
+            $table->string('face_image')->nullable()->comment('身份证人脸图片');
+            $table->string('back_image')->nullable()->comment('身份证背面国徽图片');
+            $table->string('hand_image')->nullable()->comment('手持身份证图片');
 
             $table->enum('status',['审核中','已通过','未通过'])->nullable()->default('审核中')->comment('审核状态');
 

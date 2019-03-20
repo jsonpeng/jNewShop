@@ -394,10 +394,10 @@ class CommonRepository
     private function validation($key,$type=0){
         $validation_arr = Config::get('validation');
         if(isset($validation_arr[$key])){
-            return $type ? '参数'.$key.'['.$validation_arr[$key].']'.'不完整' : '缺少参数'.$key.'['.$validation_arr[$key].']';
+            return '请输入'.$validation_arr[$key];
         }
         else{
-            return $type ? '参数'.$key.'不完整' : '缺少参数'.$key;
+            return '请输入'.$key;
         }
     }
     

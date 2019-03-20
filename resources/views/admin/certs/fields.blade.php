@@ -10,23 +10,7 @@
     {!! Form::text('id_card', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Face Image Field -->
-<div class="form-group col-sm-12">
-    {!! Form::label('face_image', '人脸照:') !!}
-    {!! Form::text('face_image', null, ['class' => 'form-control']) !!}
-</div>
 
-<!-- Back Image Field -->
-<div class="form-group col-sm-12">
-    {!! Form::label('back_image', '背面国徽照:') !!}
-    {!! Form::text('back_image', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Hand Image Field -->
-<div class="form-group col-sm-12">
-    {!! Form::label('hand_image', '手持身份证照:') !!}
-    {!! Form::text('hand_image', null, ['class' => 'form-control']) !!}
-</div>
 
 <!-- User Id Field -->
 <div class="form-group col-sm-12">

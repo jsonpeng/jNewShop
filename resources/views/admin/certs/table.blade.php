@@ -3,11 +3,12 @@
         <tr>
         <th>姓名</th>
         <th>身份证号</th>
-        <th>人脸图</th>
+<!--         <th>人脸图</th>
         <th>背部国徽图</th>
-        <th>手持图</th>
+        <th>手持图</th> -->
         <th>上传人</th>
         <th>审核状态</th>
+        <th>上传时间</th>
             <th colspan="3">操作</th>
         </tr>
     </thead>
@@ -16,11 +17,12 @@
         <tr>
             <td>{!! $certs->name !!}</td>
             <td>{!! $certs->id_card !!}</td>
-            <td><img src="{!! $certs->face_image !!}" style="max-width: 100%; max-height: 100px;"></td>
+      <!--       <td><img src="{!! $certs->face_image !!}" style="max-width: 100%; max-height: 100px;"></td>
             <td><img src="{!! $certs->back_image !!}" style="max-width: 100%; max-height: 100px;"></td>
-            <td><img src="{!! $certs->hand_image !!}" style="max-width: 100%; max-height: 100px;"></td>
+            <td><img src="{!! $certs->hand_image !!}" style="max-width: 100%; max-height: 100px;"></td> -->
             <td>{!! optional($certs->user()->first())->nickname !!}</td>
             <td>{!! $certs->status !!}</td>
+            <td>{!! $certs->created_at !!}</td>
             <td>
                 {!! Form::open(['route' => ['certs.destroy', $certs->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
