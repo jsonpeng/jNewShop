@@ -62,8 +62,8 @@ class CreateUsersTable extends Migration
             $table->string('rec_mobile')->nullable()->comment('推荐人手机号');
 
             //会员等级
-            $table->integer('user_level')->unsigned();
-            $table->foreign('user_level')->references('id')->on('user_levels');
+            $table->integer('user_level')->nullable()->default(0)->comment('用户等级');
+       
 
             $table->index(['id', 'created_at']);
             $table->index('user_level');
