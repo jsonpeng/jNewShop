@@ -16,7 +16,7 @@ class UpdateOrdersTable1 extends Migration
         //订单表
         Schema::table('orders', function (Blueprint $table) {
            
-            $table->float('dis_price')->nullable()->default(0)->comment('分佣价格/店主优惠价格');
+            $table->float('dis_price')->nullable()->default(0)->comment('分佣金额/店主优惠金额');
 
          
         });

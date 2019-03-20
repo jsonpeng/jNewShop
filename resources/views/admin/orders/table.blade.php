@@ -2,6 +2,7 @@
     <thead>
         <th>订单编号</th>
         <th class="hidden-sm hidden-xs">订单金额</th>
+        <th class="hidden-sm hidden-xs">分佣金额/店主优惠金额</th>
         <th>订单状态</th>
         <th>物流状态</th>
         <th>支付状态</th>
@@ -16,6 +17,7 @@
         <tr>
             <td>{!! $order->snumber !!}</td>
             <td class="hidden-sm hidden-xs">{!! $order->price !!}</td>
+            <td>{!! $order->dis_price !!}</td>
              <td>{!! $order->order_status !!}</td>
             <td>
                 @if($order->order_delivery == '已发货') <span class="label label-info">已发货</span> @endif
