@@ -68,7 +68,17 @@ class IndexController extends Controller
                 #这个码有效 并且不是自己就更新
                 if(User::where('code',$code)->where('id','<>',$user->id)->count())
                 {
+                    $redirect = 0;
+                    if(empty($user->temporary_code) || $user->temporary_code != $code)
+                    {
+                        $redirect = 1;
+                    }
                     $user->update(['temporary_code'=>$code]);
+                    if($redirect)
+                    {
+                        return redirect('/');
+                    }
+
                 }
               }
         }
