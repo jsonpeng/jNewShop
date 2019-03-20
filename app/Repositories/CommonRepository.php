@@ -1557,7 +1557,7 @@ class CommonRepository
 
        $temporary_code = $user->temporary_code;
 
-       $leader = User::where('temporary_code',$temporary_code)->first();
+       $leader = User::where('temporary_code',$temporary_code)->where('id','<>',$user->id)->first();
 
        if(empty($temporary_code) || empty($leader))
        {
