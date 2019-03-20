@@ -255,13 +255,23 @@ class CartController extends Controller
     {
         try {
 
+            ##提前校检投资人
             if(app('commonRepo')->varifyUserBindTMan())
             {
                 return zcjy_callback_data('请先绑定推荐人完成购物',1);
             }
+           
 
             //当前用户
             $user = auth('web')->user();
+
+            ##然后校检认证状态
+            $cert = app('commonRepo')->varifyCert($user);
+            
+            if($cert)
+            {
+                return $cert;
+            }
 
             //订单商品
             $items = ShoppingCart::all();

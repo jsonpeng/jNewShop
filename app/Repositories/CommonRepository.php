@@ -1468,7 +1468,7 @@ class CommonRepository
               if(in_array($file_suffix,$excel_extensions)){
                 $file_type = 'excel';
               }
-          }
+        }
 
         #文件夹
         $destinationPath = empty($user) ? "uploads/admin/" : "uploads/user/".$user->id.'/';
