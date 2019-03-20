@@ -37,9 +37,7 @@
             <td>{!! $user->nickname !!}</td>
             <td>{!! $user->IsShoper !!}</td>
             <td>{!! $user->LeaderName !!}</td>
-         <!--    @if (funcOpen('FUNC_MEMBER_LEVEL'))
-            <td>{!! $user->level->name !!}</td>
-            @endif -->
+  
 
             <!-- <td>{!! $user->consume_total !!}</td> -->
 
