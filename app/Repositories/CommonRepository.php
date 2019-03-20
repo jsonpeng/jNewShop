@@ -55,6 +55,7 @@ use AlipayTradeWapPayContentBuilder;
 use AopClient;
 use AlipayFundTransToaccountTransferRequest;
 use Excel;
+use Request;
 
 class CommonRepository
 {
