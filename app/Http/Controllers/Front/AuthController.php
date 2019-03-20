@@ -228,4 +228,10 @@ class AuthController extends Controller
 
         return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
     }
+
+    //微信跳转回调
+    public function weixinAuthCallback(Request $request)
+    {
+        return app('commonRepo')->weixinAuthCallback($request->get('target_url'));
+    }
 }

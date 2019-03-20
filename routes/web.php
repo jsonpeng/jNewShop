@@ -45,6 +45,9 @@ if (Config::get('web.app_env') == 'local'){
 	$mid = ['web', 'auth.user'];
 }
 
+//微信跳转回调
+Route::get('/weixin/auth_callback','Front\AuthController@weixinAuthCallback');
+
 //用于小程序的webview
 Route::group([ 'prefix' => 'webview'], function () {
 	//单页面

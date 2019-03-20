@@ -2,8 +2,7 @@
 
 @section('css')
 <style type="text/css">
- 
-    /*input::-webkit-input-placeholder{position：relative;left：20px;}*/
+
 </style>
 @endsection
 
@@ -22,10 +21,10 @@
             <div class="weui-cell mt10">
                 <div class="weui-cell__bd" style="position: relative;-webkit-flex: none;">
                     <input class="weui-input weui-input-set" type="text" name="code" maxlength="11" placeholder="请输入验证码">
-                    <a class="f14 getCode" data-abled="1">获取验证码</a>
+                    <a class="f14 getCode" data-abled="1" onclick="getCodeFunc(this)">获取验证码</a>
                 </div>
             </div>
-            <a class="obzy_btn bind_mobile_btn" href="javascript:;">确定</a>
+            <a class="obzy_btn bind_mobile_btn" href="javascript:;" onclick="bindMobileFunc()">确定</a>
         </div>
 </div>
 
@@ -37,7 +36,7 @@
                     <input class="weui-input weui-input-set" type="text" name="code" maxlength="5" placeholder="请输入5位代码开通店铺">
                 </div>
             </div>
-            <a class="obzy_btn enter_code_btn" href="javascript:;">确定</a>
+            <a class="obzy_btn enter_code_btn" href="javascript:;" onclick="enterCodeBtn()">确定</a>
         </div>
 </div>
 @endsection
@@ -51,10 +50,8 @@
      $.zcjyFrameOpen($('.bind_mobile').html());
   });
 
-
-
   var wait=60;
-  function time() {
+    function time() {
             var o = $('.getCode:eq(1)');
             if (wait == 0) {
                 o.removeClass('disable');
@@ -72,23 +69,22 @@
                 }, 1000)
             }
     }
-  //点击发送手机验证码
-   $(document).on('click','.getCode',function(){
+    function getCodeFunc(obj){
         var mobile = $('input[name=mobile]:eq(1)').val(); 
         if($.empty(mobile)){
           alert('请先输入手机号');
           return false;
         }
-        if($(this).data('abled')){
+        if($(obj).data('abled')){
           $.zcjyRequest('/ajax/obzy/send_code',function(res){
               if(res){
                   time();
               }
           },{mobile:mobile});
         }
-   });
+   }
   //点击绑定手机号
-  $(document).on('click','.bind_mobile_btn',function(){
+  function bindMobileFunc(){
         var mobile = $('input[name=mobile]:eq(1)').val(); 
         if($.empty(mobile)){
           alert('请先输入手机号');
@@ -106,9 +102,10 @@
                   $.zcjyFrameOpen($('.enter_code').html());
               }
         },{mobile:mobile,code:code});
-  });
+  }
+
   //点击输入代码
-  $(document).on('click','.enter_code_btn',function(){
+  function enterCodeBtn(){
         var code = $('input[name=code]:eq(2)').val(); 
         if($.empty(code)){
           alert('请先输入代码');
@@ -119,7 +116,7 @@
                   alert(res);
               }
         },{code:code});
-  });
+  }
 </script>
 
 @endsection

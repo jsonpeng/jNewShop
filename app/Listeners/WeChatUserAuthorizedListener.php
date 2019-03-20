@@ -41,12 +41,12 @@ class WeChatUserAuthorizedListener
         //$user = $oauth->user();
         
         
-        $isNewSession = $event->isNewSession;
-        if ($isNewSession) {
-            $weixin_user = $event->user;
-            $weixin_user = $weixin_user->getOriginal();
-            app('commonRepo')->CreateUserFromWechatOauth($weixin_user);
-        }
+        // $isNewSession = $event->isNewSession;
+        // if ($isNewSession) {
+        //     $weixin_user = $event->user;
+        //     $weixin_user = $weixin_user->getOriginal();
+        //     app('commonRepo')->CreateUserFromWechatOauth($weixin_user);
+        // }
         
         
     }

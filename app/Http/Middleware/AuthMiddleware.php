@@ -12,13 +12,50 @@ use EasyWeChat\Factory;
 
 class AuthMiddleware
 {
-    /**
+
+
+
+        /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
      */
+    public function handle($request, Closure $next)
+    {
+         if (!Auth::guard('web')->check()) 
+         {
+                $user = null;
+                #如果是本地调试
+                if (Config::get('web.app_env') == 'local') {
+                    #发起本地用户登录
+                    $user = app('commonRepo')->localWeixinUser();
+                }
+                else{
+                    #获取当前微信用户
+                    //$user = app('commonRepo')->getCacheWeixinUser($request->ip());
+                    $user = null;
+                    #如果不在
+                    if(empty($user))
+                    {
+                        #发起微信授权登录
+                        return app('commonRepo')->weixinAuthRedirect($request->fullUrl());
+                    }
+                }
+             
+         }
+        return $next($request);
+    }
+
+
+    /**Old Version
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+   
     public function handle($request, Closure $next)
     {
         if (!Auth::guard('web')->check()) {
@@ -65,5 +102,5 @@ class AuthMiddleware
         }
 
         return $next($request);
-    }
+    }  */
 }

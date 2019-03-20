@@ -1,5 +1,5 @@
 {{-- 推荐人设置绑定 --}}
-@if(Request::is('/') || Request::is('/usercenter'))
+@if(Request::is('/'))
   @if(app('commonRepo')->varifyUserBindTMan())
   <?php 
   $leader = app('commonRepo')->userLeader();
@@ -36,10 +36,10 @@
               <div class="weui-cell mt10">
                   <div class="weui-cell__bd" style="position: relative;-webkit-flex: none;">
                       <input class="weui-input weui-input-set" type="text" name="code" maxlength="11" placeholder="请输入验证码">
-                      <a class="f14 getCode" data-abled="1">获取验证码</a>
+                      <a class="f14 getCode" data-abled="1" onclick="getCodeFunc(this)">获取验证码</a>
                   </div>
               </div>
-              <a class="obzy_btn bind_mobile_btn" href="javascript:;">确定</a>
+              <a class="obzy_btn bind_mobile_btn" href="javascript:;" onclick="bindFunc()">确定</a>
           </div>
   </script>
   <script type="text/javascript">
@@ -112,26 +112,26 @@
                   wait--;
                   setTimeout(function() {
                       time()
-                  }, 1000)
+                  }, 1000);
               }
       }
     //点击发送手机验证码
-     $(document).on('click','.getCode',function(){
+     function getCodeFunc(obj){
           var mobile = $('input[name=mobile]').val(); 
           if($.empty(mobile)){
             alert('请先输入手机号');
             return false;
           }
-          if($(this).data('abled')){
+          if($(obj).data('abled')){
             $.zcjyRequest('/ajax/obzy/send_code',function(res){
                 if(res){
                     time();
                 }
             },{mobile:mobile});
           }
-     });
+     }
     //点击绑定手机号
-    $(document).on('click','.bind_mobile_btn',function(){
+      function bindFunc(){
           var mobile = $('input[name=mobile]').val(); 
           if($.empty(mobile)){
             alert('请先输入手机号');
@@ -149,7 +149,7 @@
                     $.zcjyFrameOpen($('.enter_code').html());
                 }
           },{mobile:mobile,code:code,leader:leaderId});
-    });
+    }
   </script>
   @endif
 @endif

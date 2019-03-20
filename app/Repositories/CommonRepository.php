@@ -1575,4 +1575,101 @@ class CommonRepository
        return $leader;
     }
 
+     /**
+     * [微信授权跳转]
+     * @param  [type] $targer_url [description]
+     * @return [type]             [description]
+     */
+    public function weixinAuthRedirect($target_url='')
+    {
+        #默认配置项
+        $options = Config::get('wechat.official_account.default');
+
+        $options['oauth'] = [
+          'scopes'   => ['snsapi_userinfo'],
+          'callback' => $options['target_callback_path'].'?target_url='.$target_url,//存储客户端要跳转的链接
+        ];
+        $app = Factory::officialAccount($options);
+
+        $response = $app
+        ->oauth
+        ->scopes(['snsapi_userinfo'])
+        ->redirect();
+
+        return $response;
+    }
+
+    /**
+     * 获取微信信息
+     * @return [type] [description]
+     */
+    public function getWeiXinInfo()
+    {
+        $options = Config::get('wechat.official_account.default');
+        //Log::info($options);
+        $app =Factory::officialAccount($options);
+        $oauth = $app->oauth;
+        // 获取 OAuth 授权结果用户信息
+        $userinfo = $oauth->user();
+        $user = User::where('openid', $userinfo->getId())->first();
+        if (is_null($user)) 
+        {
+            // 新建用户
+            $user = User::create([
+                'openid' => $userinfo->getId(),
+                'nickname' => $userinfo->getNickname(),
+                'head_image' => $userinfo->getAvatar(),
+                ]);
+        }
+        else{
+            $user->update([
+                'nickname' => $userinfo->getNickname(),
+                'head_image' => $userinfo->getAvatar()
+            ]);
+        }
+        return $user;
+    }
+
+    /**
+     * [微信callback跳转]
+     * @param  [type] $target_url [description]
+     * @return [type]             [description]
+     */
+    public function weixinAuthCallback($target_url)
+    {
+        $user = $this->getWeiXinInfo();
+        $target_url = empty($target_url) ? Request::root() : $target_url;
+        #发起登录
+        $user->last_ip = Request::ip();
+        $user->last_login = \Carbon\Carbon::now();
+        $user->save();
+        auth('web')->login($user);
+        Log::info('targer_url');
+        Log::info($target_url);
+        return redirect($target_url);
+    }
+
+    /**
+     * [根据ip获取微信用户]
+     * @param  [type] $ip [description]
+     * @return [type]     [description]
+     */
+    public function getCacheWeixinUser($ip)
+    {
+      return cache('weixin_user_'.$ip);
+    }
+
+    /**
+     * [本地开发微信登录]
+     * @param  string $openid [description]
+     * @return [type]         [description]
+     */
+    public function localWeixinUser($openid = 'odh7zsgI75iT8FRh0fGlSojc9PWM')
+    {
+         $user = User::where('openid', $openid)->first();
+         auth('web')->login($user);
+         return $user;
+    }
+
+
 }
