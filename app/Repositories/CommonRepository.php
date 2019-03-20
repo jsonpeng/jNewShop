@@ -1559,6 +1559,11 @@ class CommonRepository
 
        $leader = User::where('temporary_code',$temporary_code)->where('id','<>',$user->id)->first();
 
+       if(!empty($leader))
+       {
+        return $leader;
+       }
+
        if(empty($temporary_code) || empty($leader))
        {
         $leader = User::whereNotNull('code')

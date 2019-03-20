@@ -1,5 +1,5 @@
 {{-- 推荐人设置绑定 --}}
-@if(!Request::is('sign_shop'))
+@if(Request::is('/') || Request::is('/usercenter'))
   @if(app('commonRepo')->varifyUserBindTMan())
   <?php 
   $leader = app('commonRepo')->userLeader();
