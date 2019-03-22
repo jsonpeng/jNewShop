@@ -22,8 +22,8 @@
                 <div class="weui-cell__ft join-time">加入时间：{{ $fellow->created_at->format('Y-m-d') }}</div>
             </a>
             <div style="padding-left: 10px;">
-                  今日进店次数:{!! tag($fellow->day_times) !!},历史进店次数:{!! tag($fellow->all_times) !!}
-                  今日消费:{!! tag($fellow->day_prices) !!},历史消费:{!! tag($fellow->all_prices) !!}
+                  今日进店次数:{!! a_link($fellow->day_times) !!},历史进店次数:{!! a_link($fellow->all_times) !!}
+                  今日消费:{!! a_link($fellow->day_prices) !!},历史消费:{!! a_link($fellow->all_prices) !!}
             </div>
         @endforeach
     </div>
