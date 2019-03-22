@@ -9,46 +9,10 @@
     <div class="img">
       <a href="javascript:history.go(-1);"><i class="icon ion-ios-arrow-left"></i></a></div>
     <p class="titile">{!! $user->nickname !!}的订单</p>
- {{--      <div class="userSet">
-          <a href="javascript:;" onclick="showSearchBar()">
-                <img src="{{ asset('images/trade/find.png') }}" alt="">
-          </a>
-      </div> --}}
+
   </div>
 
-  {{-- 订单搜索输入框 --}}
-{{--   <div class="order_search">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <form action="">
-              <input type="search" id="searchInput" placeholder="搜索全部订单">
-          </form>
-        </div>
-        <div class="weui-cell__ft" onclick="closeSearchBar()">取消</div>
-    </div>
-  </div> --}}
-{{--   <div class="weui-tab">
-    <div class="weui-navbar">
-        <a class="weui-navbar__item @if($type == 1) weui-bar__item_on @endif" href="/orders/1">
-            <span>全部</span>
-        </a>
-        <a class="weui-navbar__item @if($type == 2) weui-bar__item_on @endif" href="/orders/2">
-            <span>待付款</span>
-        </a>
-        <a class="weui-navbar__item @if($type == 3) weui-bar__item_on @endif" href="/orders/3">
-            <span>待发货</span>
-        </a>
-        <a class="weui-navbar__item @if($type == 4) weui-bar__item_on @endif" href="/orders/4">
-            <span>待收货</span>
-        </a>
-        <a class="weui-navbar__item @if($type == 5) weui-bar__item_on @endif" href="/orders/5">
-            <span>我的评价</span>
-        </a>
-    </div>
-    <div class="weui-tab__panel">
 
-    </div>
-  </div> --}}
   <div class="flow-default scroll-container" id="order-box">
     @foreach($orders as $order)
       <div class="scroll-post">
@@ -201,7 +165,7 @@
                 }
               });
               $.ajax({
-                url:"/ajax/orders?skip=" + $('.scroll-post').length + "&take=18&type={{ $type }}",
+                url:"/ajax/orders?skip=" + $('.scroll-post').length + "&take=18&type=1",
                 type:"GET",
                 success:function(data){
                   if (data.status_code != 0) {
