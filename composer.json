@@ -50,7 +50,8 @@
             "app/Helper/Helper.php",
             "app/Helper/Func.php",       
             "app/alipaysdk/wappay/service/AlipayTradeService.php",
-            "app/alipaysdk/wappay/buildermodel/AlipayTradeWapPayContentBuilder.php"
+            "app/alipaysdk/wappay/buildermodel/AlipayTradeWapPayContentBuilder.php",
+            "app/Helper/Repository/Zcjy.php"
         ]
     },
     "autoload-dev": {
