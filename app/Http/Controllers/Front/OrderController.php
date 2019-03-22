@@ -65,6 +65,7 @@ class OrderController extends Controller
         $take = 18;
         $type = 1;
         $inputs = $request->all();
+
         if (array_key_exists('skip', $inputs)) {
             $skip = intval($inputs['skip']);
         }
@@ -73,6 +74,9 @@ class OrderController extends Controller
         }
         if (array_key_exists('type', $inputs)) {
             $type = intval($inputs['type']);
+        }
+        if (array_key_exists('user_id', $inputs)) {
+           $user = User::find($inputs['user_id']);
         }
 
         $orders = $this->orderRepository->ordersOfType($user, $type, $skip, $take);

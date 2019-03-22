@@ -165,7 +165,7 @@
                 }
               });
               $.ajax({
-                url:"/ajax/orders?skip=" + $('.scroll-post').length + "&take=18&type=1",
+                url:"/ajax/orders?skip=" + $('.scroll-post').length + "&take=18&type=1&user_id={!! $user->id !!}",
                 type:"GET",
                 success:function(data){
                   if (data.status_code != 0) {

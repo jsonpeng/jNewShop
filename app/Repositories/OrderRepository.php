@@ -666,6 +666,11 @@ class OrderRepository extends BaseRepository
             }
         }
 
+        if(empty($user))
+        {
+            return [];
+        }
+
         switch ($type) {
             case 1:
                 // 全部
