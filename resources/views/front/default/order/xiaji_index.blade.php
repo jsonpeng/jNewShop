@@ -16,7 +16,7 @@
   <div class="flow-default scroll-container" id="order-box">
     @foreach($orders as $order)
       <div class="scroll-post">
-        <a class="order-item" href="/order/{{$order->id}}">
+        <a class="order-item" href="javascript:;">
           <div class="order-item-title">
             <span class="title">购买时间 {{$order->created_at}}</span> <span class="status">{{$order->status}}</span>
           </div>
@@ -86,7 +86,7 @@
   <script type="text/template" id="template">
     @{{~it:value:index}}
       <div class="scroll-post">
-        <a class="order-item" href="/order/@{{=value.id}}">
+        <a class="order-item" href="javascript:;">
           <div class="order-item-title">
             <span class="title">购买时间 @{{=value.created_at}}</span> <span class="status">@{{=value.status}}</span>
           </div>
