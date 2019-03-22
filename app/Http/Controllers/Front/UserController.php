@@ -89,6 +89,7 @@ class UserController extends Controller
         $user = auth('web')->user();
         $fellows = $this->userRepository->followMembers($user);
         //$fellows = User::where('leader1', $user->id)->select('head_image', 'nickname', 'created_at')->paginate(15);
+        dd($fellows);
         return view(frontView('usercenter.follow'), compact('fellows'));
     }
 
