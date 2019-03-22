@@ -49,7 +49,7 @@ class OrderController extends Controller
             return redirect('/usercenter');
         }
         $orders = $this->orderRepository->ordersOfType($user, 1, 0, 18);
-        return view(frontView('order.xiaji_index'), compact('user','orders', 'type'));
+        return view(frontView('order.xiaji_index'), compact('user','orders'));
     }
 
     /**
