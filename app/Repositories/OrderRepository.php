@@ -18,7 +18,7 @@ use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
 use App\Events\OrderEvent;
-
+use App\User;
 
 
 class OrderRepository extends BaseRepository
@@ -613,6 +613,41 @@ class OrderRepository extends BaseRepository
     }
 
     /**
+     * 今天一共消费了多少
+     * @param  [type] $user [description]
+     * @return [type]       [description]
+     */
+    public function userOrderDayPrices($user)
+    {
+         return $user
+         ->orders()
+         ->whereBetween('created_at', array(Carbon::today(), Carbon::tomorrow()))
+         ->where([
+                ['order_status', '<>', '无效'],
+                ['order_status', '<>', '已取消'],
+                ['order_pay', '=', '已支付']
+         ])
+         ->sum('price');
+    }
+
+    /**
+     * 历史一共消费了多少
+     * @param  [type] $user [description]
+     * @return [type]       [description]
+     */
+    public function userAllOrderPrices($user)
+    {
+        return $user
+        ->orders()
+        ->where([
+                    ['order_status', '<>', '无效'],
+                    ['order_status', '<>', '已取消'],
+                    ['order_pay', '=', '已支付']
+        ])
+        ->sum('price');
+    }
+
+    /**
      * 获取订单接口
      * @param  [type]  $user [description]
      * @param  integer $type [description]
@@ -622,6 +657,15 @@ class OrderRepository extends BaseRepository
      */
     public function ordersOfType($user, $type = 1, $skip = 0, $take = 18)
     {
+        if(is_numeric($user))
+        {
+            $user = User::find($user);
+            if(empty($user))
+            {
+                return [];
+            }
+        }
+
         switch ($type) {
             case 1:
                 // 全部

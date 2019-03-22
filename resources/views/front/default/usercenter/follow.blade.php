@@ -14,13 +14,17 @@
     </div>
     <div id="scroll-container">
         @foreach ($fellows as $fellow)
-            <div class="weui-cell partner scroll-post">
+            <a class="weui-cell partner scroll-post" href="{!! $fellow->order_link !!}">
                 <div class="weui-cell__hd partner-img">
                     <img src="{{ $fellow->head_image }}" alt="">
                 </div>
                 <div class="weui-cell__bd partner-name">{{ $fellow->nickname }}</div>
                 <div class="weui-cell__ft join-time">加入时间：{{ $fellow->created_at->format('Y-m-d') }}</div>
-            </div>
+                <div>
+                  今日进店次数:{!! $fellow->day_times !!},历史进店次数:{!! $fellow->all_times !!}
+                  今日消费:{!! $fellow->day_prices !!},历史消费:{!! $fellow->all_prices !!}
+                </div>
+            </a>
         @endforeach
     </div>
 @endsection

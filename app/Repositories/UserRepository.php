@@ -253,9 +253,32 @@ class UserRepository extends BaseRepository
         return $products;
     }
 
+    /**
+     * 用户的下线
+     * @param  [type]  $user [description]
+     * @param  integer $skip [description]
+     * @param  integer $take [description]
+     * @return [type]        [description]
+     */
     public function followMembers($user, $skip = 0, $take = 18)
     {
         $fellows = User::where('leader1', $user->id)->select('id', 'head_image', 'nickname', 'created_at')->skip($skip)->take($take)->get();
+        if(count($fellows))
+        {
+            foreach ($fellows as $key => $fellow) 
+            {
+              #今日进店次数
+              $fellow['day_times'] = app('commonRepo')->ShopTimesRepo()->countDayTimes($fellow->id,$fellow->leader1); 
+              #历史进店次数
+              $fellow['all_times'] = app('commonRepo')->ShopTimesRepo()->countAllTimes($fellow->id,$fellow->leader1); 
+              #今日消费
+             $fellow['day_prices'] = app('commonRepo')->orderRepo()->userOrderDayPrices($fellow); 
+              #历史消费
+             $fellow['all_prices'] = app('commonRepo')->orderRepo()->userAllOrderPrices($fellow); 
+              #订单链接
+              $fellow['order_link'] = '/xiaji_orders/'.$fellow->id;
+            }
+        }
         return $fellows;
     }
 

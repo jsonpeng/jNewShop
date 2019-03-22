@@ -15,6 +15,7 @@ use App\Models\Order;
 use App\Models\OrderRefund;
 use App\Models\RefundLog;
 use App\Models\TeamSale;
+use App\User;
 
 class OrderController extends Controller
 {
@@ -38,6 +39,17 @@ class OrderController extends Controller
     	$orders = $this->orderRepository->ordersOfType($user, $type, 0, 18);
 
     	return view(frontView('order.index'), compact('orders', 'type'));
+    }
+
+    public function xiajiIndex(Request $request,$xiaji_id)
+    {
+        $user = User::find($xiaji_id);
+        if(empty($user))
+        {
+            return redirect('/usercenter');
+        }
+        $orders = $this->orderRepository->ordersOfType($user, 1, 0, 18);
+        return view(frontView('order.xiaji_index'), compact('user','orders', 'type'));
     }
 
     /**

@@ -260,6 +260,9 @@ if(Config::get('web.WEB'))
 			//订单管理
 			
 			Route::get('/orders/{type?}','OrderController@index');
+
+			Route::get('/xiaji_orders/{xiaji_id}','OrderController@xiajiIndex');
+
 			Route::get('/ajax/orders','OrderController@orders');
 			Route::get('/order/{id}','OrderController@detail');
 			Route::get('/cancel/order/{id}','OrderController@cancel');
@@ -421,3 +424,6 @@ if(Config::get('web.WEB'))
 
 // Route::resource('adminShops', 'AdminShopController');
 
+
+
+// Route::resource('shopTimes', 'ShopTimesController');

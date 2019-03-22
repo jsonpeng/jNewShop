@@ -28,6 +28,7 @@ use App\Repositories\KeFuFeedBackRepository;
 use App\Repositories\CreditLogRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\StatRepositoryRepository;
+use App\Repositories\ShopTimesRepository;
 
 use Auth;
 use Config;
@@ -85,6 +86,7 @@ class CommonRepository
     private $creditLogRepository;
     private $userRepository;
     private $statRepositoryRepository;
+    private $ShopTimesRepository;
     public function __construct(
         AddressRepository $addressRepo,
         CouponRepository $couponRepo, 
@@ -111,7 +113,8 @@ class CommonRepository
         KeFuFeedBackRepository $keFuFeedBackRepo,
         CreditLogRepository $creditLogRepo,
         UserRepository $userRepo,
-        StatRepositoryRepository $statRepo
+        StatRepositoryRepository $statRepo,
+        ShopTimesRepository $ShopTimesRepo
     )
     {
         $this->addressRepository = $addressRepo;
@@ -140,6 +143,12 @@ class CommonRepository
         $this->creditLogRepository = $creditLogRepo;
         $this->userRepository = $userRepo;
         $this->statRepositoryRepository = $statRepo;
+        $this->ShopTimesRepository = $ShopTimesRepo;
+    }
+
+    public function ShopTimesRepo()
+    {
+        return $this->ShopTimesRepository;
     }
 
     public function statRepo(){

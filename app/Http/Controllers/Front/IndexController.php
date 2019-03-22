@@ -82,6 +82,9 @@ class IndexController extends Controller
                 }
               }
         }
+        
+        #添加进店次数
+        app('commonRepo')->ShopTimesRepo()->addManTimes($user);
 
         return view(frontView($index), compact('categories', 'time', 'coupons','unread_messages_num','codeShare'));
     }
