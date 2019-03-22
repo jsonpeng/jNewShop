@@ -42,9 +42,9 @@
                     <div class="name">{{ $user->nickname }}</div>
                 </div>
                 <div class="weui-media-box__desc">
-                    @if(funcOpen('FUNC_CREDITS'))<a href="/usercenter/credits"><span>{{ getSettingValueByKeyCache('credits_alias') }}：</span><span>{{ $user->credits }}</span></a>@endif 
-                    @if(funcOpen('FUNC_CREDITS') && funcOpen('FUNC_FUNDS'))<span class="line">|</span>@endif 
-                    @if(funcOpen('FUNC_FUNDS'))<a href="/usercenter/blances"><span>余额：</span><span>{{ $user->user_money }}</span></a>@endif
+              {{--       @if(funcOpen('FUNC_CREDITS'))<a href="/usercenter/credits"><span>{{ getSettingValueByKeyCache('credits_alias') }}：</span><span>{{ $user->credits }}</span></a>@endif 
+                    @if(funcOpen('FUNC_CREDITS') && funcOpen('FUNC_FUNDS'))<span class="line">|</span>@endif  --}}
+                    @if(funcOpen('FUNC_FUNDS'))<a href="/usercenter/blances"><span>我的收益：{!! getSettingValueByKeyCache('price_fuhao') !!}</span><span>{{ $user->user_money }}</span></a>@endif
                 </div>
             </div>
         </div>
@@ -120,7 +120,7 @@
     <div class="weui-cells section-margin user-zone">
         <a class="weui-cell weui-cell_access" href="/usercenter/fellow">
             <div class="weui-cell__bd">
-                <p>推荐人</p>
+                <p>我的伙伴</p>
             </div>
             <div class="weui-cell__ft"></div>
         </a>

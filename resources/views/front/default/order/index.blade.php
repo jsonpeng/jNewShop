@@ -99,7 +99,7 @@
             </div>
             @endif
           @endforeach
-          <div class="total">共<span>{{$order->count}}</span>件商品，合计<span>￥{{$order->price}}</span>（含运费{{ getSettingValueByKeyCache('price_fuhao') }}0.00）</div>
+          <div class="total">共<span>{{$order->count}}</span>件商品，合计<span>{!! getSettingValueByKeyCache('price_fuhao') !!}{{$order->price}}</span>（含运费{{ getSettingValueByKeyCache('price_fuhao') }}0.00）</div>
         </a>
 
         <!-- 待付款 -->
@@ -164,7 +164,7 @@
             </div>
           @{{~}}
 
-          <div class="total">共<span>@{{=value.count}}</span>件商品，合计<span>￥@{{=value.price}}</span>（含运费{{ getSettingValueByKeyCache('price_fuhao') }}0.00）</div>
+          <div class="total">共<span>@{{=value.count}}</span>件商品，合计<span>{!! getSettingValueByKeyCache('price_fuhao') !!}@{{=value.price}}</span>（含运费{{ getSettingValueByKeyCache('price_fuhao') }}0.00）</div>
         </a>
 
         <!-- 待付款 -->

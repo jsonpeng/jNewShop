@@ -10,7 +10,7 @@
     <div class="nav_tip">
       <div class="img">
         <a href="javascript:history.back(-1)"><i class="icon ion-ios-arrow-left"></i></a></div>
-      <p class="titile">我的下级</p>
+      <p class="titile">我的伙伴</p>
     </div>
     <div id="scroll-container">
         @foreach ($fellows as $fellow)
@@ -22,8 +22,9 @@
                 <div class="weui-cell__ft join-time">加入时间：{{ $fellow->created_at->format('Y-m-d') }} 查看详情></div>
             </a>
             <div style="padding-left: 10px;">
-                  今日进店次数:{!! a_link($fellow->day_times) !!},历史进店次数:{!! a_link($fellow->all_times) !!}
-                  今日消费:{!! a_link($fellow->day_prices) !!},历史消费:{!! a_link($fellow->all_prices) !!}
+                  今日进店次数:{!! a_link($fellow->day_times) !!}历史进店次数:{!! a_link($fellow->all_times) !!}
+                  今日消费:{!! a_link($fellow->day_prices) !!}历史消费:{!! a_link($fellow->all_prices) !!}
+                  今日分成:{!! a_link($fellow->day_dis_prices) !!}历史提成{!! a_link($fellow->all_dis_prices) !!}
             </div>
         @endforeach
     </div>

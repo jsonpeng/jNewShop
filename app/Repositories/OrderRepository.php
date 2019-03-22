@@ -617,7 +617,7 @@ class OrderRepository extends BaseRepository
      * @param  [type] $user [description]
      * @return [type]       [description]
      */
-    public function userOrderDayPrices($user)
+    public function userOrderDayPrices($user,$sum_type = 'price')
     {
          return $user
          ->orders()
@@ -627,15 +627,17 @@ class OrderRepository extends BaseRepository
                 ['order_status', '<>', '已取消'],
                 ['order_pay', '=', '已支付']
          ])
-         ->sum('price');
+         ->sum($sum_type);
     }
+
+
 
     /**
      * 历史一共消费了多少
      * @param  [type] $user [description]
      * @return [type]       [description]
      */
-    public function userAllOrderPrices($user)
+    public function userAllOrderPrices($user,$sum_type = 'price')
     {
         return $user
         ->orders()
@@ -644,7 +646,7 @@ class OrderRepository extends BaseRepository
                     ['order_status', '<>', '已取消'],
                     ['order_pay', '=', '已支付']
         ])
-        ->sum('price');
+        ->sum($sum_type);
     }
 
     /**

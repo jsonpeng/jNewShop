@@ -275,6 +275,10 @@ class UserRepository extends BaseRepository
              $fellow['day_prices'] = app('commonRepo')->orderRepo()->userOrderDayPrices($fellow); 
               #历史消费
              $fellow['all_prices'] = app('commonRepo')->orderRepo()->userAllOrderPrices($fellow); 
+             #今日分成
+             $fellow['day_dis_prices'] = app('commonRepo')->orderRepo()->userOrderDayPrices($fellow,'dis_price');
+             #历史分成
+            $fellow['all_dis_prices'] = app('commonRepo')->orderRepo()->userAllOrderPrices($fellow,'dis_price');
               #订单链接
               $fellow['order_link'] = '/xiaji_orders/'.$fellow->id;
             }
