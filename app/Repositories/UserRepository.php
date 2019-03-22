@@ -262,7 +262,7 @@ class UserRepository extends BaseRepository
      */
     public function followMembers($user, $skip = 0, $take = 18)
     {
-        $fellows = User::where('leader1', $user->id)->select('id', 'head_image', 'nickname', 'created_at')->skip($skip)->take($take)->get();
+        $fellows = User::where('leader1', $user->id)->skip($skip)->take($take)->get();
         if(count($fellows))
         {
             foreach ($fellows as $key => $fellow) 

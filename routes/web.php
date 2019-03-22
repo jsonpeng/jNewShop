@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Config;
 Route::get('generate','AppBaseController@manyGenerateData');
 
 Route::get('test',function(){
+	dd(app('commonRepo')->ShopTimesRepo()->countDayTimes(1,9));
 	dd(app('commonRepo')->productAllShelf());
 	dd(app('commonRepo')->readExcelsToGenerate());
 	$needData = [];
@@ -264,6 +265,9 @@ if(Config::get('web.WEB'))
 			Route::get('/xiaji_orders/{xiaji_id}','OrderController@xiajiIndex');
 
 			Route::get('/ajax/orders','OrderController@orders');
+
+			
+
 			Route::get('/order/{id}','OrderController@detail');
 			Route::get('/cancel/order/{id}','OrderController@cancel');
 
