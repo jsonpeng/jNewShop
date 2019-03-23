@@ -76,7 +76,37 @@
         </div>
     @endif
 
+    @foreach($categories as $cat)
+        <div class="weui-cells">
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd title-img" id="count_timer">
+                <!--     <img src="{{ asset('images/default/index/miaosha.png') }}" style="vertical-align: middle; margin-right: 10px;"> -->
+                    <span style="vertical-align: middle">{!! $cat->name !!}</span> 
+                 
+                </div>
+                <a class="weui-cell__ft" href="/category/level1/{!! $cat->id !!}">查看更多</a>
+            </div>
+        </div>
 
+         <?php
+            $catProducts = app('commonRepo')->productRepo()->getProductsOfCatWithChildrenCatsCached($cat->id,0, 15);
+         ?>
+        <div class="product-wrapper">
+            @foreach ($catProducts as $element)
+                <a class="product-item3" href="/product/{{ $element->id }}">
+                    <div class="img">
+                        <img class="lazy" data-original="{{ $element->image }}">
+                    </div> 
+                    <div class="title">{{ $element->name }}</div>
+                    @if ($element->realPrice)
+                        <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->realPrice }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }}</span></div>
+                    @else
+                        <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} </div>
+                    @endif
+                </a>
+            @endforeach
+        </div>
+    @endforeach
     
     
     <!-- 标题 -->

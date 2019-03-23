@@ -43,7 +43,7 @@ class IndexController extends Controller
     public function index(Request $request){
         
         //获取推荐分类给前端
-        $categories = Category::where('recommend', 1)->orderBy('sort', 'desc')->get();
+        $categories = app('commonRepo')->categoryRepo()->getRecommendCategoriesCached();
         //秒杀倒计时给前端需要倒计时的时间
         $cur = processTime( Carbon::now() );
         $time = $cur->copy()->addHours(2);
