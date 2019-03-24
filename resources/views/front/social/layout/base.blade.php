@@ -238,6 +238,18 @@
         // Enable lazy loading
         lazy: true
     });
+
+    @if(Request::is('/') || Request::is('category*') || Request::is('usercenter*') || Request::is('orders*'))
+        window.onpageshow = function(){
+            setTimeout(function(){
+                   $.zcjyRequest('/ajax/shop_cart_num',function(res){
+                    if(res){
+                        $('#cart_num').show().text(res);
+                    }
+               });
+            },1);
+        }
+    @endif 
    
 </script>
 
