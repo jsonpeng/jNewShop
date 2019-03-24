@@ -545,9 +545,9 @@ class CommonRepository
             return 0;
         }
         //满额免运费
-        if (getSettingValueByKey('freight_free_limit') <= ShoppingCart::total()) {
-            return 0;
-        }
+        // if (getSettingValueByKey('freight_free_limit') <= ShoppingCart::total()) {
+        //     return 0;
+        // }
 
         $freight_data=$this->cityRepository->getFreightInfoByAddress($address);
 

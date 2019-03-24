@@ -108,6 +108,7 @@ class CartController extends Controller
         $total = ShoppingCart::total();
         //商品运费
         $freight = app('commonRepo')->freight($address, ShoppingCart::all());
+        // dd($freight);
 
         $user = auth('web')->user();
         //用户会员等级优惠
