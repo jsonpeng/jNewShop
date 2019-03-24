@@ -239,7 +239,7 @@
         lazy: true
     });
 
-    @if(Request::is('/') || Request::is('category*') || Request::is('usercenter*') || Request::is('orders*'))
+    @if(Request::is('/') || Request::is('category*') || Request::is('found') || Request::is('usercenter*') || Request::is('orders*'))
         window.onpageshow = function(){
             setTimeout(function(){
                    $.zcjyRequest('/ajax/shop_cart_num',function(res){
