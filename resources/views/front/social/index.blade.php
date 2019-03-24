@@ -50,7 +50,20 @@
         </div>
 
     @endif
-    
+
+    @if(count($categories))
+         <div class="weui-grids index-function-grids">
+            @foreach($categories as $cat)
+                <a href="/category/level1/{!! $cat->id !!}" class="weui-grid">
+                    <div class="weui-grid__icon">
+                        <img src="{{ asset('images/default/index/grid1.png') }}" alt="">
+                    </div>
+                    <p class="weui-grid__label">{!! $cat->name !!}</p>
+                </a>
+            @endforeach
+        </div>
+    @endif
+
     <!-- 资讯 -->
     <?php
         $notices = notices();
@@ -91,20 +104,18 @@
          <?php
             $catProducts = app('commonRepo')->productRepo()->getProductsOfCatWithChildrenCatsCached($cat->id,0, 15);
          ?>
-        <div class="product-wrapper">
-            @foreach ($catProducts as $element)
-                <a class="product-item3" href="/product/{{ $element->id }}">
-                    <div class="img">
-                        <img class="lazy" data-original="{{ $element->image }}">
-                    </div> 
-                    <div class="title">{{ $element->name }}</div>
-                    @if ($element->realPrice)
-                        <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->realPrice }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }}</span></div>
-                    @else
-                        <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} </div>
-                    @endif
-                </a>
-            @endforeach
+
+        <div class="product-wrapper country-sum">
+            <div class="slide-box">
+                <div class="slide-warp">
+                    @foreach ($catProducts as $element)
+                        <a class="slide-item" href="/product/{{ $element->id }}">
+                            <img src="{{ $element->image }}" alt="" style="max-height: 120px;">
+                            <p class="intr">{{ $element->name }}</p>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     @endforeach
     

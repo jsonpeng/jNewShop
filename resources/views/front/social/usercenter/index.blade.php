@@ -107,6 +107,15 @@
             </div>
             <div class="weui-cell__ft"></div>
         </a>
+
+        @if(!$user->code)
+            <a class="weui-cell weui-cell_access" href="/sign_shop">
+                <div class="weui-cell__bd">
+                    <p>申请开店</p>
+                </div>
+                <div class="weui-cell__ft"></div>
+            </a>
+        @endif
 <!--         <a class="weui-cell weui-cell_access" href="/integral/cert">
             <div class="weui-cell__bd">
                 <p>实名认证</p>
