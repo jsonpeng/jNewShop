@@ -160,6 +160,24 @@ class User extends Authenticatable implements JWTSubject
         }
     }
 
+    public function getLeaderObjAttribute()
+    {
+        if($this->leader1)
+        {
+            $user = $this::find($this->leader1);
+            if(!empty($user))
+            {
+                return $user;
+            }
+            else{
+                return '无';
+            }
+        }
+        else{
+            return '无';
+        }
+    }
+
     public function getLeader1NumAttribute()
     {
         return User::where('leader1',$this->id)->count();

@@ -71,7 +71,7 @@
         display: none;
       }*/
       /*.checkwrapper .right-botton01{position: relative;flex: 2;height:37px;line-height: 37px;background-color:#63ccff !important;border-top-left-radius:18px;border-bottom-left-radius: 18px;}*/
-      .checkwrapper .right-botton01{border-radius: 15px;position: relative;/* flex: 2; */width: 120px;height:37px;line-height: 37px;/*background-color:#63ccff !important;*//* border-top-left-radius:18px; *//* border-bottom-left-radius: 18px; */}
+      .checkwrapper .right-botton01{position: relative;/* flex: 2; */width: 110px;height:45px;line-height: 45px;background-color:rgb(52,52,52);/*background-color:#63ccff !important;*//* border-top-left-radius:18px; *//* border-bottom-left-radius: 18px; */}
       .weui-gallery{
         z-index: 10000;
         /*display: none;*/
@@ -81,6 +81,9 @@
       }
       a.swiper-slide img {
        max-height: 300px;
+      }
+      .weui-cell_access .weui-cell__ft {
+        padding-right: 53px;
       }
     </style>
 @endsection
@@ -199,6 +202,35 @@
       </div>
       <!-- 服务承诺 end  -->
 
+      <div class="product-section-wrapper" >
+        <div class="weui-cells" style="margin-top: 0;">
+          <a class="weui-cell weui-cell_access" onclick="javascript:;">
+            <div class="weui-cell__bd">
+                <p>跨境税</p>
+            </div>
+            <div class="weui-cell__ft">
+              本商品平台包税,无需额外缴纳
+            </div>
+          </a>
+        </div>
+      </div>
+       <div class="line"></div>
+    <?php $leader = $user->LeaderObj; ?>
+    @if($leader != '无')
+       <div class="product-section-wrapper" >
+        <div class="weui-cells" style="margin-top: 0;">
+          <div class="weui-cell weui-cell_access" style="padding-top: 10px;padding-bottom: 10px;">
+            <div class="weui-cell__bd" >
+                <img src="{!! $leader->head_image !!}" style="max-width: 60px;height: auto;border-radius: 60px;">
+            </div>
+            <div class="weui-cell__ft">
+              {!! $leader->nickname !!}的店铺&nbsp;&nbsp;<a href="/">进店逛逛</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    @endif
+     <div class="line"></div>
       <!-- 拼团信息  -->
   {{--     @if($teamFounders->count())
         <div class="product-section-wrapper">
@@ -412,7 +444,14 @@
     @if (empty($product->prom_type) || $product->prom_type == 3)
       <div class="right-botton01"  onclick="gouwuche()">加入购物车</div>
     @endif
-    <div class="right-botton2" onclick="buynow()" style="    margin-left: 15px;">立即支付</div>
+    <div class="right-botton2" onclick="buynow()" style="flex: 3;
+    /* margin-left: 10px; */
+    background-color: #ff4e44;
+    text-align: center;
+    color: #fff;
+    width: 120px;
+    height: 45px;
+    line-height: 45px;">立即购买</div>
     <!-- 拼团 -->
     @if ($product->prom_type == 5)
       <div class="right-botton01" onclick="startTeam()">
