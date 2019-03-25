@@ -65,13 +65,16 @@ class AjaxController extends Controller
             return zcjy_callback_data($varify,1,'web');
         }
         $user = auth('web')->user();
-
-        $allocat = ['access_key_id'=>'LTAI0tsCvAtCgDXd','access_key_secret'=>'vPqyRPIShQXoJyQfAX4L2RqK2K4yYu','sign_name'=>'澳宝直邮','template'=>'SMS_160570739'];
-
-        if($type == 'auth'){
+        $allocat = [
+            'access_key_id'=>'LTAI0tsCvAtCgDXd',
+            'access_key_secret'=>'vPqyRPIShQXoJyQfAX4L2RqK2K4yYu',
+            'sign_name'=>'澳宝直邮',
+            'template'=>'SMS_160570739'
+        ];
+        if($type == 'auth')
+        {
             $allocat['template'] = 'SMS_160570739';
         }
-       
         $request->session()->put('zcjy_code_'.$user->id.'_'.$type,app('commonRepo')->sendVerifyCode($input['mobile'],$allocat));
 
         return zcjy_callback_data('发送验证码成功',0,'web');
@@ -321,43 +324,25 @@ class AjaxController extends Controller
     public function certsPublishV2(Request $request){
 
         $input = $request->all();
-
         #验证字段
         $varify = app('commonRepo')->varifyInputParam($input,'name,id_card');
-        if($varify)
-        {
+        if($varify){
             return zcjy_callback_data($varify,1,'web');
         }
-
         #当前用户
         $user = auth('web')->user();
 
-        ##之前有认证信息直接去除
         $cert = $user->cert()->first();
         
-        if($cert)
-        {
-            if($cert->status == '审核中' || $cert->status =='未通过')
-            {
+        if($cert){
+            if($cert->status == '审核中' || $cert->status =='未通过'){
                 $cert->delete();
             }
         }
 
-        ##阿里云认证
-        $aliCert = app('commonRepo')->aliyunCert($input['name'],$input['id_card']);
-
-        if($aliCert['code'] == 0)
-        {
-            $input['status'] = '已通过';
-        }
-        else{
-            return zcjy_callback_data('身份认证失败,请仔细填写',1);
-        }
-
         $input['user_id'] = $user->id;
         app('commonRepo')->certsRepo()->create($input);
-
-        return zcjy_callback_data('身份认证成功,请继续完成购买',0);
+        return zcjy_callback_data('提交成功,请等待系统审核',0,'web');
     }
 
     /**

@@ -85,6 +85,14 @@
       .weui-cell_access .weui-cell__ft {
         padding-right: 53px;
       }
+
+      @media screen and (min-width: 330px) {
+        .right-botton01 
+        {
+            margin-left: 40px;
+        }
+      }
+
     </style>
 @endsection
 
@@ -442,7 +450,7 @@
     </a> --}}
     <!-- 无促销或者商品促销 -->
     @if (empty($product->prom_type) || $product->prom_type == 3)
-      <div class="right-botton01"  onclick="gouwuche()" style="    margin-left: 40px;">加入购物车</div>
+      <div class="right-botton01"  onclick="gouwuche()" >加入购物车</div>
     @endif
     <div class="right-botton2" onclick="buynow()" style="flex: 3;
     /* margin-left: 10px; */
