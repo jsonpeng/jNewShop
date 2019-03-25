@@ -428,9 +428,15 @@
                 success:function(data){
                     working = false;
                     var all_product=data.data;
-                    if (all_product.length == 0) {
+                    if (all_product.length == 0) 
+                    {
                         fireEvent = false;
                         $('#shopinfo').show();
+                        return;
+                    }
+
+                    if($('.scroll-post').length >= 60)
+                    {
                         return;
                     }
 
