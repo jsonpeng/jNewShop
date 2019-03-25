@@ -436,13 +436,13 @@
       <div class="image"><img src="{{ asset('images/trade/gouwuche.png') }}" alt=""></div>
       <div class="name">购物车</div>
     </a>
-    <a class="home checker-left-item" href="/kefu">
+{{--     <a class="home checker-left-item" href="/kefu">
       <div class="image"><img src="{{ asset('images/trade/kefu2.png') }}" alt=""></div>
       <div class="name">客服</div>
-    </a>
+    </a> --}}
     <!-- 无促销或者商品促销 -->
     @if (empty($product->prom_type) || $product->prom_type == 3)
-      <div class="right-botton01"  onclick="gouwuche()">加入购物车</div>
+      <div class="right-botton01"  onclick="gouwuche()" style="    margin-left: 40px;">加入购物车</div>
     @endif
     <div class="right-botton2" onclick="buynow()" style="flex: 3;
     /* margin-left: 10px; */
