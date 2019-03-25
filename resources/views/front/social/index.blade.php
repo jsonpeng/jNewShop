@@ -435,7 +435,7 @@
                         return;
                     }
 
-                    if($('.scroll-post').length >= 60)
+                    if($('.scroll-post').length >= 150)
                     {
                         return;
                     }
