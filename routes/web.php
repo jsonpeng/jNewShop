@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Config;
 Route::get('generate','AppBaseController@manyGenerateData');
 
 Route::get('test',function(){
+	return (app('commonRepo')->aliyunCert('彭云','420982199604130010'));
 	dd(app('commonRepo')->ShopTimesRepo()->countDayTimes(1,9));
 	dd(app('commonRepo')->productAllShelf());
 	dd(app('commonRepo')->readExcelsToGenerate());

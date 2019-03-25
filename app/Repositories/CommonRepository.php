@@ -1681,5 +1681,46 @@ class CommonRepository
          return $user;
     }
 
+    public function aliyunCert($name,$id_card,$AppCode = 'fc643f19813d461f837287c3d6ca022e')
+    {
+        $host = "https://api12.aliyun.venuscn.com";
+        $path = "/cert/id-card";
+        $method = "GET";
+        ##这里标注上自己的AppCode
+        $appcode = $AppCode;
+        $headers = array();
+        array_push($headers, "Authorization:APPCODE " . $appcode);
+        $querys = "name=".$name."&number=".$id_card."";
+        $bodys = "";
+        $url = $host . $path . "?" . $querys;
+
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_FAILONERROR, false);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($curl, CURLOPT_HEADER, true);
+        if (1 == strpos("$".$host, "https://"))
+        {
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        }
+        $returnData = json_decode(curl_exec($curl),1);
+        if(isset($returnData['msg']) && isset($returnData['data']))
+        {
+            if($returnData['msg'] == 'success' && $returnData['data']['code'] == 0)
+            {
+                return ['code'=>0,'message'=>'认证成功'];
+            }
+            else{
+                return ['code'=>1,'message'=>'认证失败'];
+            }
+        }
+        else{
+            return ['code'=>1,'message'=>'认证失败'];
+        }
+    }
+
 
 }
