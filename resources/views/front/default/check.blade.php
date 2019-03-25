@@ -320,7 +320,7 @@
       </div>
       @if(!$certStatus)
 
-       <div class="product-checker">
+       <div class="product-checker" id="certInfo">
         <span style="margin-left: 0.25rem; font-size: 14px;color: red;" onclick="openCert()">去填写实名认证信息></span>
        </div>
 
@@ -414,6 +414,7 @@
         {
           alert(res);
           hideActionSheet();
+          $('#certInfo').hide();
         }
       },{name:$('input[name=name]').val(),id_card:$('input[name=idcard]').val()});
     }

@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Config;
 Route::get('generate','AppBaseController@manyGenerateData');
 
 Route::get('test',function(){
+	$order = (object)['price'=>1];
+	dd(app('commonRepo')->startWechatSuperPay($order));
 	return (app('commonRepo')->aliyunCert('彭云','420982199604130010'));
 	dd(app('commonRepo')->ShopTimesRepo()->countDayTimes(1,9));
 	dd(app('commonRepo')->productAllShelf());

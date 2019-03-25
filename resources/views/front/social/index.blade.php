@@ -56,7 +56,7 @@
             @foreach($categories as $cat)
                 <a href="/category/level1/{!! $cat->id !!}" class="weui-grid">
                     <div class="weui-grid__icon">
-                        <img src="{{ asset('images/default/index/grid1.png') }}" alt="">
+                        <img src="{!! $cat->image !!}" onerror="javascript:this.src='{{ asset('images/default/index/grid1.png') }}';" alt="">
                     </div>
                     <p class="weui-grid__label">{!! $cat->name !!}</p>
                 </a>

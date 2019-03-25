@@ -1681,6 +1681,13 @@ class CommonRepository
          return $user;
     }
 
+    /**
+     * 阿里云实名认证
+     * @param  [type] $name    [description]
+     * @param  [type] $id_card [description]
+     * @param  string $AppCode [description]
+     * @return [type]          [description]
+     */
     public function aliyunCert($name,$id_card,$AppCode = 'fc643f19813d461f837287c3d6ca022e')
     {
         $host = "https://api12.aliyun.venuscn.com";
@@ -1720,6 +1727,44 @@ class CommonRepository
         else{
             return ['code'=>1,'message'=>'认证失败'];
         }
+    }
+
+    /**
+     * 发起superpay支付
+     * @param  [type] $order [description]
+     * @return [type]        [description]
+     */
+    public function startWechatSuperPay($order = null)
+    {
+        $requestUrl = 'https://api.superpayglobal.com/payment/wxpayproxy/merchant_request';
+        $requestParam = [
+            'merchant_id'        => '201551849418',
+            'authentication_code'=> '67606d48e361ce176ca71fd54fcf4286',
+            'product_title'      => '商品购买',
+            'merchant_trade_no'  => time(),
+            'currency'           => 'AUD',
+            'total_amount'       => $order->price,
+            'create_time'        => Carbon::now(),
+            'notification_url'   => 'http://www.opalzy.com',
+        ];
+        $requestParamMd5 = '';
+        $i = 0;
+        foreach ($requestParam as $key => $value) 
+        {
+            if(in_array($key,['merchant_id','authentication_code','merchant_trade_no','total_amount']))
+            {
+                $requestParamMd5 .= $key.'='.$value;
+                $i++;
+                if($i<=4)
+                {
+                    $requestParamMd5 .= '&';
+                }
+            }
+        }
+        $requestParam['token'] = md5($requestParamMd5);
+        // return $requestParam;
+        $request = \Zcjy::simpleGuzzleRequest($requestUrl,'GET',$requestParam);
+        return $request;
     }
 
 
