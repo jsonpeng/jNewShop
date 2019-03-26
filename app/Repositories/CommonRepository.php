@@ -1040,6 +1040,34 @@ class CommonRepository
     }
 
 
+    /**
+     * 发送订单物流微信推送消息
+     * @param  [type] $order [description]
+     * @return [type]        [description]
+     */
+    public function sendOrderWuliuMessage($order)
+    {
+        $user = $order->customer;
+        if($user)
+        {
+            if($order->delivery_company && $order->delivery_no)
+            {
+                $message = '您好,欧宝直邮提醒您,您的订单单号为'.$order->snumber.'的订单已发货,物流公司是'.$order->delivery_company.',单号是'.$order->delivery_no;
+                $this->weixinText($message,$user->openid);
+
+                if($user->leader1)
+                {
+                    $leader1 = User::find($user->leader1);
+                    if($leader1)
+                    {
+                        $message = '亲爱的店主您好,欧宝直邮提醒您,您的下线'.$user->nickname.'的订单单号为'.$order->snumber.'的订单已发货,物流公司是'.$order->delivery_company.',单号是'.$order->delivery_no;
+                        $this->weixinText($message,$leader1->openid);
+                    }
+                }
+            } 
+        }
+    }
+
      //发送微信消息
      public function weixinText($message, $openId)
     {

@@ -469,7 +469,17 @@ class OrderController extends AppBaseController
             $status_desc=is_null($inputs['operation_log'])?'无':$inputs['operation_log'];
             //设置发货时间
             if (array_key_exists('order_delivery', $inputs) && $inputs['order_delivery'] == '已发货') {
+
+                //看下有没有填写物流公司还有快递单号
+                if(empty($order->delivery_company) || empty($order->delivery_no))
+                {
+                    return redirect(route('orders.show'))
+                        ->withErrors('请先完善物流公司或单号信息');
+                }
                 $inputs['sendtime'] = Carbon::now();
+
+                //给用户还有店主推送信息
+                app('commonRepo')->sendOrderWuliuMessage($order);
             }
         }
 
