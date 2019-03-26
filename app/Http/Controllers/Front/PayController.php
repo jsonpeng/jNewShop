@@ -76,6 +76,16 @@ class PayController extends Controller
         }
     }
 
+    /**
+     * superpay微信支付提醒
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function superpayWechatNotify(Request $request)
+    {
+        return app('commonRepo')->superPayWechatNotify($request);
+    }
+
     public function payWechatNotify(Request $request)
     {
 

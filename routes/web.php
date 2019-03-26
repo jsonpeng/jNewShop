@@ -78,7 +78,7 @@ Route::get('alipay_notify','Front\AjaxController@alipayWebNotify');
 Route::get('/notices/{id}','Front\IndexController@notice');
 
 //superpay 微信支付通知
-Route::any('/super_pay/notify_wechcat_pay', 'Front\PayController@payWechatNotify');
+Route::any('/super_pay/notify_wechcat_pay', 'Front\PayController@superpayWechatNotify');
 //微信支付
 Route::any('/notify_wechcat_pay', 'Front\PayController@payWechatNotify');
 //PAYS_API支付

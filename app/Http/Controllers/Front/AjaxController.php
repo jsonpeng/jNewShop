@@ -321,8 +321,8 @@ class AjaxController extends Controller
     }
 
 
-    public function certsPublishV2(Request $request){
-
+    public function certsPublishV2(Request $request)
+    {
         $input = $request->all();
         #验证字段
         $varify = app('commonRepo')->varifyInputParam($input,'name,id_card');
@@ -353,9 +353,7 @@ class AjaxController extends Controller
         }
         else{
             return zcjy_callback_data('实名认证失败,请重新核对填写',1);
-        }
-
-       
+        }       
     }
 
     /**

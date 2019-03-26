@@ -21,6 +21,6 @@ class VerifyCsrfToken extends Middleware
         '/zcjy/ajax/uploads',
         '/paysapi_return',
         '/paysapi_notify',
-
+        '/super_pay/notify_wechcat_pay'
 	];
 }

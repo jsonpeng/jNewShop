@@ -1798,16 +1798,27 @@ class CommonRepository
         }
     }
 
-
+    //superpay 微信支付通知
     public function superPayWechatNotify($request)
     {   
         $input = $request->all();
-
-        if(!isset($input['notice_id']))
+        if(!isset($input['notice_id']) || !isset($input['merchant_trade_no']) || !isset($input['token']))
         {
-
+            return;
         }
-
+        $order = Order::where('out_trade_no', $input['merchant_trade_no'])->first();
+        if (empty($order)) 
+        { // 如果订单不存在
+            return; 
+        }
+        // 如果订单存在
+        // 检查订单是否已经更新过支付状态
+        if ($order->order_pay == '已支付') 
+        {
+            // 已经支付成功了就不再更新了
+            return; 
+        }
+        app('commonRepo')->processOrder($order, '微信支付');
     }
 
     public function superPayNotifyTokenVarify($token)
