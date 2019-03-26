@@ -43,6 +43,7 @@ use App\Models\OrderAction;
 use App\Models\DistributionLog;
 use App\Models\Product;
 use App\Models\Address;
+use App\Models\Order;
 use App\User;
 use Log;
 
