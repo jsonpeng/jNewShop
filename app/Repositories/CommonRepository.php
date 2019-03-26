@@ -1060,7 +1060,7 @@ class CommonRepository
                     $leader1 = User::find($user->leader1);
                     if($leader1)
                     {
-                        $message = '亲爱的店主您好,欧宝直邮提醒您,您的下线'.$user->nickname.'的订单单号为'.$order->snumber.'的订单已发货,物流公司是'.$order->delivery_company.',单号是'.$order->delivery_no;
+                        $message = '亲爱的店主您好,澳宝直邮提醒您,您的朋友'.$user->nickname.'的订单单号为'.$order->snumber.'的订单已发货,物流公司是'.$order->delivery_company.',单号是'.$order->delivery_no;
                         $this->weixinText($message,$leader1->openid);
                     }
                 }
