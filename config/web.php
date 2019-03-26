@@ -1,6 +1,6 @@
 <?php
 return [
-    'cachetime' => 2,
+    'cachetime' => 10,
     'app_env' => env('APP_ENV'),
 
     'SMS_ID' => env('SMS_ID', ''),

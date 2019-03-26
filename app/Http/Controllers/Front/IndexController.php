@@ -44,13 +44,8 @@ class IndexController extends Controller
         
         //获取推荐分类给前端
         $categories = app('commonRepo')->categoryRepo()->getRecommendCategoriesCached();
-        //秒杀倒计时给前端需要倒计时的时间
-        $cur = processTime( Carbon::now() );
-        $time = $cur->copy()->addHours(2);
-        //获取手动领取的优惠券
-        $coupons=$this->couponRepository->getCouponOfRule(4);
+       
         $user = auth('web')->user();
-        $unread_messages_num = count(app('notice')->allNotices($user->id,true));
       
         $codeShare = false;
         $index = 'index';
@@ -86,7 +81,7 @@ class IndexController extends Controller
         #添加进店次数
         app('commonRepo')->ShopTimesRepo()->addManTimes($user);
 
-        return view(frontView($index), compact('categories', 'time', 'coupons','unread_messages_num','codeShare'));
+        return view(frontView($index), compact('categories','codeShare'));
     }
 
     //用户领取优惠券
