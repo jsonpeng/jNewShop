@@ -1031,8 +1031,35 @@ class CommonRepository
         
         //购物券
         // CouponUser::where('order_id', $order->id)->update(['status' => '已使用']);
+        
+        // 发送微信支付通知
+        $user = $order->customer;
+        if($user){
+            $this->weixinText('您好,您在澳宝直邮的订单已支付完成,商家会及时处理发货,物流通知也会提示给您!',$user->openid);
+        }
     }
 
+
+     //发送微信消息
+     public function weixinText($message, $openId)
+    {
+        $result = app('wechat.official_account')->customer_service->message($message)->to($openId)->send();
+        //$text = new Text('您好！overtrue。');
+        // app('wechat.official_account')->template_message->send([
+        //     'touser' => $openId,
+        //     'template_id' => '0hc11d00RWw63JtDaqjrSj0X1a-_2pDxBPCuSzSBCg4',
+        //     'url' => 'http://shop.eagletags.com',
+        //     'data' => [
+        //         'first'=> '吉丁甲为您找到以下信息',
+        //         // 'keyword1' => time(),
+        //         // 'keyword2' => '杭州',
+        //         // 'keyword3' => '衣服',
+        //         // 'keyword4' =>  Carbon::now(),
+        //         'remark' => $message
+        //     ],
+        // ]);
+        return $result;
+    }
 
     /**
      * 支付成功处理分销
@@ -1066,6 +1093,7 @@ class CommonRepository
                         //添加金额变动记录
                         app('commonRepo')->addMoneyLog($leader1->user_money, $level1_given_money, '推荐用户'.$user->nickname.'消费提成，订单编号为:'.$order->snumber, 2, $leader1->id);
                         app('commonRepo')->addDistributionLog($order, $leader1->id, 1, $level1_given_money);
+                        $this->weixinText('亲爱的店主,'.$user->nickname.'刚刚消费了'.$order->price.'AUD，您入账了'.$level1_given_money.'AUD,商家会及时处理发货,物流通知也会提示给您!',$leader1->openid);
                     }
                 }
             }
