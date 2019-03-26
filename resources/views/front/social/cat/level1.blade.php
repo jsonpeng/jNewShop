@@ -84,12 +84,11 @@
       @foreach ($cat_level02 as $element)
         <a href="/category/level2/{{ $element->id }}" class="weui-grid">
            <div class="weui-grid__icon">
-               <img src="{{ $element->image }}" alt="">
+               <img src="{{ $element->image }}" onerror="javascript:this.src='{{ asset('images/default/index/grid1.png') }}';" alt="">
            </div>
            <p class="weui-grid__label">{{ $element->name }}</p>
         </a>
       @endforeach
-
    </div>
     
     <!-- 今日限量秒杀 
