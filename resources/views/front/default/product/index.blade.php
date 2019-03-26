@@ -459,7 +459,7 @@
     color: #fff;
     width: 120px;
     height: 45px;
-    line-height: 45px;">立即购买</div>
+    line-height: 45px; @if($product->inventory <= 0)   background-color: #ddd; @endif">立即购买</div>
     <!-- 拼团 -->
     @if ($product->prom_type == 5)
       <div class="right-botton01" onclick="startTeam()">
@@ -852,6 +852,10 @@
 
     //立即购买
     function buynow() {
+      @if($product->inventory <= 0) 
+        alert('商品已无更多库存,请更换商品进行购买');
+        return;
+      @endif
       if (buyType) {
         if (prom_type == 1 || prom_type == 5) {
           //立即购买，不加入购物车
