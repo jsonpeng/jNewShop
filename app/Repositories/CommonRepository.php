@@ -1763,8 +1763,8 @@ class CommonRepository
     {
         $requestUrl = 'https://api.superpayglobal.com/payment/wxpayproxy/merchant_request';
         $requestParam = [
-            'merchant_id'        => '201551849418',
-            'authentication_code'=> '67606d48e361ce176ca71fd54fcf4286',
+            'merchant_id'        => Config::get('superpay.merchant_id'),
+            'authentication_code'=> Config::get('superpay.authentication_code'),
             'product_title'      => '欧宝直邮商品购买',
             'merchant_trade_no'  => $order->out_trade_no,
             'currency'           => 'AUD',
@@ -1797,6 +1797,26 @@ class CommonRepository
             return zcjy_callback_data('支付异常',1);
         }
     }
+
+
+    public function superPayWechatNotify($request)
+    {   
+        $input = $request->all();
+
+        if(!isset($input['notice_id']))
+        {
+
+        }
+
+    }
+
+    public function superPayNotifyTokenVarify($token)
+    {
+
+    }
+
+
+
 
 
 }

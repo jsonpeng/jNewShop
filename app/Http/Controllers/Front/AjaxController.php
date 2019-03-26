@@ -334,15 +334,28 @@ class AjaxController extends Controller
 
         $cert = $user->cert()->first();
         
-        if($cert){
-            if($cert->status == '审核中' || $cert->status =='未通过'){
+        if($cert)
+        {
+            if($cert->status == '审核中' || $cert->status =='未通过')
+            {
                 $cert->delete();
             }
         }
 
-        $input['user_id'] = $user->id;
-        app('commonRepo')->certsRepo()->create($input);
-        return zcjy_callback_data('提交成功,请等待系统审核',0,'web');
+        $certVarify = app('commonRepo')->aliyunCert($input['name'],$input['id_card']);
+
+        if($certVarify['code'] == 0)
+        {
+            $input['status'] = '已通过';
+            $input['user_id'] = $user->id;
+            app('commonRepo')->certsRepo()->create($input);
+            return zcjy_callback_data('认证成功');
+        }
+        else{
+            return zcjy_callback_data('实名认证失败,请重新核对填写',1);
+        }
+
+       
     }
 
     /**
