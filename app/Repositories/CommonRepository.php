@@ -1000,7 +1000,7 @@ class CommonRepository
      * @param  [mixed] $order [订单信息]
      * @return [type]        [description]
      */
-    public function processOrder($order, $pay_platform, $pay_no){
+    public function processOrder($order, $pay_platform, $pay_no=''){
         //修改订单状态
         $order->update(['order_pay' => '已支付', 'pay_time' => Carbon::now(), 'pay_platform' => $pay_platform, 'pay_no' => $pay_no]);
 
