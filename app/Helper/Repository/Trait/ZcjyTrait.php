@@ -206,7 +206,6 @@ trait ZcjyRepoTrait{
     public static function simpleGuzzleRequest($url= '',$method='GET',$param= [])
     {
         try{
-
             $client = new Client();
             $url_suffix = '?';
             if(is_array($param) && count($param))

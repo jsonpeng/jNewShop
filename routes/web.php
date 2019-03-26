@@ -17,7 +17,7 @@ Route::get('generate','AppBaseController@manyGenerateData');
 
 Route::get('test',function(){
 	$order = (object)['price'=>1];
-	dd(app('commonRepo')->startWechatSuperPay($order));
+	return (app('commonRepo')->startWechatSuperPay($order));
 	return (app('commonRepo')->aliyunCert('彭云','420982199604130010'));
 	dd(app('commonRepo')->ShopTimesRepo()->countDayTimes(1,9));
 	dd(app('commonRepo')->productAllShelf());
@@ -77,6 +77,8 @@ Route::get('alipay_notify','Front\AjaxController@alipayWebNotify');
 //通知消息
 Route::get('/notices/{id}','Front\IndexController@notice');
 
+//superpay 微信支付通知
+Route::any('/super_pay/notify_wechcat_pay', 'Front\PayController@payWechatNotify');
 //微信支付
 Route::any('/notify_wechcat_pay', 'Front\PayController@payWechatNotify');
 //PAYS_API支付
@@ -103,6 +105,9 @@ if(Config::get('web.WEB'))
 
 		//微信公众号支付
 		Route::get('/pay_weixin/{order_id}','PayController@payWechat');
+
+		//superpay 微信支付
+		Route::get('/superpay_weixin/{order_id}','PayController@superPayWechat');
 
 		//ajax接口请求
 		Route::group(['prefix'=>'ajax'],function(){

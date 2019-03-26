@@ -285,7 +285,7 @@
             <div class="weui-actionsheet__menu">
 
                 @if (funcOpen('FUNC_WECHATPAY'))
-                  <div class="weui-actionsheet__cell" onclick="wechatPay()"><img src="{{ asset('images/pay-weixin.png') }}">微信支付</div>
+                  <div class="weui-actionsheet__cell" onclick="wechatSuperPay()"><img src="{{ asset('images/pay-weixin.png') }}">微信支付</div>
                 @endif
                 
                 {{-- @if (funcOpen('FUNC_PAYSAPI'))
@@ -667,6 +667,36 @@
         }
       )
     }
+
+    /**
+     * 微信super支付
+     * @return {[type]} [description]
+     */
+    function wechatSuperPay() {
+      event.preventDefault();
+      hideActionSheet();
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      $.ajax({
+          url:"/superpay_weixin/{{$order->id}}",
+          type:"GET",
+          data:'',
+          success: function(data) {
+            if (data.code) {
+              alert(data.message);
+            }else {
+              location.href =  data.message;
+            }
+          },
+          error: function(data) {
+              //提示失败消息
+          },
+      });
+    }
+
 
     /**
      * 微信支付

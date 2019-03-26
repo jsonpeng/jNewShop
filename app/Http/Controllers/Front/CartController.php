@@ -271,7 +271,6 @@ class CartController extends Controller
                 return zcjy_callback_data('请先绑定推荐人完成购物',1);
             }
            
-
             //当前用户
             $user = auth('web')->user();
 
@@ -283,11 +282,18 @@ class CartController extends Controller
                 return $cert;
             }
 
-            //订单商品
-            $items = ShoppingCart::all();
-
             //订单信息
             $inputs = $request->all();
+
+            $addressCert = app('commonRepo')->varifyAddressAndName($inputs,$user);
+
+            if($addressCert)
+            {
+                return $addressCert;
+            }
+
+            //订单商品
+            $items = ShoppingCart::all();
 
             // return  ['code'=>2,'items'=>$items];
             $result = $this->orderRepository->createOrder($user, $items, $inputs);

@@ -42,6 +42,7 @@ use App\Models\RefundLog;
 use App\Models\OrderAction;
 use App\Models\DistributionLog;
 use App\Models\Product;
+use App\Models\Address;
 use App\User;
 use Log;
 
@@ -1730,6 +1731,30 @@ class CommonRepository
     }
 
     /**
+     * 检查一下收货人地址 和认证信息一致不
+     * @param  [type] $input [description]
+     * @param  [type] $user  [description]
+     * @return [type]        [description]
+     */
+    public function varifyAddressAndName($input,$user)
+    {
+        $address = Address::find($input['address_id']);
+        if(empty($address))
+        {
+            return zcjy_callback_data('该地址不存在',1);
+        }
+        $cert = $user->cert()->first();
+        if(empty($cert))
+        {
+            return zcjy_callback_data('请先完成实名认证',1);
+        }
+        if($address->name != $cert->name)
+        {
+            return zcjy_callback_data('实名认证姓名与收货人姓名不匹配,请重新核对下地址信息设置',1);
+        }
+    }
+
+    /**
      * 发起superpay支付
      * @param  [type] $order [description]
      * @return [type]        [description]
@@ -1740,12 +1765,12 @@ class CommonRepository
         $requestParam = [
             'merchant_id'        => '201551849418',
             'authentication_code'=> '67606d48e361ce176ca71fd54fcf4286',
-            'product_title'      => '商品购买',
-            'merchant_trade_no'  => time(),
+            'product_title'      => '欧宝直邮商品购买',
+            'merchant_trade_no'  => $order->out_trade_no,
             'currency'           => 'AUD',
             'total_amount'       => $order->price,
             'create_time'        => Carbon::now(),
-            'notification_url'   => 'http://www.opalzy.com',
+            'notification_url'   => 'http://www.opalzy.com/super_pay/notify_wechcat_pay',
         ];
         $requestParamMd5 = '';
         $i = 0;
@@ -1755,16 +1780,22 @@ class CommonRepository
             {
                 $requestParamMd5 .= $key.'='.$value;
                 $i++;
-                if($i<=4)
+                if($i<4)
                 {
                     $requestParamMd5 .= '&';
                 }
             }
         }
         $requestParam['token'] = md5($requestParamMd5);
-        // return $requestParam;
         $request = \Zcjy::simpleGuzzleRequest($requestUrl,'GET',$requestParam);
-        return $request;
+        $result =  json_decode($request,1);
+        if(isset($result['QRCodeURL']))
+        {
+            return zcjy_callback_data($result['QRCodeURL']);
+        }
+        else{
+            return zcjy_callback_data('支付异常',1);
+        }
     }
 
 

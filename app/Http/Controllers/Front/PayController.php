@@ -22,6 +22,20 @@ class PayController extends Controller
         $this->orderRepository = $orderRepo;
     }
 
+
+    public function superPayWechat(Request $request, $order_id)
+    {
+        $order = $this->orderRepository->findWithoutFail($order_id);
+        if (empty($order)) {
+            return ['code' => 0, 'message' => '订单信息不存在'];
+        }
+
+        $out_trade_no = $order->snumber.'_'.time();
+        $order->out_trade_no = $out_trade_no;
+        $order->save();
+        return (app('commonRepo')->startWechatSuperPay($order));
+    }
+
     public function payWechat(Request $request, $order_id)
     {
     	$order = $this->orderRepository->findWithoutFail($order_id);

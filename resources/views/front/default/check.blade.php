@@ -44,6 +44,8 @@
   <input type="hidden" value="{{ $freight }}" name="freight">
   <div id="check">
 
+    <div style="line-height: 20px;
+    padding: 15px;">依据《财政部 海关总署 国家税务总局关于完善跨境电子商务零售进口税收政策的通知》（财关税〔2018〕49号），<span style="color: red;">跨境订单下单人与支付人不一致将无法通关发货</span></div>
     @if (!empty($address))
       <!--div class="weui-panel weui-panel_access">
         <div class="weui-panel__hd tabList">
@@ -51,6 +53,7 @@
             <div class="tabItem">门店自提</div>
         </div>
       </div-->
+
       <div class="user-address">
         <img src="{{ asset('images/default/location.png') }}" class="address-icon">
         <div class="address-content">
@@ -346,7 +349,7 @@
       {{-- 积分主题中去掉 margin-left: 0.75rem --}}
       <span style=" font-size: 14px;">实付款：  </span> <span class="price_final" id="total"> {{ getSettingValueByKeyCache('price_fuhao') }} <span>{{ $needPay }}</span></span>
       {{-- <a class="right-botton02" href="javascript:;" onclick="">继续购物</a> --}}
-      <a class="right-botton01" href="javascript:;" onclick="submit()">立即支付</a>
+      <a class="right-botton01" href="javascript:;" onclick="submit()" style="width: 180px;">确认支付</a>
     </div>
   @endif
   
