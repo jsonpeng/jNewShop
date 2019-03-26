@@ -1772,6 +1772,7 @@ class CommonRepository
             'total_amount'       => $order->price,
             'create_time'        => Carbon::now(),
             'notification_url'   => 'http://www.opalzy.com/super_pay/notify_wechcat_pay',
+            'return_url'         => 'http://www.opalzy.com/orders'
         ];
         $requestParamMd5 = '';
         $i = 0;
