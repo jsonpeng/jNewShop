@@ -176,6 +176,18 @@
                 @else
                     <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} </div>
                 @endif
+
+                @if($element->is_hot)
+                    <span style="    position: absolute;
+        background: red;
+        color: white;
+        padding: 4px;
+        font-size: 12px;
+        text-align: center;
+        right: 5px;
+        bottom: 3px;">热销</span>
+                @endif
+
             </a>
         @endforeach
 
@@ -203,6 +215,17 @@
                 <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.realPrice}} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}}</span></div>
             @{{??}}
                 <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}} </div>
+            @{{?}}
+            @{{? value.is_hot }}
+             
+                    <span style="    position: absolute;
+        background: red;
+        color: white;
+        padding: 4px;
+        font-size: 12px;
+        text-align: center;
+        right: 5px;
+        bottom: 3px;">热销</span>
             @{{?}}
         </a>
     @{{~}}
