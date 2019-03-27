@@ -732,7 +732,7 @@ class OrderRepository extends BaseRepository
                 $product = Product::find($item->product_id);
                 if(!empty($product))
                 {
-                    $product->update(['sales_count'=>$item->count]);
+                    $product->update(['sales_count'=>$product->sales_count+$item->count]);
                 }
             }
         } 

@@ -173,10 +173,10 @@
         
         <div class="second-price">
           @if ($product->prom_type == 0 && $product->market_price)
-            <div>市场价: <span>{{ getSettingValueByKeyCache('price_fuhao') }}{{$product->market_price}}</span></div>
+            <div>原价: <span>{{ getSettingValueByKeyCache('price_fuhao') }}{{$product->market_price}}</span></div>
           @endif
 
-          <div>已售: {{ $product->sales_count }}</div>
+          {{-- <div>已售: {{ $product->sales_count }}</div> --}}
 
           @if($product->inventory != -1)
               <div>库存: <span>{{$product->inventory}}</span></div>
