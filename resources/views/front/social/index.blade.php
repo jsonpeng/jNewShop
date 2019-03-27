@@ -111,7 +111,7 @@
                     @foreach ($catProducts as $element)
                         <a class="slide-item" href="/product/{{ $element->id }}">
                             <img src="{{ $element->image }}" alt="" style="max-height: 120px;">
-                            <p class="intr">{{ $element->name }}</p>
+                            <p class="intr" style="font-size: 12px;">{{ $element->name }}</p>
                         </a>
                     @endforeach
                 </div>

@@ -99,7 +99,7 @@
 @section('content')
   
   <!--  内容切换 -->
-  <div class="he_sustain">
+{{--   <div class="he_sustain">
     <div class="classreturn loginsignup detail">
         <div class="content">
             <div class="ds-in-bl return history-back-a">
@@ -108,12 +108,11 @@
             <div class="ds-in-bl search center" id="topcenter">
                 <span class="tag_product active" onclick="anchorProduct()">商品</span>
                 <span class="tag_detail" onclick="anchorDetail()">详情</span>
-                <!--span>评论</span-->
             </div>
         </div>
     </div>
   </div>
-  <div style="height: 46px;" id="topper"></div>
+  <div style="height: 46px;" id="topper"></div> --}}
   <div class="content0" id="wrapper">
   {{-- <div class="scroller" id="scroller"> --}}
     @if($productImages->count())
