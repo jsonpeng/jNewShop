@@ -42,6 +42,14 @@
           padding: 10px;
           font-size: 14px;
         }
+        .product-bottom-text{
+          position: absolute;
+          bottom: 2%;
+          left: 35%;
+          font-size: 14px;
+          text-align: center;
+          color: red;
+        }
     </style>
 @endsection
 
@@ -104,6 +112,13 @@
             <span class="product-liji-gou">立即抢购</span>
             <span class="product-add-cart">加入购物车</span>
           </div>
+
+          @if($element->inventory == 0)
+          <div class="product-bottom-text">
+            库存告急
+          </div>
+          @endif 
+
         </a>
       @endforeach
 
@@ -139,6 +154,12 @@
               <span class="product-liji-gou">立即抢购</span>
               <span class="product-add-cart">加入购物车</span>
             </div>
+
+            @{{? value.inventory == 0 }}
+            <div class="product-bottom-text">
+              库存告急
+            </div>
+            @{{?}}
 
         </a>
     @{{~}}
