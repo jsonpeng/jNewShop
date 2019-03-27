@@ -6,7 +6,33 @@
         .swipe-wrap{width: 100%;}
         a.swiper-slide{width: 100%; display: block;}
         a.swiper-slide img{width: 100%; display: block;}
-       
+        .mt22{margin-top: 22px;}
+        .product-item3.scroll-post{
+          width: 100%;
+          height: 150px;
+          padding-bottom: 0px;
+        }
+        .product-wrapper .product-item3 img {
+          width:100px;
+          height: auto;
+        }
+        .product-title-content{
+          position: absolute;
+          left: 130px;
+          top: 0;
+          right: 0;
+        }
+        .product-bottom-content{
+          position: absolute;
+          bottom: 20%;
+          left: 35%;
+        }
+        .product-liji-gou{
+          background-color: yellow;color: black;padding: 10px;font-size: 14px;
+        }
+        .product-add-cart{
+          background-color: orange;margin-left:10px;color: black;padding: 10px;font-size: 14px;
+        }
     </style>
 @endsection
 
@@ -33,48 +59,6 @@
           </div>
       </div>
     </div>
-    <!-- 广告 -->
-    <?php
-        $banners = banners($category->slug);
-        $count = $banners->count();
-    ?>
-    @if ($count)
-        {{-- <div id='{{ $category->slug }}' class='swipe'>
-            <div class='swipe-wrap'>
-                @foreach ($banners as $banner)
-                    <div class="swiper-slide">
-                        <a @if($banner->link) href="{{ $banner->link }}" @else href="{{ $banner->link }}" @endif><img src="{{ $banner->image }}" class="swiper-lazy"></a> 
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
-
-        <script>
-          window.mySwipe = new Swipe(document.getElementById('{{ $category->slug }}'), {
-              startSlide: 0,
-              speed: 400,
-              auto: 3000,
-              continuous: true,
-              disableScroll: false,
-              stopPropagation: false,
-              callback: function(index, elem) {},
-              transitionEnd: function(index, elem) {}
-          });
-        </script> --}}
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                @foreach ($banners as $element)
-                <!-- Lazy image -->
-                <a class="swiper-slide" @if($element->link) href="{{ $element->link }}" @else href="javascript:;" @endif>
-                    <img data-src="{{ $element->image }}" class="swiper-lazy">
-                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                </a>
-                @endforeach
-            </div>
-        </div>
-
-    @endif
     
     <!-- 板块 -->
     <div class="weui-grids index-function-grids">
@@ -91,168 +75,6 @@
       @endforeach
    </div>
     
-    <!-- 今日限量秒杀 
-    <div class="top-title flash_sale">
-        <p>今日限量秒杀</p>
-    </div>
-    <div class="product-wrapper flash_sale">
-      <a class="product-item3" href="javascript:;">
-          <div class="img">
-              <img class="lazy" src="{{asset('images/social/p2.jpg')}}">
-          </div> 
-          <div class="title">1</div>
-          <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}2 <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}1</span></div>
-      </a>
-      <a class="product-item3" href="javascript:;">
-          <div class="img">
-              <img class="lazy" src="{{asset('images/social/p3.jpg')}}">
-          </div> 
-          <div class="title">1</div>
-          <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}2 <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}1</span></div>
-      </a>
-      <a class="product-item3" href="javascript:;">
-          <div class="img">
-              <img class="lazy" src="{{asset('images/social/p4.jpg')}}">
-          </div> 
-          <div class="title">1</div>
-          <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}2 <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}1</span></div>
-      </a>
-    </div>-->
-
-    <!-- 今日限量秒杀 -->
-    <?php
-        $flashSaleProduct = flashSale(0, 8);
-    ?>
-    @if(funcOpen('FUNC_FLASHSALE') && $flashSaleProduct->count())
-    <div class="top-title theme-flash_sale">
-        <p>今日限量秒杀</p>
-    </div>
-    <div class="product-wrapper theme-flash_sale">
-        <div class="slide-box">
-            <div class="slide-warp">
-                @foreach ($flashSaleProduct as $element)
-                    <div class="slide-item">
-                        <a class="product-item3" href="/product/{{ $element->product_id }}">
-                            <div class="img">
-                                <img class="lazy" data-original="{{ $element->image }}">
-                            </div> 
-                            <div class="title">{{ $element->product_name }}</div>
-                            <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->origin_price }}</span></div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    @endif
-
-    <!-- 拼团 -->
-    
-    <?php
-        $teamSaleProducts = teamSale(0, 3);
-    ?>
-    @if(funcOpen('FUNC_TEAMSALE') && $teamSaleProducts->count())
-    <div class="top-title theme-team_sale">
-        <p>拼团专区</p>
-    </div>
-
-    <div class="product-wrapper theme-team_sale">
-        <div class="slide-box">
-            <div class="slide-warp">
-                @foreach ($teamSaleProducts as $element)
-                    <div class="slide-item">
-                        <a class="product-item3" href="/product/{{ $element->id }}">
-                            <div class="img">
-                                <img class="lazy" src="{{asset('images/social/p5.jpg')}}">
-                            </div> 
-                            <div class="title">1</div>
-                            <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}2 <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}1</span></div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    @endif
-
-
-    <!-- 精选分类 
-    <div class="index-recommend-cat weui-cell" style="">
-        <a href="/product_of_type/1" class="left_content" style="">
-                <img src="{{ getSettingValueByKeyCache('image_new') }}" alt="">
-{{--                 <div class="img" style="">新品橱窗</div>
-                <h4 class="weui-media-box__title">每日新款大推荐</h4>
-                <p class="weui-media-box__desc">GO ＞</p> --}}
-            {{-- </div> --}}
-        </a>
-        <div class="right_content">
-            <a href="/product_promp" {{-- class="weui-media-box__bd" --}} style="">
-                <img src="{{ getSettingValueByKeyCache('image_prmop') }}" alt="">
-{{--                 <div class="img" style="">优惠活动</div>
-                <h4 class="weui-media-box__title">每日优惠大推荐</h4>
-                <p class="weui-media-box__desc">GO ＞</p> --}}
-            </a>
-            <a href="/product_of_type/2" {{-- class="weui-media-box__bd" --}} >
-                <img src="{{ getSettingValueByKeyCache('image_sales_count') }}" alt="">
-{{--                 <div class="img" style="">销量榜</div>
-                <h4 class="weui-media-box__title">偷看达人购物车</h4>
-                <p class="weui-media-box__desc">GO ＞</p> --}}
-            </a>
-        </div>
-    </div>-->
-
-    <!-- 限时秒杀 -->
-{{--     @if(funcOpen('FUNC_FLASHSALE') && $flashSaleProduct->count())
-    <div class="weui-cells">
-        <div class="weui-cell weui-cell_access">
-            <div class="weui-cell__bd title-img" id="count_timer">
-                <img src="{{ asset('images/default/index/miaosha.png') }}" style="vertical-align: middle; margin-right: 10px;">
-                <span style="vertical-align: middle">限时秒杀</span> 
-                <span style="vertical-align: middle"> 
-                    <i class="time time-hour">01</i>:<i class="time time-minute">15</i>:<i class="time time-second">25</i> 
-                </span>
-            </div>
-            <a class="weui-cell__ft" href="/flash_sale">查看更多</a>
-        </div>
-    </div>
-    
-    <div class="product-wrapper">
-        @foreach ($flashSaleProduct as $element)
-            <a class="product-item3" href="/product/{{ $element->product_id }}">
-                <div class="img">
-                    <img class="lazy" data-original="{{ $element->image }}">
-                </div> 
-                <div class="title">{{ $element->product_name }}</div>
-                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->origin_price }}</span></div>
-            </a>
-        @endforeach
-    </div>
-    @endif --}}
-
-    <!-- 国家馆 -->
-    <?php
-        $countries = countries();
-    ?>
-    @if ($countries->count())
-      <div class="top-title">
-        <p>环球国家馆</p>
-      </div>
-      
-      <div class="product-wrapper country-sum">
-          <div class="slide-box">
-              <div class="slide-warp">
-                  @foreach ($countries as $element)
-                      <a class="slide-item" href="/product_of_type/3?country_id={{ $element->id }}">
-                          <img src="{{ $element->image }}" alt="">
-                          <p class="intr">{{ $element->name }}</p>
-                      </a>
-                  @endforeach
-              </div>
-          </div>
-      </div>
-    @endif
-    
-
     <div class="product-wrapper more-goods scroll-container">
 
       @foreach ($products as $element)
@@ -260,12 +82,19 @@
           <div class="img">
               <img class="lazy" data-original="{{ $element->image }}">
           </div> 
-          <div class="title">{{ $element->name }}</div>
-          @if ($element->realPrice)
-              <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->realPrice }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }}</span></div>
-          @else
-              <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} </div>
-          @endif
+          <div class="product-title-content">
+            <div class="title">{{ $element->name }}</div>
+            @if ($element->realPrice)
+                <div class="price mt22">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->realPrice }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }}</span></div>
+            @else
+                <div class="price mt22">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} </div>
+            @endif
+          </div>
+
+          <div class="product-bottom-content">
+            <span class="product-liji-gou">立即抢购</span>
+            <span class="product-add-cart">加入购物车</span>
+          </div>
         </a>
       @endforeach
 
@@ -288,12 +117,20 @@
             <div class="img">
                 <img class="lazy" data-original="@{{=value.image}}">
             </div> 
-            <div class="title">@{{=value.name}}</div>
-            @{{? value.realPrice }}
-                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.realPrice}} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}}</span></div>
-            @{{??}}
-                <div class="price">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}} </div>
-            @{{?}}
+            <div class="product-title-content">
+              <div class="title">@{{=value.name}}</div>
+              @{{? value.realPrice }}
+                  <div class="price mt22">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.realPrice}} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}}</span></div>
+              @{{??}}
+                  <div class="price mt22">{{ getSettingValueByKeyCache('price_fuhao') }}@{{=value.price}} </div>
+              @{{?}}
+            </div>
+
+            <div class="product-bottom-content">
+              <span class="product-liji-gou">立即抢购</span>
+              <span class="product-add-cart">加入购物车</span>
+            </div>
+            
         </a>
     @{{~}}
 </script>
