@@ -1812,7 +1812,53 @@ class CommonRepository
     }
 
     /**
-     * 发起superpay支付
+     * 发起superpay 支付宝支付
+     * @param  [type] $order [description]
+     * @return [type]        [description]
+     */
+    public function startAlipaySuperPay($order = null)
+    {
+        $requestUrl = 'https://api.superpayglobal.com/payment/bridge/merchant_request';
+        $requestParam = [
+            'merchant_id'        => Config::get('superpay.merchant_id'),
+            'authentication_code'=> Config::get('superpay.authentication_code'),
+            'product_title'      => '欧宝直邮商品购买',
+            'merchant_trade_no'  => $order->out_trade_no,
+            'currency'           => 'AUD',
+            'total_amount'       => $order->price,
+            'create_time'        => Carbon::now(),
+            'notification_url'   => 'http://www.opalzy.com/super_pay/notify_wechcat_pay',
+            'return_url'         => 'http://www.opalzy.com/orders'
+        ];
+        $requestParamMd5 = '';
+        $i = 0;
+        foreach ($requestParam as $key => $value) 
+        {
+            if(in_array($key,['merchant_id','authentication_code','merchant_trade_no','total_amount']))
+            {
+                $requestParamMd5 .= $key.'='.$value;
+                $i++;
+                if($i<4)
+                {
+                    $requestParamMd5 .= '&';
+                }
+            }
+        }
+        $requestParam['token'] = md5($requestParamMd5);
+        $request = \Zcjy::simpleGuzzleRequest($requestUrl,'GET',$requestParam);
+        $result =  json_decode($request,1);
+        dd($result);
+        if(isset($result['QRCodeURL']))
+        {
+            return zcjy_callback_data($result['QRCodeURL']);
+        }
+        else{
+            return zcjy_callback_data('支付异常',1);
+        }
+    }
+
+    /**
+     * 发起superpay 微信支付
      * @param  [type] $order [description]
      * @return [type]        [description]
      */

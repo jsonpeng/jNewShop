@@ -32,7 +32,7 @@ class PayController extends Controller
         $out_trade_no = $order->snumber.'_'.time();
         $order->out_trade_no = $out_trade_no;
         $order->save();
-        return (app('commonRepo')->startWechatSuperPay($order));
+        return (app('commonRepo')->startAlipaySuperPay($order));
     }
 
     //发起superpay微信支付
