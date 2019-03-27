@@ -292,7 +292,7 @@
                   <div class="weui-actionsheet__cell" onclick="paysApi()"><img src="{{ asset('images/pay-paysapi.png') }}">微信支付</div>
                 @endif --}}
 
-                <!--div class="weui-actionsheet__cell" onclick="aliPay()"><img src="{{ asset('images/pay-alipay.png') }}">支付宝支付</div-->
+                <div class="weui-actionsheet__cell" onclick="aliPay()"><img src="{{ asset('images/pay-alipay.png') }}">支付宝支付</div>
             </div>
             <div class="weui-actionsheet__action">
                 <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
@@ -382,7 +382,7 @@
 @endsection
 
 @section('js')
-
+<script type="text/javascript" src="{{ asset('js/ap.js') }}"></script>
   @if(funcOpen('FUNC_TEAMSALE') 
     && $order->prom_type == 5 
     && $order->order_pay == '已支付' 
@@ -391,6 +391,7 @@
     && Config::get('web.app_env') == 'product')
 
   <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+  
   <script type="text/javascript" charset="utf-8">
       wx.config({!! $app->jssdk->buildConfig(array('onMenuShareTimeline', 'onMenuShareAppMessage'), true) !!});
 
@@ -790,7 +791,7 @@
           }
       });
       $.ajax({
-          url:"/pay_alipay/{{$order->id}}",
+          url:"/superpay_alipay/{{$order->id}}",
           type:"GET",
           data:'',
           success: function(data) {

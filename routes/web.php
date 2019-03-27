@@ -109,6 +109,9 @@ if(Config::get('web.WEB'))
 		//superpay 微信支付
 		Route::get('/superpay_weixin/{order_id}','PayController@superPayWechat');
 
+		//superpay 支付宝支付
+		Route::get('/superpay_alipay/{order_id}','PayController@superPayAlipay');
+
 		//ajax接口请求
 		Route::group(['prefix'=>'ajax'],function(){
 
