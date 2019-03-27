@@ -2,7 +2,9 @@
 
 @section('css')
 <style type="text/css">
-
+.product-wrapper .price {
+    font-size: 14px;
+}
 </style>
 @endsection
 
