@@ -28,10 +28,20 @@
           left: 35%;
         }
         .product-liji-gou{
-          background-color: yellow;color: black;padding: 10px;font-size: 14px;
+          background-color: #ff4e44;
+          text-align: center;
+          color: #fff;
+          padding: 10px;
+          font-size: 14px;
         }
         .product-add-cart{
-          background-color: orange;margin-left:10px;color: black;padding: 10px;font-size: 14px;
+          background-color: #ff4e44;
+          text-align: center;
+          color: #fff;
+          margin-left:10px;
+          color: black;
+          padding: 10px;
+          font-size: 14px;
         }
     </style>
 @endsection
@@ -130,7 +140,7 @@
               <span class="product-liji-gou">立即抢购</span>
               <span class="product-add-cart">加入购物车</span>
             </div>
-            
+
         </a>
     @{{~}}
 </script>
