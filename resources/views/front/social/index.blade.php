@@ -5,6 +5,50 @@
 .product-wrapper .price {
     font-size: 14px;
 }
+.mt22{margin-top: 22px;}
+.product-item3{
+  width: 100%;
+  height: 150px;
+  padding-bottom: 0px;
+}
+.product-wrapper .product-item3 img {
+  width:100px;
+  height: auto;
+}
+.product-title-content{
+  position: absolute;
+  left: 130px;
+  top: 0;
+  right: 0;
+}
+.product-bottom-content{
+  position: absolute;
+  bottom: 20%;
+  left: 35%;
+}
+.product-liji-gou{
+  background-color: #ff4e44;
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+}
+.product-add-cart{
+  background-color: #ff4e44;
+  text-align: center;
+  color: #fff;
+  margin-left:10px;
+  padding: 10px;
+  font-size: 14px;
+}
+.product-bottom-text{
+  position: absolute;
+  bottom: 2%;
+  left: 35%;
+  font-size: 14px;
+  text-align: center;
+  color: red;
+}
 </style>
 @endsection
 
@@ -107,7 +151,39 @@
             $catProducts = app('commonRepo')->productRepo()->getProductsOfCatWithChildrenCatsCached($cat->id,0, 15);
          ?>
 
-        <div class="product-wrapper country-sum">
+          <div class="product-wrapper more-goods ">
+
+              @foreach ($catProducts as $element)
+                <a class="product-item3" href="/product/{{ $element->id }}" style="width: 100%;">
+                  <div class="img">
+                      <img class="lazy" data-original="{{ $element->image }}">
+                  </div> 
+                  <div class="product-title-content">
+                    <div class="title">{{ $element->name }}</div>
+                    @if ($element->realPrice)
+                        <div class="price mt22">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->realPrice }} <span class="cross">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }}</span></div>
+                    @else
+                        <div class="price mt22">{{ getSettingValueByKeyCache('price_fuhao') }}{{ $element->price }} </div>
+                    @endif
+                  </div>
+
+                  <div class="product-bottom-content">
+                    <span class="product-liji-gou">立即抢购</span>
+                    <span class="product-add-cart">加入购物车</span>
+                  </div>
+
+                  @if($element->inventory == 0)
+                  <div class="product-bottom-text">
+                    库存告急
+                  </div>
+                  @endif 
+
+                </a>
+              @endforeach
+
+        </div>
+
+{{--         <div class="product-wrapper country-sum">
             <div class="slide-box">
                 <div class="slide-warp">
                     @foreach ($catProducts as $element)
@@ -118,7 +194,8 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+        </div> --}}
+
     @endforeach
     
     
