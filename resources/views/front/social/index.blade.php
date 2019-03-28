@@ -112,9 +112,9 @@
     ?>
     @if ($notices->count())
         <div class="weui-cell notice">
-            <div class="weui-cell__hd">
+      {{--       <div class="weui-cell__hd">
                 <p>NOTICE</p>
-            </div>
+            </div> --}}
             <div class="weui-cell__bd txtScroll-top">
                 <div class="swiper-container1">
                   <div class="swiper-wrapper infoList">
