@@ -1,11 +1,23 @@
 <!-- 商品搜索 -->
-
+<?php 
+$user = auth('web')->user();
+$leader = $user->LeaderObj;
+?>
 <style type="text/css">
     .weui-cell{border-bottom: 1px solid #eee;}
 </style>
 
 <div class="page__bd">
     <div class="weui-search-bar" id="searchBar">
+        @if($leader)
+        <img src="{!! $leader->head_image !!}" style="    max-width: 40px;
+    height: auto;
+    position: absolute;
+    left: 20px;
+    top: 3px;
+    z-index: 999;
+    border-radius: 20px;" />
+        @endif
         <form class="weui-search-bar__form">
             <div class="weui-search-bar__box">
                 <i class="weui-icon-search"></i>
