@@ -36,6 +36,7 @@ class CategoryController extends Controller
      * @return   [type]               [description]
      */
     public function index(Request $request, $id=0){
+        return redirect('/');
         $cat_level = getSettingValueByKeyCache('category_level');
         if ($cat_level == 0) {
             //不分类

@@ -1,7 +1,9 @@
 <!-- 商品搜索 -->
 <?php 
 $user = auth('web')->user();
-$leader = $user->LeaderObj;
+if(isset($user)){
+    $leader = $user->LeaderObj;
+}
 ?>
 <style type="text/css">
     .weui-cell{border-bottom: 1px solid #eee;}
@@ -9,7 +11,7 @@ $leader = $user->LeaderObj;
 
 <div class="page__bd">
     <div class="weui-search-bar" id="searchBar">
-        @if($leader)
+        @if(isset($leader))
         <img src="{!! $leader->head_image !!}" style="    max-width: 40px;
     height: auto;
     position: absolute;
