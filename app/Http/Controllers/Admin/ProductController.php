@@ -362,6 +362,7 @@ class ProductController extends AppBaseController
                 $level01 = $level[0];
             } else {
                 $first_cats = [$level[0] => varifiedCatName($this->categoryRepository->findWithoutFail($level[0]))];
+                $second_cats = $this->generateChildCats($level[0]);
                 $level01 = $level[0];
             }
         }
@@ -376,6 +377,20 @@ class ProductController extends AppBaseController
 
 
         return view('admin.products.edit', compact('wordlist','selectedWords','spec_show','edit_rember','images', 'product', 'categories', 'brands', 'types','level','level01', 'level02','level03','fist_cats','second_cats','third_cats', 'countries','stores','selectedStores'));
+    }
+
+    private function generateChildCats($cat_id)
+    {
+        $child_cats = Category::where('parent_id',$cat_id)->get();
+        $return_arr = [0 => '请选择分类'];
+        if(count($child_cats))
+        {
+            foreach ($child_cats as $key => $cat) 
+            {
+               $return_arr[$cat->id] = $cat->name; 
+            }
+        }
+        return $return_arr;
     }
 
     /**

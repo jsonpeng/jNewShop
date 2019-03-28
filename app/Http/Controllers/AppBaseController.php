@@ -65,9 +65,9 @@ class AppBaseController extends Controller
         $tools=0;
         if(count($input)){
             $tools=1;
-            if(array_key_exists('page', $input) && count($input)==1) {
-                $tools = 0;
-            }
+                if(array_key_exists('page', $input) && count($input)==1) {
+                    $tools = 0;
+                }
             if($order){
                 if(array_key_exists('menu_type', $input) && count($input)==1) {
                     $tools = 0;
