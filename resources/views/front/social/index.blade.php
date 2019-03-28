@@ -6,11 +6,7 @@
     font-size: 14px;
 }
 .mt22{margin-top: 22px;}
-.product-item3{
-  width: 100%;
-  height: 150px;
-  padding-bottom: 0px;
-}
+
 .product-wrapper .product-item3 img {
   width:100px;
   height: auto;
@@ -154,7 +150,8 @@
           <div class="product-wrapper more-goods ">
 
               @foreach ($catProducts as $element)
-                <a class="product-item3" href="/product/{{ $element->id }}" style="width: 100%;">
+                <a class="product-item3" href="/product/{{ $element->id }}" style="width: 100%;  height: 150px;
+  padding-bottom: 0px;">
                   <div class="img">
                       <img class="lazy" data-original="{{ $element->image }}">
                   </div> 
