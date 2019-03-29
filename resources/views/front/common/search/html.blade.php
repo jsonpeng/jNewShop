@@ -11,7 +11,7 @@ if(isset($user)){
 
 <div class="page__bd">
     <div class="weui-search-bar" id="searchBar">
-        @if(isset($leader))
+        @if(isset($leader) && $leader != '无')
         <img src="{!! $leader->head_image !!}" style="    max-width: 40px;
     height: auto;
     position: absolute;
