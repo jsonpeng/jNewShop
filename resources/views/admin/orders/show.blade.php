@@ -132,7 +132,7 @@
             <div class="row" style="border-bottom: 1px solid #f4f4f4" >
                 <form id="item_form_{{ $item->
                     id }}">
-                    <a class="col-md-1 col-xs-2 hidden-xs" style="line-height: 28px;" href="/zcjy/products/{{ $item->product->id }}/edit" target="_blank">{{ $item->id }}</a>
+                    <a class="col-md-1 col-xs-2 hidden-xs" style="line-height: 28px;" href="/zcjy/products/{{ optional($item->product)->id }}/edit" target="_blank">{{ $item->id }}</a>
                     <div class="col-md-4 col-xs-4">
                         <img src="{{ $item->pic }}" alt="" style="height: 25px;">{{ $item->name }}</div>
                     <div class="col-md-2 col-xs-2 hidden-xs">{{ $item->unit }}</div>
