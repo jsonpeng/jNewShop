@@ -19,6 +19,29 @@
             border: 1px solid #ddd;
             border-radius: 6px;
       }
+      .postImg p {
+          width: 100%;
+          margin-bottom: 10px;
+      }
+      .idCardImg {
+          display: flex;
+          justify-content: space-between;
+          padding-bottom: 20px;
+      }
+      .idCardImg .cardImgItem {
+        margin-right: 10px;
+        flex: 1;
+        position: relative;
+        background-color: #fff;
+        height: 100px;
+        border: 1px dotted #dcdcdc;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .type_files img{
+        max-width: 160px;
+        height: auto;
+    }
     </style>
 @endsection
 
@@ -375,8 +398,9 @@
               <div class="weui-actionsheet__cell" id="iosActionsheetCancel">取消</div>
           </div>
       </div>
-      <div class="weui-actionsheet" id="certBox" style="    background: #fff;    padding-left: 15px;
-    padding-top: 15px;padding-bottom: 3px;">
+
+   
+      <div class="weui-actionsheet" id="certBox" style="    background: #fff;    padding-left: 15px;padding-top: 15px;padding-bottom: 3px;">
            <div >
               <div style="font-size: 16px;padding-bottom: 15px;text-align: left">
                   实名认证
@@ -386,20 +410,96 @@
     padding-bottom: 10px;">您购买的跨境商品/特殊商品,需要提供身份信息,<span style="color: red;">且身份信息与微信的实名信息一致,可以与收货人信息不同 仅用于海关检验</span></p>
               <input type="text" name="name" class="form-control" placeholder="真实姓名" />
               <input type="text" name="idcard" class="form-control" placeholder="身份证号码" />
-               <a class="obzy_btn bind_mobile_btn" style="    background: red;
-    color: white;
-    padding: 10px 150px;
-    display: inline-block;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 10px;" href="javascript:;" onclick="certSubmit()">提交</a>
+
+              <div class="postImg weui-cell">
+                <div class="weui-cell__bd">
+                    <p><span>*</span>上传身份证照片：</p>
+                    <div class="idCardImg">
+                        <div class="cardImgItem">
+                           <input type="hidden" class="current_src" name="current_image_src[]" value="" />
+                          <div class=" type_files attach">
+                            <input type="hidden" name="face_image" value="" />
+                            <img src="{{ asset('images/trade/front.jpg') }}" alt="">
+                          </div>
+                        </div>
+
+                        <div class="cardImgItem">
+                          <input type="hidden" class="current_src" name="current_image_src[]" value="" />
+                        <div class=" type_files ">
+                          <input type="hidden" name="back_image" value="" />
+                          <img src="{{ asset('images/trade/back.jpg') }}" alt="">
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
+              </div>
+
+              <a class="obzy_btn bind_mobile_btn" style="    background: red;color: white;padding: 10px 150px;display: inline-block;margin: 0 auto;text-align: center;margin-top: 10px;" href="javascript:;" onclick="certSubmit()">提交</a>
           </div>
       </div>
+
   </div>
   @endif
 @endsection
 
 @section('js')
+ <script src="{{ asset('vendor/dropzone/dropzone.js') }}"></script>
+  <!--图片上传--> 
+ <script type="text/javascript">
+        //图片文件上传
+    var myDropzone = new Dropzone(document.body, {
+        url:'/ajax/uploads',
+        thumbnailWidth: 80,
+        thumbnailHeight: 80,
+        parallelUploads: 20,
+        addRemoveLinks:false,
+        maxFiles:100,
+        autoQueue: true, 
+        previewsContainer: ".attach", 
+        clickable: ".type_files",
+        headers: {
+         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        addedfile:function(file){
+            //console.log(file);
+        },
+        totaluploadprogress:function(progress){
+          progress=Math.round(progress);
+          $('.type_files').find('a').text(progress+"%");
+        },
+        queuecomplete:function(progress){
+          $('.type_files').find('a').text('上传完毕√');
+        },
+        success:function(file,data){
+          if(data.code == 0){
+              click = 1;
+              console.log('上传成功:'+data.message.src);
+              if(data.message.type == 'image'){
+                click_dom.find('img').attr('src',data.message.src);
+                click_dom.find('input').val(data.message.src);
+                click_dom.parent().find(".current_src").val(data.message.current_src);
+                // formVarified();
+              }
+          }
+          else{
+            alert('文件格式不支持!');
+          }
+      },
+      error:function(){
+        console.log('失败');
+      }
+    });
+    var click_dom;
+    $('.type_files').click(function(){
+      if($(this).hasClass('tackphoto')){
+        click_dom = $('.handImage');
+      }else{
+        click_dom = $(this);
+      }
+    });
+  </script>
+
   <script>
     var $iosActionsheet = $('#iosActionsheet');
     var $iosMask = $('#iosMask');
@@ -419,7 +519,7 @@
           hideActionSheet();
           $('#certInfo').hide();
         }
-      },{name:$('input[name=name]').val(),id_card:$('input[name=idcard]').val()});
+      },{name:$('input[name=name]').val(),id_card:$('input[name=idcard]').val(),face_image:$('input[name=face_image]').val(),back_image:$('input[name=back_image]').val()});
     }
 
   

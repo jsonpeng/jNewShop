@@ -85,6 +85,7 @@ class CartController extends Controller
 
     public function check(Request $request)
     {
+        // dd(auth('web')->user());
         //手动设置了收货地址
         $address = null;
         if ($request->session()->has('curAddress')) {

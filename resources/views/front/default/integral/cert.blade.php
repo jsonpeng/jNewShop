@@ -38,6 +38,7 @@
       <p><span>*</span>请输入验证码：</p><input type="text" name="code">
     </div>
   </div>
+  
   <div class="postImg weui-cell">
     <div class="weui-cell__bd">
         <p><span>*</span>上传身份证照片：</p>
