@@ -73,7 +73,7 @@
                     <ul class="list-group list-group-unbordered">
                         @if (funcOpen('FUNC_MEMBER_LEVEL'))
                         <li class="list-group-item">
-                          <b>会员等级</b> <span class="pull-right">{{ $userLevel->name }}</span>
+                          <b>会员等级</b> <span class="pull-right">{{ optional($userLevel)->name }}</span>
                         </li>
                         @endif
 
