@@ -1634,10 +1634,11 @@ class CommonRepository
 
        if(empty($temporary_code) || empty($leader))
        {
-        $leader = User::whereNotNull('code')
-        ->where('id','<>',$user->id)
-        ->orderBy('created_at','asc')
-        ->first();
+            // $leader = User::whereNotNull('code')
+            // ->where('id','<>',$user->id)
+            // ->orderBy('created_at','asc')
+            // ->first();
+            $leader = User::orderBy('id','asc')->first();
        }
 
        return $leader;
