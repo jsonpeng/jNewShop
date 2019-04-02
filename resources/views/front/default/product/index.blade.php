@@ -222,7 +222,13 @@
         </div>
       </div>
        <div class="line"></div>
-    <?php $leader = $user->LeaderObj; ?>
+    <?php 
+      $leader = $user->LeaderObj; 
+      if($user->code)
+      {
+        $leader = $user;
+      }
+    ?>
     @if($leader != '无')
        <div class="product-section-wrapper" >
         <div class="weui-cells" style="margin-top: 0;">

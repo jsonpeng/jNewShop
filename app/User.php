@@ -86,7 +86,8 @@ class User extends Authenticatable implements JWTSubject
 
 
     //认证信息
-    public function cert(){
+    public function cert()
+    {
         return $this->hasOne('App\Models\Certs','user_id','id');
     }
 
@@ -97,7 +98,8 @@ class User extends Authenticatable implements JWTSubject
     }
 
     //商品收藏
-    public function collections(){
+    public function collections()
+    {
         return $this->belongsToMany('App\Models\Product', 'product_user', 'user_id', 'product_id');
     }
 
@@ -209,8 +211,8 @@ class User extends Authenticatable implements JWTSubject
     //当天的提现次数
     public function  getwithdrawlNumByDayAttribute(){
         return $this->withdrawl()->whereBetween('created_at', array(Carbon::today(), Carbon::tomorrow()))->count();
-
     }
+    
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
