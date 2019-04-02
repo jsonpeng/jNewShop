@@ -3,6 +3,10 @@
 $user = auth('web')->user();
 if(isset($user)){
     $leader = $user->LeaderObj;
+    if($user->code)
+    {
+        $leader = $user;
+    }
 }
 ?>
 <style type="text/css">
