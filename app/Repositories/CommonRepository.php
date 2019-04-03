@@ -1555,7 +1555,7 @@ class CommonRepository
         if($file_type == 'image'){
           $image_path=public_path().'/'.$destinationPath.$fileName;
        
-          $img = $this->exifDealImg($image_path);
+          // $img = $this->exifDealImg($image_path);
           // $img->resize(640, 640);
           $img->save($image_path,70);
         }
