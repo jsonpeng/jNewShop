@@ -357,7 +357,7 @@ class ProductRepository extends BaseRepository
                 #获取子分类集合
                 $catIds = $this->getChildCats($cat_id);
 
-                Log::info($catIds);
+                // Log::info($catIds);
 
                 $products =  Product::where('shelf', 1)
                     ->whereIn('category_id', $catIds)
