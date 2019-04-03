@@ -420,6 +420,7 @@
                           <div class=" type_files attach">
                             <input type="hidden" name="face_image" value="" />
                             <img src="{{ asset('images/trade/front.jpg') }}" alt="">
+                            <a> </a>
                           </div>
                         </div>
 
@@ -428,6 +429,7 @@
                         <div class=" type_files attach">
                           <input type="hidden" name="back_image" value="" />
                           <img src="{{ asset('images/trade/back.jpg') }}" alt="">
+                           <a> </a>
                         </div>
                         </div>
 
@@ -447,6 +449,10 @@
  <script src="{{ asset('vendor/dropzone/dropzone.js') }}"></script>
   <!--图片上传--> 
  <script type="text/javascript">
+    var click_dom = $('.type_files');
+    $('.type_files').click(function(){
+        click_dom = $(this);
+    });
         //图片文件上传
     var myDropzone = new Dropzone(document.body, {
         url:'/ajax/uploads',
@@ -467,10 +473,10 @@
         },
         totaluploadprogress:function(progress){
           progress=Math.round(progress);
-          $('.type_files').find('a').text(progress+"%");
+          click_dom.find('a').text(progress+"%").show();
         },
         queuecomplete:function(progress){
-          $('.type_files').find('a').text('上传完毕√');
+          // click_dom.find('a').text('上传完毕√');
         },
         success:function(file,data){
           if(data.code == 0){
@@ -480,6 +486,7 @@
                 click_dom.find('img').attr('src',data.message.src);
                 click_dom.find('input').val(data.message.src);
                 click_dom.parent().find(".current_src").val(data.message.current_src);
+                click_dom.find('a').hide();
                 // formVarified();
               }
           }
@@ -490,10 +497,6 @@
       error:function(){
         console.log('失败');
       }
-    });
-    var click_dom;
-    $('.type_files').click(function(){
-        click_dom = $(this);
     });
   </script>
 
