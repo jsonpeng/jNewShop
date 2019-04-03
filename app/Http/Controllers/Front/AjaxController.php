@@ -17,6 +17,7 @@ use AopClient;
 use AlipayFundTransToaccountTransferRequest;
 use Log;
 use EasyWeChat\Factory;
+use Carbon\Carbon;
 
 class AjaxController extends Controller
 {
@@ -324,11 +325,15 @@ class AjaxController extends Controller
     public function certsPublishV2(Request $request)
     {
         $input = $request->all();
+
         #验证字段
-        $varify = app('commonRepo')->varifyInputParam($input,'name,id_card');
-        if($varify){
+        $varify = app('commonRepo')->varifyInputParam($input,'name,id_card,face_image,back_image');
+
+        if($varify)
+        {
             return zcjy_callback_data($varify,1,'web');
         }
+
         #当前用户
         $user = auth('web')->user();
 
@@ -342,18 +347,33 @@ class AjaxController extends Controller
             }
         }
 
-        $certVarify = app('commonRepo')->aliyunCert($input['name'],$input['id_card']);
+        #正面核对
+        $certVarify = app('commonRepo')->varifyCardImage($input['face_image']);
+
+        if($certVarify['code'] == 1 || $certVarify['code'] == 0 && $certVarify['message']['name'] != $input['name'] || $certVarify['code'] == 0 && $certVarify['message']['code'] != $input['id_card'])
+        {
+              return zcjy_callback_data('实名认证失败,请重新核对正面身份证',1);
+        }
+
+        #反面核对
+        $certVarify = app('commonRepo')->varifyCardImage($input['back_image'],'back');
+
+
+        if($certVarify['code'] == 1)
+        {
+             return zcjy_callback_data('实名认证失败,请重新核对正面身份证',1);
+        }
 
         if($certVarify['code'] == 0)
         {
-            $input['status'] = '已通过';
-            $input['user_id'] = $user->id;
-            app('commonRepo')->certsRepo()->create($input);
-            return zcjy_callback_data('认证成功');
+            if(\Carbon\Carbon::parse($certVarify['message']['expiryDate'])->lt(\Carbon\Carbon::now())){
+                return zcjy_callback_data('身份证件已过期,请重新上传认证',1);
+            }     
         }
-        else{
-            return zcjy_callback_data('实名认证失败,请重新核对填写',1);
-        }       
+        $input['status'] = '已通过';
+        $input['user_id'] = $user->id;
+        app('commonRepo')->certsRepo()->create($input);
+        return zcjy_callback_data('认证成功');
     }
 
     /**

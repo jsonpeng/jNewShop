@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Config;
 Route::get('generate','AppBaseController@manyGenerateData');
 
 Route::get('test',function(){
+	dd(app('commonRepo')->varifyCardImage('http://www.whxy2018.com/uploads/user/1/image/Rvu7vyK6s4.png','back'));
 	$order = (object)['price'=>1];
 	return (app('commonRepo')->startWechatSuperPay($order));
 	return (app('commonRepo')->aliyunCert('彭云','420982199604130010'));
