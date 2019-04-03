@@ -420,7 +420,7 @@
                           <div class=" type_files attach">
                             <input type="hidden" name="face_image" value="" />
                             <img src="{{ asset('images/trade/front.jpg') }}" alt="">
-                            <a> </a>
+                            <a style="color: red;z-index: 1000;"> </a>
                           </div>
                         </div>
 
@@ -429,7 +429,7 @@
                         <div class=" type_files attach">
                           <input type="hidden" name="back_image" value="" />
                           <img src="{{ asset('images/trade/back.jpg') }}" alt="">
-                           <a> </a>
+                           <a style="color: red;z-index: 1000;"> </a>
                         </div>
                         </div>
 
