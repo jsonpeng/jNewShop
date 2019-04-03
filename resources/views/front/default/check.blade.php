@@ -411,7 +411,7 @@
               <input type="text" name="name" class="form-control" placeholder="真实姓名" />
               <input type="text" name="idcard" class="form-control" placeholder="身份证号码" />
 
-              <div class="postImg weui-cell">
+ {{--              <div class="postImg weui-cell">
                 <div class="weui-cell__bd">
                     <p><span>*</span>上传身份证照片：</p>
                     <div class="idCardImg">
@@ -446,7 +446,7 @@
                     </div>
                 </div>
               </div>
-
+ --}}
               <a class="obzy_btn bind_mobile_btn" style="    background: red;color: white;padding: 10px 150px;display: inline-block;margin: 0 auto;text-align: center;margin-top: 10px;" href="javascript:;" onclick="certSubmit()">提交</a>
           </div>
       </div>

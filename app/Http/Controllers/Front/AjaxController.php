@@ -321,8 +321,8 @@ class AjaxController extends Controller
         return zcjy_callback_data('删除消息成功',0,'web');
     }
 
-
-    public function certsPublishV2(Request $request)
+    //连图片一起
+    public function certsPublishV3(Request $request)
     {
         $input = $request->all();
 
@@ -374,6 +374,39 @@ class AjaxController extends Controller
         $input['user_id'] = $user->id;
         app('commonRepo')->certsRepo()->create($input);
         return zcjy_callback_data('认证成功');
+    }
+
+
+      public function certsPublishV2(Request $request)
+    {
+        $input = $request->all();
+        #验证字段
+        $varify = app('commonRepo')->varifyInputParam($input,'name,id_card');
+        if($varify){
+            return zcjy_callback_data($varify,1,'web');
+        }
+        #当前用户
+        $user = auth('web')->user();
+        $cert = $user->cert()->first();
+        
+        if($cert)
+        {
+            if($cert->status == '审核中' || $cert->status =='未通过')
+            {
+                $cert->delete();
+            }
+        }
+        $certVarify = app('commonRepo')->aliyunCert($input['name'],$input['id_card']);
+        if($certVarify['code'] == 0)
+        {
+            $input['status'] = '已通过';
+            $input['user_id'] = $user->id;
+            app('commonRepo')->certsRepo()->create($input);
+            return zcjy_callback_data('认证成功');
+        }
+        else{
+            return zcjy_callback_data('实名认证失败,请重新核对填写',1);
+        }       
     }
 
     /**
