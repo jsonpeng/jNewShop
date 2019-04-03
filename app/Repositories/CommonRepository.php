@@ -1320,14 +1320,20 @@ class CommonRepository
 
         $num = rand(1000, 9999); 
 
-        $easySms->send($mobile, [
-            'content'  => '验证码'.$num.'，您正在注册成为新用户，感谢您的支持！',
-            'template' => $allocat['template'],
-            //Config::get('SMS_TEMPLATE_VERIFY'),
-            'data' => [
-                'code' => $num
-            ],
-        ]);
+        try {
+                 $easySms->send($mobile, [
+                    'content'  => '验证码'.$num.'，您正在注册成为新用户，感谢您的支持！',
+                    'template' => $allocat['template'],
+                    //Config::get('SMS_TEMPLATE_VERIFY'),
+                    'data' => [
+                        'code' => $num
+                    ],
+                ]);
+        } catch (Exception $e) {
+            return 0;
+        }
+
+   
         return $num;
     }
 

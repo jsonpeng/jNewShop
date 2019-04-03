@@ -23,15 +23,18 @@ class AjaxController extends Controller
             return zcjy_callback_data($varify,1,'web');
         }
         $user = auth('web')->user();
-        //短信模板
-        $allocat = ['access_key_id'=>'LTAI0tsCvAtCgDXd','access_key_secret'=>'vPqyRPIShQXoJyQfAX4L2RqK2K4yYu','sign_name'=>'澳宝直邮','template'=>'SMS_160570739'];
-        try {
-        	 //存储session
-        	$request->session()->put('zcjy_code_'.$input['mobile'],app('commonRepo')->sendVerifyCode($input['mobile'],$allocat));
-        } catch (Exception $e) {
-        	return zcjy_callback_data('短信发送失败,请检查手机号或运营商信息',1,'web');
-        }
-      
+
+       //短信模板
+       $allocat = ['access_key_id'=>'LTAI0tsCvAtCgDXd','access_key_secret'=>'vPqyRPIShQXoJyQfAX4L2RqK2K4yYu','sign_name'=>'澳宝直邮','template'=>'SMS_160570739'];
+     
+       $code = app('commonRepo')->sendVerifyCode($input['mobile'],$allocat);
+
+       if(!$code)
+       {
+        return zcjy_callback_data('短信发送失败,请检查手机号或运营商信息',1,'web');
+       }
+       
+        $request->session()->put('zcjy_code_'.$input['mobile'],$code);
         return zcjy_callback_data('发送验证码成功',0,'web');
 	}
 
