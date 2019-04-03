@@ -456,6 +456,7 @@
         addRemoveLinks:false,
         maxFiles:100,
         autoQueue: true, 
+        maxFilesize:50,
         previewsContainer: ".attach", 
         clickable: ".type_files",
         headers: {
