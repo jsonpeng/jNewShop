@@ -425,7 +425,7 @@
 
                         <div class="cardImgItem">
                           <input type="hidden" class="current_src" name="current_image_src[]" value="" />
-                        <div class=" type_files ">
+                        <div class=" type_files attach">
                           <input type="hidden" name="back_image" value="" />
                           <img src="{{ asset('images/trade/back.jpg') }}" alt="">
                         </div>
@@ -492,11 +492,7 @@
     });
     var click_dom;
     $('.type_files').click(function(){
-      if($(this).hasClass('tackphoto')){
-        click_dom = $('.handImage');
-      }else{
         click_dom = $(this);
-      }
     });
   </script>
 
