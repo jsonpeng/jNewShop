@@ -2,11 +2,20 @@
 @if(Request::is('/'))
   @if(app('commonRepo')->varifyUserBindTMan())
   <?php 
-  $leader = app('commonRepo')->userLeader();
+  $rec_code = Request::get('rec_code');
+  if($rec_code)
+  {
+    $leader = app('commonRepo')->temCodeLeader($rec_code);
+  }
+  else{
+    $leader = app('commonRepo')->userLeader();
+  }
   $leaderImage = optional($leader)->head_image;
   $leaderNickname = optional($leader)->nickname;
   $leaderId = optional($leader)->id;
    ?>
+
+  @if(isset($leader))
   <script type="text/template" id="confirm_man">
       <div style="text-align: center;">
           <div style="font-size: 16px;padding-bottom: 15px;">
@@ -151,5 +160,6 @@
           },{mobile:mobile,code:code,leader:leaderId});
     }
   </script>
+  @endif
   @endif
 @endif

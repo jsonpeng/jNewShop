@@ -1612,6 +1612,13 @@ class CommonRepository
 
     }
 
+
+    public function temCodeLeader($temporary_code)
+    {
+        $temporary_code = zcjy_base64_de($temporary_code);
+        return User::where('code',$temporary_code)->first();
+    }
+
     /**
      * 查找用户的推荐人
      * @return [type] [description]
