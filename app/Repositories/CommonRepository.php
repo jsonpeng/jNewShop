@@ -1381,7 +1381,7 @@ class CommonRepository
             {
                 $rate = $item['product']->fenyong_rate ?: $rate;
             }
-            $itemDisPrice =  $item['realPrice'] * $rate / 100;
+            $itemDisPrice = $item['qty'] * $item['realPrice'] * $rate / 100;
             $countPrice += $itemDisPrice;
         }
         return $countPrice;
