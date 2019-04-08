@@ -57,9 +57,9 @@
 	<li class="{{ Request::is('zcjy/products/create') ? 'active' : '' }}">
 	    <a href="{!! route('products.create') !!}"><i class="fa fa-edit"></i><span>添加产品</span></a>
 	</li>
-	<li class="{{ Request::is('zcjy/productEvals*') ? 'active' : '' }}">
+{{-- 	<li class="{{ Request::is('zcjy/productEvals*') ? 'active' : '' }}">
 	    <a href="{!! route('productEvals.index') !!}"><i class="fa fa-edit"></i><span>评价管理</span></a>
-	</li>
+	</li> --}}
 	<li class="{{ Request::is('zcjy/all_products/allLowGoods*')?'active':'' }}">
 	    <a href="{!! route('products.alllow') !!}"><i class="fa fa-edit"></i><span>库存报警</span></a>
 	</li>
