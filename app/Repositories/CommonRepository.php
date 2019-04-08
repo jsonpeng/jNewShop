@@ -1891,8 +1891,9 @@ class CommonRepository
             'currency'           => 'AUD',
             'total_amount'       => $order->price,
             'create_time'        => Carbon::now(),
-            'notification_url'   => 'http://www.opalzy.com/super_pay/notify_wechcat_pay',
-            'return_url'         => 'http://www.opalzy.com/orders'
+            'notification_url'   => 'http://www.opalzy.com/super_pay/return_alipay',
+            'return_url'         => 'http://www.opalzy.com/super_pay/return_alipay',
+            'alipay_redirect_flag'=> 'N'
         ];
         $requestParamMd5 = '';
         $i = 0;
@@ -1964,6 +1965,29 @@ class CommonRepository
         else{
             return zcjy_callback_data('支付异常',1);
         }
+    }
+
+    //支付宝同步通知
+    public function superPayAlipayReturn($request)
+    {
+        $input = $request->all();
+        if(!isset($input['merchant_trade_no']) || !isset($input['result']))
+        {
+            return;
+        }
+        $order = Order::where('out_trade_no', $input['merchant_trade_no'])->first();
+        if (empty($order)) 
+        { // 如果订单不存在
+            return; 
+        }
+        // 如果订单存在
+        // 检查订单是否已经更新过支付状态
+        if ($order->order_pay == '已支付') 
+        {
+            // 已经支付成功了就不再更新了
+            return; 
+        }
+        app('commonRepo')->processOrder($order, '支付宝');
     }
 
     //superpay 微信支付通知

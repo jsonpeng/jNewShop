@@ -99,6 +99,11 @@ class PayController extends Controller
         return app('commonRepo')->superPayWechatNotify($request);
     }
 
+    public function superpayAlipayReturn(Request $request)
+    {
+         return app('commonRepo')->superPayAlipayReturn($request);
+    }
+
     public function payWechatNotify(Request $request)
     {
 

@@ -80,6 +80,10 @@ Route::get('/notices/{id}','Front\IndexController@notice');
 
 //superpay 微信支付通知
 Route::any('/super_pay/notify_wechcat_pay', 'Front\PayController@superpayWechatNotify');
+
+//superpay 支付宝同步支付通知
+Route::any('/super_pay/return_alipay', 'Front\PayController@superpayAlipayReturn');
+
 //微信支付
 Route::any('/notify_wechcat_pay', 'Front\PayController@payWechatNotify');
 //PAYS_API支付

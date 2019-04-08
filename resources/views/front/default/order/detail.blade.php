@@ -795,12 +795,13 @@
           type:"GET",
           data:'',
           success: function(data) {
+              data = JSON.parse(data);
             //提示成功消息
-            if (data.code == 0) {
-                _AP.pay(data.message);
+            if (data.result == 'SUCCESS') {
+                _AP.pay(data.redirectUrl);
             }else{
               layer.open({
-                content: data.message
+                content: '支付失败'
                 ,skin: 'msg'
                 ,time: 2 //2秒后自动关闭
               });
