@@ -1052,7 +1052,7 @@ class CommonRepository
         {
             if($order->delivery_company && $order->delivery_no)
             {
-                $message = '您好,欧宝直邮提醒您,您的订单单号为'.$order->snumber.'的订单已发货,物流公司是'.$order->delivery_company.',单号是'.$order->delivery_no;
+                $message = '您好,澳宝直邮提醒您,您的订单单号为'.$order->snumber.'的订单已发货,物流公司是'.$order->delivery_company.',单号是'.$order->delivery_no;
                 $this->weixinText($message,$user->openid);
 
                 if($user->leader1)
@@ -1886,7 +1886,7 @@ class CommonRepository
         $requestParam = [
             'merchant_id'        => Config::get('superpay.merchant_id'),
             'authentication_code'=> Config::get('superpay.authentication_code'),
-            'product_title'      => '欧宝直邮商品购买',
+            'product_title'      => '澳宝直邮商品购买',
             'merchant_trade_no'  => $order->out_trade_no,
             'currency'           => 'AUD',
             'total_amount'       => $order->price,
@@ -1933,7 +1933,7 @@ class CommonRepository
         $requestParam = [
             'merchant_id'        => Config::get('superpay.merchant_id'),
             'authentication_code'=> Config::get('superpay.authentication_code'),
-            'product_title'      => '欧宝直邮商品购买',
+            'product_title'      => '澳宝直邮商品购买',
             'merchant_trade_no'  => $order->out_trade_no,
             'currency'           => 'AUD',
             'total_amount'       => $order->price,
