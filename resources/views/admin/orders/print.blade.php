@@ -38,7 +38,7 @@
                     <td>{{ $item->price }}</td>
                     <td>{{ round($item->count * $item->price) }}</td>
                 </tr>
-                <tr>
+ {{--                <tr>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->product->sn }}</td>
                     <td>{{ $item->unit }}</td>
@@ -53,7 +53,7 @@
                     <td>{{ $item->count }}</td>
                     <td>{{ $item->price }}</td>
                     <td>{{ round($item->count * $item->price) }}</td>
-                </tr>
+                </tr> --}}
                 @endforeach
             </tbody>
         </table>
