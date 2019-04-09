@@ -1,4 +1,4 @@
-    @extends('front.social.layout.base')
+@extends('front.social.layout.base')
 
 @section('css')
     <style>
@@ -124,6 +124,15 @@
         </a> -->
         
     </div>
+
+    <div class="weui-cells section-margin user-zone">
+        <a class="weui-cell weui-cell_access" href="javascript:;" onclick="openChange()">
+            <div class="weui-cell__bd">
+                <p>修改推荐人</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+    </div>
     
     @if(funcOpen('FUNC_DISTRIBUTION') && $user->code)
     <div class="weui-cells section-margin user-zone">
@@ -139,14 +148,9 @@
             </div>
             <div class="weui-cell__ft"></div>
         </a>
-        @if($user->leader1)
-        <a class="weui-cell weui-cell_access" href="javascript:;" onclick="openChange()">
-            <div class="weui-cell__bd">
-                <p>修改推荐人</p>
-            </div>
-            <div class="weui-cell__ft"></div>
-        </a>
-        @endif
+   
+ 
+   
         <a class="weui-cell weui-cell_access" href="/?rec_code={!! zcjy_base64_en($user->code) !!}">
             <div class="weui-cell__bd">
                 <p>分享店铺</p>
@@ -161,5 +165,40 @@
 
 
 @section('js')
-    
+ <script type="text/template" id="change_man">
+        <div style="text-align: center;">
+          <div style="font-size: 16px;padding-bottom: 15px;">
+              修改推荐人
+          </div>
+          <input type="text" name="code" class="form-control" placeholder="请输入店主邀请码" />
+          <div style="padding-top:15px;font-size: 14px;color: red;">平台用户自注册起,最多可以更换绑定修改推荐人3次,请谨慎选择</div>
+      </div>
+  </script>
+  <script type="text/javascript">
+      function openChange()
+      {
+          layer.open({
+          content: $('#change_man').html()
+          ,btn: ['确定', '取消']
+          ,yes: function(index){
+              var code = $('input[name=code]').val();
+              if($.empty(code))
+              {
+                alert('请输入店主邀请码');
+                return;
+              }
+              $.zcjyRequest('/ajax/obzy/edit_leader/'+code,function(res){
+              if(res){
+                  alert(res);
+                   //ajax请求
+                  layer.close(index);
+              }
+            });
+          }
+          ,no: function(index){
+            layer.close(index);
+          }
+          });
+      }
+  </script>
 @endsection
