@@ -76,6 +76,7 @@ $(function(){
     ;
     $searchClear.on('click', function(){
         hideSearchResult();
+        $searchBar.find('img').show();
         $searchInput.focus();
     });
     $searchCancel.on('click', function(){
