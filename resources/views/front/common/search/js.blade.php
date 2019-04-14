@@ -52,12 +52,15 @@ $(function(){
     function cancelSearch(){
         hideSearchResult();
         $searchBar.removeClass('weui-search-bar_focusing');
+        $searchBar.find('img').show();
         $searchText.show();
     }
 
     $searchText.on('click', function(){
         $searchBar.addClass('weui-search-bar_focusing');
+        $searchBar.find('img').hide();
         $searchInput.focus();
+
     });
     $searchInput
         .on('blur', function () {

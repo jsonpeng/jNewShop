@@ -197,6 +197,17 @@
                 <label class="weui-form-preview__label">下单时间：</label>
                 <span class="weui-form-preview__value">{{$order->created_at}}</span>
             </div>
+
+            @if($order->delivery_company && $order->delivery_no)
+                  <div class="weui-form-preview__item">
+                      <label class="weui-form-preview__label">快递公司：</label>
+                      <span class="weui-form-preview__value">{{$order->delivery_company}}</span>
+                  </div>
+                  <div class="weui-form-preview__item">
+                      <label class="weui-form-preview__label">快递单号：</label>
+                      <span class="weui-form-preview__value">{{$order->delivery_no}}</span>
+                  </div>
+            @endif
             
             @if($order->prom_type != 1 && $order->prom_type != 5)
               <!-- <div class="weui-form-preview__item">
