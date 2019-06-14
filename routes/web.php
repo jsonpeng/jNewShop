@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Config;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//生成数据
 Route::get('generate','AppBaseController@manyGenerateData');
 
 Route::get('test',function(){
