@@ -17,7 +17,7 @@
 	</div>
 	<div class="withdraw-sum weui-cells">
 	
-		<div class="weui-cell weui-cell_access withdraw-bank withdraw-bank-one">
+{{-- 		<div class="weui-cell weui-cell_access withdraw-bank withdraw-bank-one">
 			@if(!empty($first_card))
 			<div class="weui-cell__hd ">
 				<img src="{{ getBankImgByName($first_card->name) }}" alt="">
@@ -30,7 +30,7 @@
 			@else
 			请添加银行卡
 			@endif
-		</div>
+		</div> --}}
 	
 		<div class="weui-cell">
 			<div class="intr">提现金额<span> ( 提现最低<span id="min_price">{!! $min_price !!}</span>元起，每日限额{!! $max_num !!}笔 ) </span>:</div>

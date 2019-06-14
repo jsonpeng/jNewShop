@@ -160,6 +160,15 @@
     </div>
     @endif
 
+    <div class="weui-cells section-margin user-zone">
+        <a class="weui-cell weui-cell_access" href="/usercenter/withdrawal">
+            <div class="weui-cell__bd">
+                <p>提现管理</p>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+    </div>
+
     @include(frontView('layout.nav'), ['tabIndex' => 4])
 @endsection
 

@@ -103,7 +103,7 @@ class AjaxController extends Controller
     //用户余额提现
     public function userYueWithdrawl(Request $request){
         $input = $request->all();
-        $varify = app('commonRepo')->varifyInputParam($input,'price,password,type');
+        $varify = app('commonRepo')->varifyInputParam($input,'price,type');
         if($varify){
             return zcjy_callback_data($varify,1,'web');
         }
@@ -113,6 +113,7 @@ class AjaxController extends Controller
         if($input['price'] < 1){
              return zcjy_callback_data('提现金额最低不能低于1元',1,'web');
         }
+        
         $withdraw_min = getSettingValueByKey('withdraw_min');
 
         if($withdraw_min){
@@ -121,9 +122,9 @@ class AjaxController extends Controller
             }
         }
 
-        if(!Hash::check($input['password'],$user->{'password-pay'})){
-            return zcjy_callback_data('支付密码错误',1,'web');
-        }
+        // if(!Hash::check($input['password'],$user->{'password-pay'})){
+        //     return zcjy_callback_data('支付密码错误',1,'web');
+        // }
 
         $bili = getSettingValueByKey('withdraw_bili');
 
