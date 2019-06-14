@@ -318,6 +318,7 @@ class CommonRepository
      * @return [type]         [description]
      */
     public function companyGiveUserMoney($input,$user,$reason='提现'){
+           $withdraw_platform_bili = getSettingValueByKey('withdraw_platform_bili') ? getSettingValueByKey('withdraw_platform_bili') : 4.8;
            //Log::info(Config::get('wechat.payment.default'));
            $app = Factory::payment(Config::get('wechat.payment.default'));
            $result = $app->transfer->toBalance([
@@ -325,7 +326,7 @@ class CommonRepository
                 'openid' => $user->openid,
                 'check_name' => 'NO_CHECK', // NO_CHECK：不校验真实姓名, FORCE_CHECK：强校验真实姓名
                 're_user_name' => $user->nickname, // 如果 check_name 设置为FORCE_CHECK，则必填用户真实姓名
-                'amount' => $input['price']*100, // 企业付款金额，单位为分最少1元
+                'amount' => $input['price']*100*$withdraw_platform_bili, // 企业付款金额，单位为分最少1元
                 'desc' => $reason.$input['price'].'元到钱包余额', // 企业付款操作说明信息。必填
                 'spbill_create_ip' => env('ip','118.190.201.81')//服务器ip地址
           ]);

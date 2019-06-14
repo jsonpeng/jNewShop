@@ -33,7 +33,7 @@
 		</div> --}}
 	
 		<div class="weui-cell">
-			<div class="intr">提现金额<span> ( 提现最低<span id="min_price">{!! $min_price !!}</span>元起，每日限额{!! $max_num !!}笔 ) </span>:</div>
+			<div class="intr">提现金额<span> ( 提现最低<span id="min_price">{!! $min_price !!}</span>元起，每日限额{!! $max_num !!}笔,当前提现比例1:{!! getSettingValueByKeyCache('withdraw_platform_bili') !!} ) </span>:</div>
 		</div>
 		<div class="weui-cell">
 			<div class="money-num weui-cell__bd"><span>{{ getSettingValueByKeyCache('price_fuhao') }}</span><input type="text" name="bank_money_num"></div>

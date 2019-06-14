@@ -124,6 +124,12 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <label for="withdraw_platform_bili" class="col-sm-3 control-label">提现金额比例(填4.8即平台的1元钱相当于到账4.8元)</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" name="withdraw_platform_bili" maxlength="60" placeholder="填4.8即平台的1元钱相当于到账4.8元" value="{{ getSettingValueByKey('withdraw_platform_bili') }}"></div>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label for="fenyong_rate" class="col-sm-3 control-label">平台统一分佣比率</label>
                                           
                                                 <div class="col-sm-9">
