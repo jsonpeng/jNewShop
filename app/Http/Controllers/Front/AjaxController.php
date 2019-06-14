@@ -113,7 +113,7 @@ class AjaxController extends Controller
         if($input['price'] < 1){
              return zcjy_callback_data('提现金额最低不能低于1元',1,'web');
         }
-        
+
         $withdraw_min = getSettingValueByKey('withdraw_min');
 
         if($withdraw_min){
@@ -150,7 +150,7 @@ class AjaxController extends Controller
         }
 
         if(!$status){
-            return zcjy_callback_data('发起成功',0,'web');
+            return zcjy_callback_data('提现成功',0,'web');
         }
         else{
              return zcjy_callback_data('当前系统账户余额不足或者服务器繁忙,请等会再试',1,'web');

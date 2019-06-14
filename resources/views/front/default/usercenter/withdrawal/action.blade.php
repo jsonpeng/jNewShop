@@ -122,9 +122,9 @@
               }
           });
           $.ajax({
-              url:"/api/withdraw_account",
-              type:"POST",
-              data:'price='+money_num+'&bank_id='+bank_id,
+              url:"/ajax/user_money/withdrawal",
+              type:"GET",
+              data:'price='+money_num+'&type=wechat',
               success:function(data){
               	if(data.code==0){
               		layer.open({
@@ -133,7 +133,7 @@
                       ,time: 2 
                     });
                     setTimeout(function(){
-                    	 location.href=data.url;
+                    	 location.href='/usercenter';
                     },1000);
               	}else{
               			layer.open({

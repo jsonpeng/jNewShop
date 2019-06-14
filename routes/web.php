@@ -159,7 +159,7 @@ if(Config::get('web.WEB'))
 			#更新信息
 			Route::get('update_info','AjaxController@updateUserInfo');
 			#需要实名认证才能用
-			Route::group(['middleware'=>'zcjy_web_cert'],function(){
+			// Route::group(['middleware'=>'zcjy_web_cert'],function(){
 				#充值消耗货呗卡huobeiTopup
 				Route::get('credits/topup','AjaxController@huobeiTopup');
 				#转赠货呗
@@ -170,7 +170,7 @@ if(Config::get('web.WEB'))
 				Route::get('user_money/withdrawal','AjaxController@userYueWithdrawl');
 				#设置支付密码
 				Route::get('set_pay_pwd','AjaxController@setPayPwd');
-			});
+			// });
 		});
 
 		//商城首页
